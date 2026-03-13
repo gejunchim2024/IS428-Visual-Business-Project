@@ -70,9 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -197,36 +194,83 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="project-schedule-gantt-chart" class="level2">
 <h2 class="anchored" data-anchor-id="project-schedule-gantt-chart">Project Schedule (Gantt Chart)</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">gantt
-    title Project Schedule (Gantt Chart)
-    dateFormat  YYYY-MM-DD
-    axisFormat %d %b
-
-    section Week 1 (12-18 Mar)
-    Understand challenge &amp; define research questions :w1a, 2025-03-12, 7d
-    Create Project Proposal :w1b, 2025-03-12, 7d
-
-    section Week 2 (19-25 Mar)
-    Data cleaning &amp; graph-to-table transformation :w2a, 2025-03-19, 7d
-    Exploratory analysis of FILAH, TROUT, journalist datasets :w2b, 2025-03-19, 14d
-
-    section Week 3 (26 Mar-1 Apr)
-    Dashboard design sketches / storyboard :w3a, 2025-03-26, 7d
-    Tableau dashboard development :w3b, 2025-03-26, 14d
-
-    section Week 4 (2-8 Apr)
-    Insight refinement &amp; comparison analysis :w4a, 2025-04-02, 7d
-    Poster, website, and user guide preparation :w4b, 2025-04-02, 7d
-</pre>
-</div>
-<p></p><figcaption> Project Schedule (Gantt Chart)</figcaption> </figure><p></p>
-</div>
-</div>
+<div class="gantt-wrapper">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 26%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Week 1 (12–18 Mar)</th>
+<th>Week 2 (19–25 Mar)</th>
+<th>Week 3 (26 Mar–1 Apr)</th>
+<th>Week 4 (2–8 Apr)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Understand challenge &amp; define research questions</td>
+<td><span class="gantt-bar"></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Create Project Proposal</td>
+<td><span class="gantt-bar"></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Data cleaning &amp; graph-to-table transformation</td>
+<td></td>
+<td><span class="gantt-bar"></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Exploratory analysis of FILAH, TROUT, journalist datasets</td>
+<td></td>
+<td><span class="gantt-bar"></span></td>
+<td><span class="gantt-bar"></span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Dashboard design sketches / storyboard</td>
+<td></td>
+<td></td>
+<td><span class="gantt-bar"></span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Tableau dashboard development</td>
+<td></td>
+<td></td>
+<td><span class="gantt-bar"></span></td>
+<td><span class="gantt-bar"></span></td>
+</tr>
+<tr class="odd">
+<td>Insight refinement &amp; comparison analysis</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="gantt-bar"></span></td>
+</tr>
+<tr class="even">
+<td>Poster, website, and user guide preparation</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="gantt-bar"></span></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

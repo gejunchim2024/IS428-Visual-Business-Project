@@ -49,3 +49,38 @@
   border-radius: 4px;
   vertical-align: middle;
 }
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.team-member {
+  max-width: 220px;
+}
+
+.team-member img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.team-member h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #d2a48f; /* soft beige/pink tone */
+  margin-bottom: 10px;
+}
+
+.team-member p {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #333333;
+}

@@ -1,1 +1,93 @@
 /* css styles */
+
+/* Gantt chart */
+.gantt-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.gantt-wrapper table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.gantt-wrapper th,
+.gantt-wrapper td {
+  border: 1px solid #dee2e6;
+  padding: 0.6rem 0.75rem;
+  vertical-align: middle;
+}
+
+.gantt-wrapper th {
+  background: #f8f9fa;
+  font-weight: 600;
+  text-align: left;
+}
+
+.gantt-wrapper th:not(:first-child) {
+  text-align: center;
+  min-width: 7rem;
+}
+
+.gantt-wrapper td:first-child {
+  max-width: 320px;
+  font-weight: 500;
+}
+
+.gantt-wrapper td:not(:first-child) {
+  min-width: 7rem;
+  text-align: center;
+}
+
+.gantt-bar {
+  display: inline-block;
+  width: 85%;
+  height: 1.4rem;
+  background: #6f42c1;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 80px;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.team-member {
+  width: 240px;
+  text-align: center;
+}
+
+.team-member img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.team-member h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #d6a38c;
+  margin-bottom: 8px;
+}
+
+.team-member p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+  margin: 0 auto;
+}
+
+.team-member .anchorjs-link {
+  display: none;
+}
