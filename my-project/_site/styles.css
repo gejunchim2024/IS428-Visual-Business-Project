@@ -53,14 +53,16 @@
 .team-container {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  align-items: flex-start;
+  gap: 80px;
   flex-wrap: wrap;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .team-member {
-  max-width: 220px;
+  width: 240px;
+  text-align: center;
 }
 
 .team-member img {
@@ -75,12 +77,17 @@
 .team-member h3 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #d2a48f; /* soft beige/pink tone */
-  margin-bottom: 10px;
+  color: #d6a38c;
+  margin-bottom: 8px;
 }
 
 .team-member p {
   font-size: 1rem;
-  line-height: 1.4;
-  color: #333333;
+  line-height: 1.5;
+  color: #444;
+  margin: 0 auto;
+}
+
+.team-member .anchorjs-link {
+  display: none;
 }
