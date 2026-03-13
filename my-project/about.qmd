@@ -29,13 +29,13 @@ format: html
 
 <div class="team-container">
   <div class="team-member">
-    <img src="images/DSC01414.JPG" alt="Riona Ng" />
+    <img src="images/riona.JPG" alt="Riona Ng" />
     <h3>Riona Ng</h3>
     <p>Year 2 School of Computing and Information Systems student</p>
   </div>
 
   <div class="team-member">
-    <img src="images/DSC02425-31.JPG" alt="Chim Ge Jun" />
+    <img src="images/gejun.JPG" alt="Chim Ge Jun" />
     <h3>Chim Ge Jun</h3>
     <p>Year 2 School of Computing and Information Systems student</p>
   </div>
