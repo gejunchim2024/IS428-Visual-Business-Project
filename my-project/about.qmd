@@ -8,16 +8,13 @@ format: html
   <p>
     Here you can find information about the purpose of this project, the technologies used, and how to contribute.
   </p>
-
   <p>
     In this website, we discuss more about the project and our thought process. Through the provided data, we have come up with some interesting insights and conclusions.
   </p>
-
   <p>
     Here is our GitHub repository:
-    <a href="https://github.com/your-link" target="_blank">GitHub Repository</a>
+    <a href="https://github.com/your-link" target="_blank">GitHub Repository ↗</a>
   </p>
-
   <p><strong>Authors:</strong></p>
   <ul>
     <li>Riona Ng</li>
@@ -25,7 +22,7 @@ format: html
   </ul>
 </div>
 
-<h2>The Team</h2>
+<h2 class="team-section-title">The Team</h2>
 
 <div class="team-container">
   <div class="team-member">
