@@ -259,3 +259,7 @@ ul li {
   line-height: 1.5;
   color: var(--text-muted);
 }
+
+.anchorjs-link {
+  display: none !important;
+}
