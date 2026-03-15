@@ -15,9 +15,33 @@
   --radius:       10px;
 }
 
-/* ── Suppress heading anchor icons ── */
-.header-anchor {
+/* ── Suppress heading anchor icons (all Quarto/Cosmo selectors) ── */
+.header-anchor,
+.anchor-section,
+a.anchorjs-link,
+.anchorjs-link,
+[data-anchor-id]::after,
+h2 > a,
+h3 > a,
+h4 > a {
   display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* ── Navbar: balance title vs link font sizes ── */
+.navbar-brand,
+.navbar-title {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+}
+
+.navbar-nav .nav-link {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400;
 }
 
 /* ── Base typography ── */
