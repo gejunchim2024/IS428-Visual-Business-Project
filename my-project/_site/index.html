@@ -37,7 +37,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -153,11 +152,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="project-motivation" class="level2">
-<h2 class="anchored" data-anchor-id="project-motivation">Project Motivation</h2>
+<h2 data-anchor-id="project-motivation">Project Motivation</h2>
 <p>Mini-Challenge 2 presents a visual analytics problem centered on bias, incomplete evidence, and conflicting narratives. Two interest groups, <strong>FILAH</strong> and <strong>TROUT</strong>, accuse the <strong>COOTEFOO</strong> committee of opposing forms of economic bias, yet both rely on partial datasets. This creates an ideal setting for visual analytics because the challenge is not just to inspect data, but to understand how different data samples can produce different stories. Our project helps a non-technical journalist explore these competing claims transparently, identify whether bias exists, and distinguish genuine behavioral patterns from distortions caused by missing or selective evidence.</p>
 </section>
 <section id="project-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="project-objectives">Project Objectives</h2>
+<h2 data-anchor-id="project-objectives">Project Objectives</h2>
 <p>The project aims to design an interactive Tableau-based visual analytics dashboard that helps users:</p>
 <ul>
 <li>examine whether FILAH’s and TROUT’s accusations are supported by their own datasets;</li>
@@ -169,31 +168,31 @@ ul.task-list li input[type="checkbox"] {
 <p>The overall goal is to support evidence-based interpretation of committee bias.</p>
 </section>
 <section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
+<h2 data-anchor-id="data">Data</h2>
 <p>The project uses the MC2 knowledge graph datasets: <strong>FILAH.json</strong>, <strong>TROUT.json</strong>, and <strong>journalist.json</strong>. These are built from two main sources: meeting notes and travel records. The graph contains entities such as people, organisations, places, meetings, discussions, plans, topics, and trips, with attributes including date, time, role, sentiment, industry, latitude, and longitude. These datasets are linked through shared person and place records, allowing comparison between partial and complete views of the same committee activities.</p>
 </section>
 <section id="scope-of-work" class="level2">
-<h2 class="anchored" data-anchor-id="scope-of-work">Scope of Work</h2>
+<h2 data-anchor-id="scope-of-work">Scope of Work</h2>
 <p>Our scope covers four main components.</p>
 <section id="data-preprocessing-and-preparation" class="level3">
-<h3 class="anchored" data-anchor-id="data-preprocessing-and-preparation">1. Data Preprocessing and Preparation</h3>
+<h3 data-anchor-id="data-preprocessing-and-preparation">1. Data Preprocessing and Preparation</h3>
 <p>The JSON knowledge graph datasets (FILAH, TROUT, and journalist datasets) will be preprocessed and transformed into relational tables suitable for analysis in Tableau. This includes extracting nodes and edges, cleaning attributes such as dates, locations, and sentiment values, and structuring the data to enable efficient querying and visualization.</p>
 </section>
 <section id="dashboard-design-and-development" class="level3">
-<h3 class="anchored" data-anchor-id="dashboard-design-and-development">2. Dashboard Design and Development</h3>
+<h3 data-anchor-id="dashboard-design-and-development">2. Dashboard Design and Development</h3>
 <p>Interactive Tableau dashboards will be designed to support multiple analytical perspectives. These include dashboards for committee overview, member-level behavior, travel and location patterns, topic and sentiment analysis, and comparisons between the partial datasets (FILAH and TROUT) and the full journalist dataset.</p>
 </section>
 <section id="visual-analytical-workflow-development" class="level3">
-<h3 class="anchored" data-anchor-id="visual-analytical-workflow-development">3. Visual Analytical Workflow Development</h3>
+<h3 data-anchor-id="visual-analytical-workflow-development">3. Visual Analytical Workflow Development</h3>
 <p>We will develop visual analytic workflows that allow users to interactively explore the data and trace accusations back to the supporting or missing evidence. These workflows will enable users to examine differences between datasets, investigate individual committee members, and identify patterns that may indicate bias or incomplete information.</p>
 </section>
 <section id="analysis-and-interpretation-of-findings" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-and-interpretation-of-findings">4. Analysis and Interpretation of Findings</h3>
+<h3 data-anchor-id="analysis-and-interpretation-of-findings">4. Analysis and Interpretation of Findings</h3>
 <p>The final stage will synthesize analytical findings into a clear narrative explaining whether observed bias in COOTEFOO member behavior is genuine, exaggerated, or influenced by sampling limitations. The project will focus on explanation, comparison, and interpretive visual analysis rather than predictive modeling.</p>
 </section>
 </section>
 <section id="project-schedule-gantt-chart" class="level2">
-<h2 class="anchored" data-anchor-id="project-schedule-gantt-chart">Project Schedule (Gantt Chart)</h2>
+<h2 data-anchor-id="project-schedule-gantt-chart">Project Schedule (Gantt Chart)</h2>
 <div class="gantt-wrapper">
 <table class="caption-top table">
 <colgroup>
@@ -279,13 +278,6 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
