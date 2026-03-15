@@ -1,22 +1,19 @@
 project:
-  type: website
+    type: website
 
 website:
-  title: "IS428 Visual Analytics & Business Intelligence Project"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    title: "IS428 Visual Analytics & Business Intelligence Project"
+    navbar:
+      left:
+        - href: index.qmd
+          text: Home
+        - about.qmd
 
 format:
-  html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
-    toc: true
-    anchor-sections: false
-
-
-
+    html:
+      theme:
+        - cosmo
+        - brand
+      css: styles.css
+      toc: true
+      anchor-sections: false
