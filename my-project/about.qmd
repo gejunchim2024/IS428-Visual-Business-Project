@@ -6,14 +6,14 @@ format: html
 ```{=html}
 <div class="about-section">
   <p>
-    Here you can find information about the purpose of this project, the technologies used, and how to contribute.
+    Here you can find information about the purpose of this project, the technologies used, and the thought process behind our work. 
   </p>
   <p>
     In this website, we discuss more about the project and our thought process. Through the provided data, we have come up with some interesting insights and conclusions.
   </p>
   <p>
     Here is our GitHub repository:
-    <a href="https://github.com/your-link" target="_blank">GitHub Repository ↗</a>
+    <a href="https://github.com/gejunchim2024/IS428-Visual-Business-Project" target="_blank">GitHub Repository ↗</a>
   </p>
   <p><strong>Authors:</strong></p>
   <ul>
