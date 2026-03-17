@@ -2,7 +2,7 @@ project:
     type: website
 
 website:
-    title: "IS428 Visual Analytics & Business Intelligence Project"
+    title: ""
     navbar:
       left:
         - href: index.qmd
