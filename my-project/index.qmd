@@ -50,11 +50,11 @@ The final stage will synthesize analytical findings into a clear narrative expla
 |------|--------------------|--------------------|------------------------|-------------------|
 | Understand challenge & define research questions | <span class="gantt-bar"></span> | | | |
 | Create Project Proposal | <span class="gantt-bar"></span> | | | |
-| Data cleaning & graph-to-table transformation | | <span class="gantt-bar"></span> | | |
+| Data cleaning | | <span class="gantt-bar"></span> | | |
 | Exploratory analysis of FILAH, TROUT, journalist datasets | | <span class="gantt-bar"></span> | <span class="gantt-bar"></span> | |
-| Dashboard design sketches / storyboard | | | <span class="gantt-bar"></span> | |
+| Design Dashboard & storyboarding | | | <span class="gantt-bar"></span> | |
 | Tableau dashboard development | | | <span class="gantt-bar"></span> | <span class="gantt-bar"></span> |
-| Insight refinement & comparison analysis | | | | <span class="gantt-bar"></span> |
-| Poster, website, and user guide preparation | | | | <span class="gantt-bar"></span> |
+| Data Visualisation refinement & comparison analysis | | | | <span class="gantt-bar"></span> |
+| Poster & website | | | | <span class="gantt-bar"></span> |
 
 </div>
