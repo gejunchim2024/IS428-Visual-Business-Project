@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Here you can find information about the purpose of this project, the technologies used, and the thought process behind our work. \n  \n  \n    In this website, we discuss more about the project and our thought process. Through the provided data, we have come up with some interesting insights and conclusions.\n  \n  \n    Here is our GitHub repository:\n    GitHub Repository ↗\n  \n  Authors:\n  \n    Riona Ng\n    Chim Ge Jun\n  \n\n\nThe Team\n\n\n  \n    \n    Riona Ng\n    Year 2 School of Computing and Information Systems student\n  \n\n  \n    \n    Chim Ge Jun\n    Year 2 School of Computing and Information Systems student"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IS428 Visual Analytics & Business Intelligence Project",
+    "section": "",
+    "text": "Mini-Challenge 2 presents a visual analytics problem centered on bias, incomplete evidence, and conflicting narratives. Two interest groups, FILAH and TROUT, accuse the COOTEFOO committee of opposing forms of economic bias, yet both rely on partial datasets. This creates an ideal setting for visual analytics because the challenge is not just to inspect data, but to understand how different data samples can produce different stories. Our project helps a journalist explore these competing claims transparently, identify whether bias exists, and distinguish genuine behavioral patterns from distortions caused by missing or selective evidence."
+  },
+  {
+    "objectID": "index.html#project-motivation",
+    "href": "index.html#project-motivation",
+    "title": "IS428 Visual Analytics & Business Intelligence Project",
+    "section": "",
+    "text": "Mini-Challenge 2 presents a visual analytics problem centered on bias, incomplete evidence, and conflicting narratives. Two interest groups, FILAH and TROUT, accuse the COOTEFOO committee of opposing forms of economic bias, yet both rely on partial datasets. This creates an ideal setting for visual analytics because the challenge is not just to inspect data, but to understand how different data samples can produce different stories. Our project helps a journalist explore these competing claims transparently, identify whether bias exists, and distinguish genuine behavioral patterns from distortions caused by missing or selective evidence."
+  },
+  {
+    "objectID": "index.html#project-objectives",
+    "href": "index.html#project-objectives",
+    "title": "IS428 Visual Analytics & Business Intelligence Project",
+    "section": "Project Objectives",
+    "text": "Project Objectives\nThe project aims to design an interactive Tableau & Gephi visual analytics dashboard that helps users:\n\nexamine whether FILAH’s and TROUT’s accusations are supported by their own datasets;\ncompare these partial views against the complete journalist dataset;\nanalyze how COOTEFOO members spend their time across meetings, discussions, plans, trips, and locations;\nidentify members whose apparent behavior changes most when the full dataset is considered;\nhighlight where sampling bias or omitted evidence most affects judgment.\n\nThe overall goal is to support evidence-based interpretation of committee bias."
+  },
+  {
+    "objectID": "index.html#data",
+    "href": "index.html#data",
+    "title": "IS428 Visual Analytics & Business Intelligence Project",
+    "section": "Data",
+    "text": "Data\nThe project uses the MC2 knowledge graph datasets:\n\nFILAH_links.csv\nFILAH_nodes.csv\nTROUT_links.csv\nTROUT_nodes.csv\njournalist_links.csv\njournalist_nodes.csv\ngeo_edges.csv\ngeo_nodes.csv\n\nThese are built from two main sources: meeting notes and travel records. The graph contains entities such as people, organisations, places, meetings, discussions, plans, topics, and trips, with attributes including date, time, role, sentiment, industry, latitude, and longitude. These datasets are linked through shared person and place records, allowing comparison between partial and complete views of the same committee activities."
+  },
+  {
+    "objectID": "index.html#scope-of-work",
+    "href": "index.html#scope-of-work",
+    "title": "IS428 Visual Analytics & Business Intelligence Project",
+    "section": "Scope of Work",
+    "text": "Scope of Work\nOur scope covers four main components.\n\n1. Data Preprocessing and Preparation\nThe CSV datasets (FILAH, TROUT, and journalist datasets) will be preprocessed and designed into relational tables suitable for analysis in Tableau. This includes cleaning of attributes such as dates, locations, and sentiment values, and structuring the data to enable efficient querying and visualization. We will also prepare geospatial data for mapping COOTEFOO members’ travel patterns and meeting locations.\n\n\n2. Dashboard Design and Development\nInteractive Tableau dashboards will be designed to support multiple analytical perspectives. These include dashboards for committee overview, member-level behavior, travel and location patterns, topic and sentiment analysis, and comparisons between the partial datasets (FILAH and TROUT) and the full journalist dataset.\n\n\n3. Visual Analytical Workflow Development\nWe will develop visual analytics workflows that allow users to interactively explore the data and trace accusations back to the supporting or missing evidence. These workflows will enable users to examine differences between datasets, investigate individual committee members, and identify patterns that may indicate bias or incomplete information.\n\n\n4. Analysis and Interpretation of Findings\nThe final stage will synthesize analytical findings into a clear narrative explaining whether observed bias in COOTEFOO member behavior is genuine, exaggerated, or influenced by sampling limitations. The project will focus on explanation, comparison, and interpretive visual analysis rather than predictive modeling."
+  },
+  {
+    "objectID": "index.html#project-schedule-gantt-chart",
+    "href": "index.html#project-schedule-gantt-chart",
+    "title": "IS428 Visual Analytics & Business Intelligence Project",
+    "section": "Project Schedule (Gantt Chart)",
+    "text": "Project Schedule (Gantt Chart)\n\n\n\n\n\n\n\n\n\n\n\nTask\nWeek 1 (12–18 Mar)\nWeek 2 (19–25 Mar)\nWeek 3 (26 Mar–1 Apr)\nWeek 4 (2–8 Apr)\n\n\n\n\nUnderstand challenge & define research questions\n\n\n\n\n\n\nCreate Project Proposal\n\n\n\n\n\n\nData cleaning\n\n\n\n\n\n\nExploratory analysis of FILAH, TROUT, journalist datasets\n\n\n\n\n\n\nDesign Dashboard & storyboarding\n\n\n\n\n\n\nTableau dashboard development\n\n\n\n\n\n\nData Visualisation refinement & comparison analysis\n\n\n\n\n\n\nPoster & website"
+  }
+]
