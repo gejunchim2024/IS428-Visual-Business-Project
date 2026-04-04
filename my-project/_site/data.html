@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About</title>
+<title>Data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -91,11 +91,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
+    <a class="nav-link active" href="./data.html" aria-current="page"> 
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
@@ -121,15 +121,34 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#the-files" id="toc-the-files" class="nav-link" data-scroll-target="#the-files">The files</a></li>
+  <li><a href="#the-graph-structure" id="toc-the-graph-structure" class="nav-link" data-scroll-target="#the-graph-structure">The graph structure</a></li>
+  <li><a href="#the-cootefoo-board-members" id="toc-the-cootefoo-board-members" class="nav-link" data-scroll-target="#the-cootefoo-board-members">The COOTEFOO board members</a></li>
+  <li><a href="#the-critical-structural-finding" id="toc-the-critical-structural-finding" class="nav-link" data-scroll-target="#the-critical-structural-finding">The critical structural finding</a></li>
+  <li><a href="#understanding-what-bias-means-in-this-data" id="toc-understanding-what-bias-means-in-this-data" class="nav-link" data-scroll-target="#understanding-what-bias-means-in-this-data">Understanding what “bias” means in this data</a>
+  <ul class="collapse">
+  <li><a href="#layer-1-sentiment-bias" id="toc-layer-1-sentiment-bias" class="nav-link" data-scroll-target="#layer-1-sentiment-bias">Layer 1 — Sentiment bias</a></li>
+  <li><a href="#layer-2-topic-omission-bias" id="toc-layer-2-topic-omission-bias" class="nav-link" data-scroll-target="#layer-2-topic-omission-bias">Layer 2 — Topic omission bias</a></li>
+  <li><a href="#layer-3-member-exclusion-bias" id="toc-layer-3-member-exclusion-bias" class="nav-link" data-scroll-target="#layer-3-member-exclusion-bias">Layer 3 — Member exclusion bias</a></li>
+  </ul></li>
+  <li><a href="#data-columns-we-could-not-use" id="toc-data-columns-we-could-not-use" class="nav-link" data-scroll-target="#data-columns-we-could-not-use">Data columns we could not use</a></li>
+  <li><a href="#how-we-structured-the-data-in-tableau" id="toc-how-we-structured-the-data-in-tableau" class="nav-link" data-scroll-target="#how-we-structured-the-data-in-tableau">How we structured the data in Tableau</a></li>
+  <li><a href="#the-15-topics-and-their-industry-classification" id="toc-the-15-topics-and-their-industry-classification" class="nav-link" data-scroll-target="#the-15-topics-and-their-industry-classification">The 15 topics and their industry classification</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Data</h1>
 </div>
 
 
@@ -146,41 +165,401 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="about-section">
-  <p>
-    Here you can find information about the purpose of this project, the technologies used, and the thought process behind our work. 
-  </p>
-  <p>
-    In this website, we discuss more about the project and our thought process. Through the provided data, we have come up with some interesting insights and conclusions.
-  </p>
-  <p>
-    Here is our GitHub repository:
-    <a href="https://github.com/gejunchim2024/IS428-Visual-Business-Project" target="_blank">GitHub Repository ↗</a>
-  </p>
-  <p><strong>Authors:</strong></p>
-  <ul>
-    <li>Riona Ng</li>
-    <li>Chim Ge Jun</li>
-  </ul>
-</div>
+<hr>
+<section id="overview" class="level2">
+<h2 data-anchor-id="overview">Overview</h2>
+<p>The MC2 dataset represents Oceanus as a knowledge graph: entities are nodes, and relationships between them are edges. This page explains what the data contains, how we understood it, and the analytical decisions we made before touching any visualisation.</p>
+<hr>
+</section>
+<section id="the-files" class="level2">
+<h2 data-anchor-id="the-files">The files</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Rows</th>
+<th>Role in analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mc2_journalist_links.csv</code></td>
+<td>2,436</td>
+<td><strong>Base table and ground truth.</strong> Every link in the complete dataset.</td>
+</tr>
+<tr class="even">
+<td><code>mc2_jounalist_nodes.csv</code></td>
+<td>740</td>
+<td><strong>Base nodes table.</strong> All entities in the complete dataset. Note: filename is misspelled in the original data.</td>
+</tr>
+<tr class="odd">
+<td><code>mc2_FILAH_links.csv</code></td>
+<td>765</td>
+<td>FILAH’s submitted evidence. A cherry-picked subset of the journalist file.</td>
+</tr>
+<tr class="even">
+<td><code>mc2_TROUT_links.csv</code></td>
+<td>378</td>
+<td>TROUT’s submitted evidence. A different cherry-picked subset of the journalist file.</td>
+</tr>
+<tr class="odd">
+<td><code>mc2_FILAH_nodes.csv</code></td>
+<td>396</td>
+<td>FILAH’s node list. Fully contained within the journalist nodes. Not used in the main analysis.</td>
+</tr>
+<tr class="even">
+<td><code>mc2_TROUT_nodes.csv</code></td>
+<td>164</td>
+<td>TROUT’s node list. Fully contained within the journalist nodes. Not used in the main analysis.</td>
+</tr>
+<tr class="odd">
+<td><code>mc2_geo_nodes.csv</code></td>
+<td>2,664</td>
+<td>Physical locations in Oceanus with zone classification and coordinates. Used to enrich travel links.</td>
+</tr>
+<tr class="even">
+<td><code>mc2_geo_edges.csv</code></td>
+<td>3,420</td>
+<td>Road network between locations. Not used — not relevant to the analytical questions.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="the-graph-structure" class="level2">
+<h2 data-anchor-id="the-graph-structure">The graph structure</h2>
+<p>Each links file contains edges between nodes. Every row is one connection. The critical column is <code>role</code>, which defines what kind of connection it is.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Count (journalist)</th>
+<th>What it connects</th>
+<th>Analytical use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>participant</code></td>
+<td>218</td>
+<td>Discussion → Member or Organisation</td>
+<td><strong>Primary analysis.</strong> Only role that carries sentiment scores.</td>
+</tr>
+<tr class="even">
+<td><code>about</code></td>
+<td>200</td>
+<td>Discussion → Topic</td>
+<td>Topic coverage analysis</td>
+</tr>
+<tr class="odd">
+<td><code>part_of</code></td>
+<td>175</td>
+<td>Discussion → Meeting</td>
+<td>Meeting structure</td>
+</tr>
+<tr class="even">
+<td><code>plan</code></td>
+<td>73</td>
+<td>Topic → Plan document</td>
+<td>Output tracking</td>
+</tr>
+<tr class="odd">
+<td><code>travel</code></td>
+<td>22</td>
+<td>Topic → Geographic location</td>
+<td>Travel pattern analysis</td>
+</tr>
+<tr class="even">
+<td><code>refers_to</code></td>
+<td>43</td>
+<td>Document → Document</td>
+<td>Cross-reference network</td>
+</tr>
+</tbody>
+</table>
+<p>Only 218 of 2,436 rows are <code>participant</code> type. Every sentiment analysis in this project is filtered exclusively to this role. Forgetting this filter produces meaningless averages across thousands of NULL sentiment values.</p>
+<p>Nodes contain: <code>type</code>, <code>id</code>, <code>name</code>, <code>role</code>, <code>short_topic</code>, <code>lat</code>, <code>lon</code>, <code>zone</code>, <code>city_name</code>, <code>date</code>, <code>start</code>, <code>end</code>.</p>
+<p>Node types present: <code>entity.person</code>, <code>entity.organization</code>, <code>meeting</code>, <code>discussion</code>, <code>plan</code>, <code>trip</code>, <code>place</code>, <code>topic</code>.</p>
+<hr>
+</section>
+<section id="the-cootefoo-board-members" class="level2">
+<h2 data-anchor-id="the-cootefoo-board-members">The COOTEFOO board members</h2>
+<p>Six people sit on the COOTEFOO board. They appear as <code>target</code> values in <code>participant</code> links. Their presence or absence across the three datasets is itself evidence of bias.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Member</th>
+<th>Role</th>
+<th>In FILAH</th>
+<th>In TROUT</th>
+<th>Journalist only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Seal</td>
+<td>Committee Chair</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Simone Kat</td>
+<td>Member</td>
+<td>Yes</td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Carol Limpet</td>
+<td>Member</td>
+<td>Yes</td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Ed Helpsford</td>
+<td>Vice Chair</td>
+<td>No</td>
+<td>Yes</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Teddy Goldstein</td>
+<td>Treasurer</td>
+<td>No</td>
+<td>Yes</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Tante Titan</td>
+<td>Member</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>FILAH recorded 3 members. TROUT recorded a different 3. Tante Titan — whose full record shows balanced, positive engagement across both industries — was excluded by both groups. Neither set of 3 members is an accident.</p>
+<hr>
+</section>
+<section id="the-critical-structural-finding" class="level2">
+<h2 data-anchor-id="the-critical-structural-finding">The critical structural finding</h2>
+<p>Before building any visualisation, we ran a full overlap analysis on the three links files using composite keys (<code>source + target + role</code>).</p>
+<p><strong>Result: 100% of FILAH’s 765 rows exist inside the journalist file. 100% of TROUT’s 378 rows also exist inside the journalist file.</strong></p>
+<p>The journalist file is a complete superset. FILAH and TROUT did not collect independent data — they each drew from the same pool of 2,436 records and selectively chose what to submit.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>In FILAH only (not TROUT)</td>
+<td>586</td>
+</tr>
+<tr class="even">
+<td>In TROUT only (not FILAH)</td>
+<td>199</td>
+</tr>
+<tr class="odd">
+<td>In both FILAH and TROUT</td>
+<td>179</td>
+</tr>
+<tr class="even">
+<td>In Journalist only (neither group)</td>
+<td>1,472</td>
+</tr>
+<tr class="odd">
+<td><strong>Total unique journalist links</strong></td>
+<td><strong>2,436</strong></td>
+</tr>
+</tbody>
+</table>
+<p>1,472 records — 60% of the journalist’s dataset — were never shown to anyone by either activist group.</p>
+<hr>
+</section>
+<section id="understanding-what-bias-means-in-this-data" class="level2">
+<h2 data-anchor-id="understanding-what-bias-means-in-this-data">Understanding what “bias” means in this data</h2>
+<p>The data does not contain a direct “bias” column. Bias must be inferred from patterns. We identified three distinct layers:</p>
+<section id="layer-1-sentiment-bias" class="level3">
+<h3 data-anchor-id="layer-1-sentiment-bias">Layer 1 — Sentiment bias</h3>
+<p><code>participant</code> links carry a sentiment score from -1 (very negative) to +1 (very positive). If one group’s data shows systematically different sentiment toward fishing vs tourism topics, that is evidence of bias in the data they chose to submit.</p>
+<p><strong>Verified findings:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Fishing sentiment</th>
+<th>Tourism sentiment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FILAH</td>
+<td>0.209</td>
+<td>0.740</td>
+</tr>
+<tr class="even">
+<td>TROUT</td>
+<td>0.720</td>
+<td>0.141</td>
+</tr>
+<tr class="odd">
+<td>Full Journalist</td>
+<td>0.490</td>
+<td>0.549</td>
+</tr>
+</tbody>
+</table>
+<p>FILAH’s data makes the board look strongly pro-tourism. TROUT’s data makes the board look strongly pro-fishing. The full dataset shows near-equal engagement with both. The gap between each group’s view and reality is the quantified sampling bias.</p>
+</section>
+<section id="layer-2-topic-omission-bias" class="level3">
+<h3 data-anchor-id="layer-2-topic-omission-bias">Layer 2 — Topic omission bias</h3>
+<p>Two topics are completely absent from one group’s data: - <code>concert</code> (a Tourism topic) — present in TROUT and Journalist, <strong>absent from FILAH</strong> - <code>seafood_festival</code> (a Fishing topic) — present in FILAH and Journalist, <strong>absent from TROUT</strong></p>
+<p>These are not gaps from random sampling. FILAH excluded a tourism topic. TROUT excluded a fishing topic. Each group removed the topic that most undermined their accusation.</p>
+</section>
+<section id="layer-3-member-exclusion-bias" class="level3">
+<h3 data-anchor-id="layer-3-member-exclusion-bias">Layer 3 — Member exclusion bias</h3>
+<p>Beyond topics, the groups excluded entire people. FILAH omitted Teddy Goldstein (Fishing=0.85, Tourism=-0.50), Ed Helpsford (Fishing=1.0), and Tante Titan (balanced). TROUT omitted Simone Kat (Tourism=0.908), Carol Limpet, and Tante Titan.</p>
+<p>The pattern is consistent: each group excluded members whose records would have weakened their narrative and included those whose records strengthened it.</p>
+<hr>
+</section>
+</section>
+<section id="data-columns-we-could-not-use" class="level2">
+<h2 data-anchor-id="data-columns-we-could-not-use">Data columns we could not use</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Problem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>industry</code></td>
+<td>Exists in all links files but contains no data in any row. We reconstructed industry classification from the <code>source</code> field using topic prefix matching.</td>
+</tr>
+<tr class="even">
+<td><code>short_topic</code></td>
+<td>Same — structurally present but empty. We derived topic names from source IDs using <code>STARTSWITH()</code> logic against 15 known topic slugs.</td>
+</tr>
+<tr class="odd">
+<td><code>sentiment</code> (raw)</td>
+<td>Stored as a string. Some rows contain the literal text “NA”. Requires <code>FLOAT()</code> conversion before use.</td>
+</tr>
+<tr class="even">
+<td>Geographic coordinates</td>
+<td>Available in <code>mc2_geo_nodes.csv</code> (x, y fields). Not used for mapping because the analysis questions focused on zone type and city rather than precise coordinates.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="how-we-structured-the-data-in-tableau" class="level2">
+<h2 data-anchor-id="how-we-structured-the-data-in-tableau">How we structured the data in Tableau</h2>
+<p>The journalist links file became the single base table. FILAH and TROUT links were left-joined onto it using a three-field composite key.</p>
+<pre><code>Base: mc2_journalist_links.csv (2,436 rows)
+  └─ LEFT JOIN mc2_FILAH_links.csv  ON source + target + role
+  └─ LEFT JOIN mc2_TROUT_links.csv  ON source + target + role</code></pre>
+<p>After the join, rows where FILAH’s <code>source</code> column is NULL were excluded by FILAH. Rows where TROUT’s <code>source</code> column is NULL were excluded by TROUT. Two boolean calculated fields (<code>In FILAH</code>, <code>In TROUT</code>) capture this. A parameter (<code>Dataset View</code>) switches the filter between FILAH, TROUT, and Full Journalist perspectives without requiring separate data sources.</p>
+<p>The journalist nodes file was added twice as related tables — once for target node attributes, once for source node attributes. The geo nodes file was added as a third relationship, keyed on <code>target = id</code>, resolving only for travel links where the target is a geographic node ID.</p>
+<p><strong>Why not union?</strong> Unioning all three links files would duplicate the 765 FILAH rows and 378 TROUT rows that already exist in the journalist file, inflating all counts by up to 3×. The join approach preserves exactly 2,436 rows while making membership flags computable at row level.</p>
+<hr>
+</section>
+<section id="the-15-topics-and-their-industry-classification" class="level2">
+<h2 data-anchor-id="the-15-topics-and-their-industry-classification">The 15 topics and their industry classification</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>Industry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>fish_vacuum</td>
+<td>Fishing</td>
+</tr>
+<tr class="even">
+<td>deep_fishing_dock</td>
+<td>Fishing</td>
+</tr>
+<tr class="odd">
+<td>new_crane_lomark</td>
+<td>Fishing</td>
+</tr>
+<tr class="even">
+<td>low_volume_crane</td>
+<td>Fishing</td>
+</tr>
+<tr class="odd">
+<td>seafood_festival</td>
+<td>Fishing</td>
+</tr>
+<tr class="even">
+<td>affordable_housing</td>
+<td>Fishing</td>
+</tr>
+<tr class="odd">
+<td>expanding_tourist_wharf</td>
+<td>Tourism</td>
+</tr>
+<tr class="even">
+<td>marine_life_deck</td>
+<td>Tourism</td>
+</tr>
+<tr class="odd">
+<td>waterfront_market</td>
+<td>Tourism</td>
+</tr>
+<tr class="even">
+<td>heritage_walking_tour</td>
+<td>Tourism</td>
+</tr>
+<tr class="odd">
+<td>concert</td>
+<td>Tourism</td>
+</tr>
+<tr class="even">
+<td>statue_john_smoth</td>
+<td>Other</td>
+</tr>
+<tr class="odd">
+<td>renaming_park_himark</td>
+<td>Other</td>
+</tr>
+<tr class="even">
+<td>name_harbor_area</td>
+<td>Other</td>
+</tr>
+<tr class="odd">
+<td>name_inspection_office</td>
+<td>Other</td>
+</tr>
+</tbody>
+</table>
+<p>Topic classification was not provided in the data. We assigned each topic to an industry category based on the long-form topic description in the nodes file. The Fishing category covers topics directly related to commercial fishing infrastructure and livelihoods. Tourism covers topics related to economic development through visitor activity. Other covers civic/administrative topics that do not clearly belong to either industry. All classifications are arguable — <code>affordable_housing</code> could reasonably be placed in Other, but it is explicitly described in the data as a conflict between fishing workers and short-term rentals, placing it in the Fishing sphere.</p>
 
-<h2 class="team-section-title">The Team</h2>
 
-<div class="team-container">
-  <div class="team-member">
-    <img src="images/riona.JPG" alt="Riona Ng">
-    <h3>Riona Ng</h3>
-    <p>Year 2 School of Computing and Information Systems student</p>
-  </div>
-
-  <div class="team-member">
-    <img src="images/gejun.JPG" alt="Chim Ge Jun">
-    <h3>Chim Ge Jun</h3>
-    <p>Year 2 School of Computing and Information Systems student</p>
-  </div>
-</div>
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

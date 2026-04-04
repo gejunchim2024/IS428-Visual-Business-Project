@@ -1,0 +1,107 @@
+---
+title: "Methodology"
+---
+
+---
+
+## 1. Problem Framing
+
+### What this challenge is
+
+VAST Challenge 2025 Mini-Challenge 2 presents a bias investigation framed around a fictional coastal town, Oceanus. The town's oversight board, COOTEFOO, has been accused of economic bias by two opposing activist groups — FILAH (pro-fishing) and TROUT (pro-tourism) — who each submitted datasets as evidence. A journalist, Edwina Darling Moray, has obtained both datasets alongside additional records of her own.
+
+The task is not simply to visualise the data. It is to use visual analytics to determine whether the accusations are supported by evidence, whether that evidence is trustworthy, and what the complete picture looks like once all available records are considered.
+
+### Why it matters
+
+This is fundamentally a problem about the integrity of evidence. Both groups make confident accusations. Both groups have data. The question is whether the data was selected honestly or curated to manufacture a narrative. This has direct parallels to real-world government accountability and media bias — making the analytical approach here more than an academic exercise.
+
+The four questions we needed to answer were:
+
+| | Question |
+|---|---|
+| Q1 | Do FILAH's and TROUT's own datasets support their accusations? |
+| Q2 | Using the full journalist dataset, is the COOTEFOO board actually biased? |
+| Q3 | Are the accusations strengthened or weakened when compared against the full dataset? |
+| Q4 | How does an individual member's story change depending on which dataset you use? |
+
+---
+
+## 2. Data Preparation
+
+### From knowledge graph to relational tables
+
+The raw data is structured as a knowledge graph — nodes represent entities (people, organisations, topics, meetings, places, trips) and edges represent connections between them. Each edge has a `role` attribute describing the type of connection: `participant`, `about`, `part_of`, `plan`, `refers_to`, or `travel`.
+
+For Tableau, this was flattened into relational tables. The journalist links file (2,436 rows) became the base table. FILAH links (765 rows) and TROUT links (378 rows) were left-joined onto this base using a three-field composite key: `source + target + role`. This is non-trivial — a naive union of all three files produces triple-counting because every FILAH and TROUT row already exists in the journalist file. The join approach preserves exactly 2,436 rows while tagging each row with boolean flags (`In FILAH`, `In TROUT`) indicating which groups included it.
+
+The journalist nodes file (740 rows) was added as two separate related tables — Target Nodes and Source Nodes — to enable attribute lookups on both ends of each link. A geo nodes file (2,664 rows) was related separately for geographic enrichment of travel links.
+
+### Cleaning and assumptions
+
+Several data quality issues required attention:
+
+- The `industry` and `short_topic` columns exist in all three links files but contain no data. Topic classification was reconstructed from the `source` field using `STARTSWITH()` pattern matching against 15 known topic slugs. Industry classification (Fishing / Tourism / Other) was derived from those topic slugs.
+- The `sentiment` column is stored as a string because some rows contain the literal text "NA". A `FLOAT()` conversion was applied, returning NULL for non-numeric values.
+- Sentiment scores only exist on `participant` role links (218 of 2,436 rows). All sentiment analysis is filtered to this role type.
+- Geographic node IDs in travel links are numeric strings. A type mismatch with the geo nodes table was a recurring risk and required explicit string type enforcement on both sides of the relationship.
+
+### Key structural decision: joins not unions
+
+Using Tableau's physical layer joins rather than a union was the core architectural decision. Unions would inflate counts and distort all proportional analysis. Joins allow the dataset membership flags to be computed at row level, enabling any chart to simulate the FILAH, TROUT, or Full Journalist perspective through a single filter switch — without maintaining three separate data sources.
+
+---
+
+## 3. Analytical Approach
+
+### Overlap analysis
+
+Before building any visualisations, we verified the relationship between the three datasets programmatically. The key finding: all 765 FILAH rows and all 378 TROUT rows are exact subsets of the 2,436 journalist rows. This confirmed that the journalist dataset is a true superset and that both activist groups drew from the same evidence pool. This structural finding is the foundation for every analytical claim in the project.
+
+### Sentiment analysis
+
+Sentiment scores (ranging from -1 to +1) on participant links capture how board members engaged with each discussion topic. We computed mean sentiment by industry (Fishing / Tourism / Other) and by member, across each dataset view. The divergence between FILAH and TROUT views — and the convergence toward balance in the full dataset — is the primary quantitative evidence of sampling bias.
+
+### Topic coverage analysis
+
+We mapped which of the 15 known discussion topics appeared in each dataset. Two topics were completely absent from one group's data: `concert` (a Tourism topic) was excluded by FILAH, and `seafood_festival` (a Fishing topic) was excluded by TROUT. This selective omission is direct evidence of deliberate curation rather than innocent sampling.
+
+### Member inclusion analysis
+
+We examined which board members appeared in each dataset. FILAH recorded only 3 of 6 members. TROUT recorded a different 3 of 6. One member — Tante Titan — appeared in neither group's dataset, only in the journalist's additional records. The selection pattern is not random: each group chose the members whose records best supported their narrative.
+
+### Geographic / travel analysis
+
+Travel links connect board members' activities to physical locations with zone classifications (industrial, tourism, residential, government, commercial). FILAH recorded 15 of 22 travel links, predominantly to industrial zones. TROUT recorded only 4 of 22, suppressing nearly all geographic evidence. This geographic dimension provides a behavioural dimension beyond sentiment scores alone.
+
+### Comparison framework
+
+All comparisons between datasets use proportions, not raw counts, because dataset sizes differ substantially (FILAH: 765, TROUT: 378, Journalist: 2,436). Every cross-dataset chart uses either normalised values or clearly labelled absolute counts with N displayed.
+
+---
+
+## 4. Visualisation Design Decisions
+
+### Chart type rationale
+
+| Chart type | Where used | Why |
+|---|---|---|
+| Bar chart (trellis) | Sentiment by industry, three dataset panels | Directly comparable across panels when axes are locked to the same range (-1 to 1). Side-by-side panels make the FILAH/TROUT/Journalist divergence immediately legible. |
+| Heatmap | Topic coverage across datasets | The primary value is making absent cells visible. A heatmap makes zero counts and missing topics visually obvious at a glance — no other chart type achieves this as cleanly. |
+| Diverging stacked bar | Board-wide positive vs negative engagement counts | Answers Q2 directly by showing the ratio of positive to negative interactions per industry. Diverging layout from zero makes the asymmetry visible without requiring numerical literacy. |
+| Dot plot | Member sentiment by industry, per dataset panel | Handles the sparse structure well — some members only appear in one or two datasets, creating NULLs that a bar chart would render as zero rather than absence. |
+| Bar chart (stacked, sorted) | Member participation counts by industry | Shows both volume (total bar length) and composition (colour segments) simultaneously. Sorted by total participation to surface Tante Titan's unusual profile. |
+| Heatmap (member × topic) | Member engagement across all topics | The richest single chart in the project. Two dimensions (members, topics) with colour encoding sentiment turns a 6×15 matrix into a scannable pattern. Red cells (negative) stand out immediately. |
+| Bar chart (grouped) | Accusations vs Reality | Six bars in two industry groups, comparing partial dataset claims against the full dataset baseline. Horizontal layout allows long label names to be readable. |
+| Bar chart + dot plot (parameter-driven) | Member spotlight | Parameter controls allow the journalist to select any member and dataset view interactively. The bar chart gives industry-level summary; the dot plot beneath gives topic-level detail. |
+| Bar chart (travel destinations) | Travel zone by dataset | Raw counts by destination zone across three panels. Honest representation of a small dataset (22 links) — percentage charts would be misleading at this sample size. |
+
+### Trade-offs and simplifications
+
+**Sentiment as a proxy for bias.** Sentiment scores were assigned in the original dataset and we treat them as given. We did not verify the scoring methodology. Sentiment is used as an indicator of engagement quality, not as a definitive measure of bias — a distinction worth noting.
+
+**No network visualisation.** The data is structured as a knowledge graph and Gephi was mentioned in the project scope. However, for the specific analytical questions posed (sentiment comparison, topic coverage, member inclusion), tabular aggregations in Tableau proved more analytically tractable than network diagrams. A network view would show connectivity but not the quantitative divergence between datasets that is the core finding.
+
+**15 topics only.** Our topic classification covers the 15 named topics visible in the journalist nodes file. Any discussion nodes that did not match a known topic prefix are classified as NULL and excluded from industry-level analysis. This is a conservative approach — we do not assign uncertain cases to a category.
+
+**Tableau relationships vs joins.** We chose physical joins for the three links tables rather than Tableau relationships. Relationships would have prevented cross-table row-level calculations — specifically, the boolean membership flags that underpin all dataset comparison charts cannot be computed in a calculated field when the source tables are in different relationship contexts. The join approach trades some of Tableau's fan-out protection for the ability to compute membership flags at row level.

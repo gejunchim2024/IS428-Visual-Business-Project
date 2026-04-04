@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About</title>
+<title>Results and Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -91,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Methodology</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./results.html"> 
+    <a class="nav-link active" href="./results.html" aria-current="page"> 
 <span class="menu-text">Results</span></a>
   </li>  
   <li class="nav-item">
@@ -121,15 +121,49 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-of-findings" id="toc-overview-of-findings" class="nav-link active" data-scroll-target="#overview-of-findings">Overview of Findings</a></li>
+  <li><a href="#q1-do-filahs-and-trouts-own-datasets-support-their-accusations" id="toc-q1-do-filahs-and-trouts-own-datasets-support-their-accusations" class="nav-link" data-scroll-target="#q1-do-filahs-and-trouts-own-datasets-support-their-accusations">Q1 — Do FILAH’s and TROUT’s own datasets support their accusations?</a>
+  <ul class="collapse">
+  <li><a href="#what-each-groups-data-shows" id="toc-what-each-groups-data-shows" class="nav-link" data-scroll-target="#what-each-groups-data-shows">What each group’s data shows</a></li>
+  <li><a href="#the-heatmap-evidence" id="toc-the-heatmap-evidence" class="nav-link" data-scroll-target="#the-heatmap-evidence">The heatmap evidence</a></li>
+  <li><a href="#the-accusations-vs-reality-chart" id="toc-the-accusations-vs-reality-chart" class="nav-link" data-scroll-target="#the-accusations-vs-reality-chart">The Accusations vs Reality chart</a></li>
+  </ul></li>
+  <li><a href="#q2-is-the-cootefoo-board-actually-biased" id="toc-q2-is-the-cootefoo-board-actually-biased" class="nav-link" data-scroll-target="#q2-is-the-cootefoo-board-actually-biased">Q2 — Is the COOTEFOO board actually biased?</a>
+  <ul class="collapse">
+  <li><a href="#board-wide-sentiment" id="toc-board-wide-sentiment" class="nav-link" data-scroll-target="#board-wide-sentiment">Board-wide sentiment</a></li>
+  <li><a href="#member-level-variation-exists-but-it-is-not-systemic" id="toc-member-level-variation-exists-but-it-is-not-systemic" class="nav-link" data-scroll-target="#member-level-variation-exists-but-it-is-not-systemic">Member-level variation exists — but it is not systemic</a></li>
+  <li><a href="#member-activity-distribution" id="toc-member-activity-distribution" class="nav-link" data-scroll-target="#member-activity-distribution">Member activity distribution</a></li>
+  </ul></li>
+  <li><a href="#q3-are-the-accusations-weakened-by-the-full-dataset" id="toc-q3-are-the-accusations-weakened-by-the-full-dataset" class="nav-link" data-scroll-target="#q3-are-the-accusations-weakened-by-the-full-dataset">Q3 — Are the accusations weakened by the full dataset?</a>
+  <ul class="collapse">
+  <li><a href="#what-changed-and-why" id="toc-what-changed-and-why" class="nav-link" data-scroll-target="#what-changed-and-why">What changed and why</a></li>
+  <li><a href="#the-suppression-numbers" id="toc-the-suppression-numbers" class="nav-link" data-scroll-target="#the-suppression-numbers">The suppression numbers</a></li>
+  <li><a href="#the-travel-evidence" id="toc-the-travel-evidence" class="nav-link" data-scroll-target="#the-travel-evidence">The travel evidence</a></li>
+  <li><a href="#tante-titan-the-suppressed-member" id="toc-tante-titan-the-suppressed-member" class="nav-link" data-scroll-target="#tante-titan-the-suppressed-member">Tante Titan — the suppressed member</a></li>
+  </ul></li>
+  <li><a href="#q4-how-does-an-individual-members-story-change-across-datasets" id="toc-q4-how-does-an-individual-members-story-change-across-datasets" class="nav-link" data-scroll-target="#q4-how-does-an-individual-members-story-change-across-datasets">Q4 — How does an individual member’s story change across datasets?</a></li>
+  <li><a href="#limitations-of-evidence" id="toc-limitations-of-evidence" class="nav-link" data-scroll-target="#limitations-of-evidence">Limitations of Evidence</a>
+  <ul class="collapse">
+  <li><a href="#sentiment-as-a-proxy" id="toc-sentiment-as-a-proxy" class="nav-link" data-scroll-target="#sentiment-as-a-proxy">Sentiment as a proxy</a></li>
+  <li><a href="#small-sample-sizes-in-some-comparisons" id="toc-small-sample-sizes-in-some-comparisons" class="nav-link" data-scroll-target="#small-sample-sizes-in-some-comparisons">Small sample sizes in some comparisons</a></li>
+  <li><a href="#topic-classification-is-interpretive" id="toc-topic-classification-is-interpretive" class="nav-link" data-scroll-target="#topic-classification-is-interpretive">Topic classification is interpretive</a></li>
+  <li><a href="#no-causal-inference" id="toc-no-causal-inference" class="nav-link" data-scroll-target="#no-causal-inference">No causal inference</a></li>
+  <li><a href="#temporal-analysis-not-performed" id="toc-temporal-analysis-not-performed" class="nav-link" data-scroll-target="#temporal-analysis-not-performed">Temporal analysis not performed</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Results and Analysis</h1>
 </div>
 
 
@@ -146,41 +180,180 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="about-section">
-  <p>
-    Here you can find information about the purpose of this project, the technologies used, and the thought process behind our work. 
-  </p>
-  <p>
-    In this website, we discuss more about the project and our thought process. Through the provided data, we have come up with some interesting insights and conclusions.
-  </p>
-  <p>
-    Here is our GitHub repository:
-    <a href="https://github.com/gejunchim2024/IS428-Visual-Business-Project" target="_blank">GitHub Repository ↗</a>
-  </p>
-  <p><strong>Authors:</strong></p>
-  <ul>
-    <li>Riona Ng</li>
-    <li>Chim Ge Jun</li>
-  </ul>
-</div>
+<hr>
+<section id="overview-of-findings" class="level2">
+<h2 data-anchor-id="overview-of-findings">Overview of Findings</h2>
+<p>The central finding is straightforward: <strong>neither FILAH’s nor TROUT’s accusations are fully supported by the complete evidence.</strong> Both groups curated their datasets to manufacture a narrative — selecting records that supported their case and quietly omitting those that contradicted it. When viewed through the full journalist dataset, the COOTEFOO board shows near-balanced engagement with both fishing and tourism industries.</p>
+<p>What makes this finding analytically interesting is that both groups were working from the same pool of evidence. This was not two independent observers reaching different conclusions. It was two groups with opposing agendas selectively extracting from a shared record.</p>
+<hr>
+</section>
+<section id="q1-do-filahs-and-trouts-own-datasets-support-their-accusations" class="level2">
+<h2 data-anchor-id="q1-do-filahs-and-trouts-own-datasets-support-their-accusations">Q1 — Do FILAH’s and TROUT’s own datasets support their accusations?</h2>
+<p><strong>Answer: Yes, superficially — but the support is manufactured through selective inclusion.</strong></p>
+<section id="what-each-groups-data-shows" class="level3">
+<h3 data-anchor-id="what-each-groups-data-shows">What each group’s data shows</h3>
+<p>When analysed in isolation, both datasets appear to support their respective accusations:</p>
+<ul>
+<li><strong>FILAH’s data</strong> shows board members engaging with Tourism topics at a mean sentiment of <strong>0.740</strong> versus Fishing topics at only <strong>0.209</strong>. This appears to validate FILAH’s claim that the board is biased toward tourism.</li>
+<li><strong>TROUT’s data</strong> shows the exact inverse — Fishing sentiment of <strong>0.720</strong> versus Tourism sentiment of only <strong>0.141</strong>. This appears to validate TROUT’s claim of pro-fishing bias.</li>
+</ul>
+<p>These are not small differences. They look like compelling evidence.</p>
+</section>
+<section id="the-heatmap-evidence" class="level3">
+<h3 data-anchor-id="the-heatmap-evidence">The heatmap evidence</h3>
+<p>The topic coverage heatmap reveals the mechanism. FILAH’s dataset contains <strong>zero records</strong> for the topic <code>concert</code> — a Tourism topic. TROUT’s dataset contains <strong>zero records</strong> for <code>seafood_festival</code> — a Fishing topic. Neither omission appears in the other group’s data or the journalist’s data.</p>
+<p>These are not gaps from incomplete data collection. FILAH excluded a tourism topic while accusing the board of pro-tourism bias. TROUT excluded a fishing topic while accusing the board of pro-fishing bias. Both groups removed the topic that most weakened their argument.</p>
+</section>
+<section id="the-accusations-vs-reality-chart" class="level3">
+<h3 data-anchor-id="the-accusations-vs-reality-chart">The Accusations vs Reality chart</h3>
+<p>Comparing each group’s claimed sentiment values against the full journalist baseline makes the distortion visible:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>FILAH claimed</th>
+<th>Full reality</th>
+<th>Overstatement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tourism sentiment</td>
+<td>0.74</td>
+<td>0.55</td>
+<td>+0.19</td>
+</tr>
+<tr class="even">
+<td>Fishing sentiment (TROUT)</td>
+<td>0.72</td>
+<td>0.49</td>
+<td>+0.23</td>
+</tr>
+</tbody>
+</table>
+<p>Each group overstated the apparent bias by approximately 0.2 sentiment points through selective inclusion alone.</p>
+<hr>
+</section>
+</section>
+<section id="q2-is-the-cootefoo-board-actually-biased" class="level2">
+<h2 data-anchor-id="q2-is-the-cootefoo-board-actually-biased">Q2 — Is the COOTEFOO board actually biased?</h2>
+<p><strong>Answer: No.&nbsp;The full dataset shows near-equal engagement with both industries at the board level.</strong></p>
+<section id="board-wide-sentiment" class="level3">
+<h3 data-anchor-id="board-wide-sentiment">Board-wide sentiment</h3>
+<p>Using the complete journalist dataset across all 6 members:</p>
+<ul>
+<li><strong>Fishing:</strong> mean sentiment = <strong>0.490</strong></li>
+<li><strong>Tourism:</strong> mean sentiment = <strong>0.549</strong></li>
+</ul>
+<p>A difference of 0.059 across a -1 to +1 scale does not constitute meaningful bias. Both industries receive predominantly positive engagement — 43 positive vs 10 negative interactions for Fishing, and 58 positive vs 6 negative for Tourism.</p>
+</section>
+<section id="member-level-variation-exists-but-it-is-not-systemic" class="level3">
+<h3 data-anchor-id="member-level-variation-exists-but-it-is-not-systemic">Member-level variation exists — but it is not systemic</h3>
+<p>Individual members do show different industry orientations:</p>
+<ul>
+<li><strong>Teddy Goldstein</strong> is the clearest outlier: Fishing=0.85, Tourism=-0.50. He is the only member with negative sentiment toward any industry.</li>
+<li><strong>Simone Kat</strong> leans tourism: Fishing=0.12, Tourism=0.91. Her low fishing sentiment is the most extreme pro-tourism profile on the board.</li>
+<li><strong>Tante Titan</strong> is broadly positive across both: Fishing=0.75, Tourism=0.47. Her overall sentiment average (0.82) is the highest on the board.</li>
+<li>The remaining three members (Ed Helpsford, Carol Limpet, Seal) all show moderate, balanced engagement with both industries.</li>
+</ul>
+<p>The individual variation is real. But it is variation between members, not a systematic board-level lean. The board as a whole is balanced.</p>
+</section>
+<section id="member-activity-distribution" class="level3">
+<h3 data-anchor-id="member-activity-distribution">Member activity distribution</h3>
+<p>The member participation stacked bar chart shows how each member’s 174 total participation links are distributed across Fishing, Tourism, and Other topics. No member is exclusively engaged with one industry. Even Teddy Goldstein, whose sentiment toward tourism is negative, still participated in tourism topic discussions — he just engaged critically.</p>
+<p>Tante Titan’s profile is notable here: 54 total participation records, more than any other member, with 34 of those in Other (civic) topics. This reflects genuine breadth of engagement — not bias in either direction.</p>
+<hr>
+</section>
+</section>
+<section id="q3-are-the-accusations-weakened-by-the-full-dataset" class="level2">
+<h2 data-anchor-id="q3-are-the-accusations-weakened-by-the-full-dataset">Q3 — Are the accusations weakened by the full dataset?</h2>
+<p><strong>Answer: Yes, substantially — for both groups.</strong></p>
+<section id="what-changed-and-why" class="level3">
+<h3 data-anchor-id="what-changed-and-why">What changed and why</h3>
+<p>The sentiment scores for individual members included in each partial dataset do not change when viewed in the full dataset. The numbers are the same. What changes is <strong>who is present</strong> and <strong>what topics are covered</strong> — and this changes the overall picture dramatically.</p>
+<p><strong>FILAH’s picture in its own data vs full journalist:</strong> FILAH included only Seal, Simone Kat, and Carol Limpet. Adding Teddy Goldstein (Fishing=0.85), Ed Helpsford (Fishing=1.0), and Tante Titan (Fishing=0.75, balanced) to the picture immediately raises the board’s average fishing sentiment from 0.209 toward 0.490. The three members FILAH excluded are precisely the three with the strongest positive fishing engagement.</p>
+<p><strong>TROUT’s picture in its own data vs full journalist:</strong> TROUT included only Seal, Ed Helpsford, and Teddy Goldstein. Adding Simone Kat (Tourism=0.91), Carol Limpet (Tourism=0.68), and Tante Titan (Tourism=0.47) immediately raises the board’s average tourism sentiment from 0.141 toward 0.549. The members TROUT excluded are precisely those with the strongest positive tourism engagement.</p>
+</section>
+<section id="the-suppression-numbers" class="level3">
+<h3 data-anchor-id="the-suppression-numbers">The suppression numbers</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Missing from FILAH</th>
+<th>Missing from TROUT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fishing participation links</td>
+<td>28</td>
+<td>32</td>
+</tr>
+<tr class="even">
+<td>Tourism participation links</td>
+<td>30</td>
+<td>47</td>
+</tr>
+<tr class="odd">
+<td>Other participation links</td>
+<td>38</td>
+<td>41</td>
+</tr>
+</tbody>
+</table>
+<p>TROUT suppressed more tourism participation links (47) than FILAH did (30). This is the clearest quantification of TROUT’s editorial bias.</p>
+</section>
+<section id="the-travel-evidence" class="level3">
+<h3 data-anchor-id="the-travel-evidence">The travel evidence</h3>
+<p>FILAH recorded 15 of 22 travel links. TROUT recorded only 4 of 22. The near-total absence of travel records from TROUT’s dataset is striking — the geographic dimension of board member activity was almost entirely suppressed. Of FILAH’s 15 recorded travel links, 7 were to industrial zones associated with fishing activity, directly contradicting their claim of pro-tourism bias.</p>
+</section>
+<section id="tante-titan-the-suppressed-member" class="level3">
+<h3 data-anchor-id="tante-titan-the-suppressed-member">Tante Titan — the suppressed member</h3>
+<p>The most individually striking finding is Tante Titan. She has 54 participation records in the journalist dataset — more than any other member. Her engagement is broadly positive (Fishing=0.75, Tourism=0.47, Other=1.0). Neither FILAH nor TROUT included a single one of her 54 records.</p>
+<p>She does not fit either narrative. She is not dramatically pro-tourism (which would support FILAH’s case) nor dramatically pro-fishing (which would support TROUT’s case). Her balanced profile made her inconvenient for both groups, so both groups removed her entirely.</p>
+<hr>
+</section>
+</section>
+<section id="q4-how-does-an-individual-members-story-change-across-datasets" class="level2">
+<h2 data-anchor-id="q4-how-does-an-individual-members-story-change-across-datasets">Q4 — How does an individual member’s story change across datasets?</h2>
+<p><strong>The most demonstrative case: Teddy Goldstein</strong></p>
+<p>Teddy appears only in TROUT’s dataset. Switching the Dataset View parameter between TROUT and Full Journalist reveals the following:</p>
+<ul>
+<li>In TROUT’s view: Teddy is visible. Fishing=0.85, Tourism=-0.50. He looks like a fishing partisan and provides strong apparent support for TROUT’s accusation.</li>
+<li>In FILAH’s view: Teddy does not exist. FILAH recorded none of his 22 participation records.</li>
+<li>In Full Journalist: Same values as TROUT (0.85 / -0.50), because his records only appear in TROUT’s selection. The full dataset does not add new Teddy records — it adds other members who counterbalance him.</li>
+</ul>
+<p>TROUT chose to show Teddy because his profile fit their narrative. FILAH chose not to show him because his pro-fishing sentiment would have undermined their claim.</p>
+<p><strong>The most dramatic absence: Tante Titan</strong></p>
+<p>Selecting Tante Titan in the member spotlight and switching to FILAH or TROUT view produces empty charts. No records. Switching to Full Journalist reveals 54 records with a balanced, positive profile. The contrast between the empty panels and the populated full-dataset view is the clearest single illustration of deliberate suppression in the entire project.</p>
+<hr>
+</section>
+<section id="limitations-of-evidence" class="level2">
+<h2 data-anchor-id="limitations-of-evidence">Limitations of Evidence</h2>
+<section id="sentiment-as-a-proxy" class="level3">
+<h3 data-anchor-id="sentiment-as-a-proxy">Sentiment as a proxy</h3>
+<p>Sentiment scores are assigned in the original dataset and we treat them as given. The scoring methodology is not documented. Whether a 0.5 vs 0.75 distinction is analytically meaningful is uncertain. We use sentiment as a directional indicator, not a precise measurement.</p>
+</section>
+<section id="small-sample-sizes-in-some-comparisons" class="level3">
+<h3 data-anchor-id="small-sample-sizes-in-some-comparisons">Small sample sizes in some comparisons</h3>
+<p>The travel link analysis covers only 22 rows total, with TROUT’s contribution being just 4. Percentage-based comparisons at this scale are unreliable — we deliberately chose raw counts for the travel chart for this reason.</p>
+</section>
+<section id="topic-classification-is-interpretive" class="level3">
+<h3 data-anchor-id="topic-classification-is-interpretive">Topic classification is interpretive</h3>
+<p>The assignment of topics to Fishing, Tourism, or Other was made by us based on topic descriptions. <code>affordable_housing</code> in particular could reasonably be classified differently. This classification affects industry-level sentiment averages.</p>
+</section>
+<section id="no-causal-inference" class="level3">
+<h3 data-anchor-id="no-causal-inference">No causal inference</h3>
+<p>We can show that each group’s data produces a biased picture and that they excluded records that would have moderated their claims. We cannot prove intent — it is possible, if unlikely, that the omissions were accidental. The pattern is consistent enough to be analytically suspicious, but a journalist like Moray would want to treat this as a hypothesis to investigate further rather than a proven conclusion.</p>
+</section>
+<section id="temporal-analysis-not-performed" class="level3">
+<h3 data-anchor-id="temporal-analysis-not-performed">Temporal analysis not performed</h3>
+<p>The links files contain a <code>time</code> column, but dates are stored inconsistently. Timeline analysis was not attempted. It is possible that the pattern of board activity changed over time in ways that would complicate the industry-level averages we report. This is a gap worth noting.</p>
 
-<h2 class="team-section-title">The Team</h2>
 
-<div class="team-container">
-  <div class="team-member">
-    <img src="images/riona.JPG" alt="Riona Ng">
-    <h3>Riona Ng</h3>
-    <p>Year 2 School of Computing and Information Systems student</p>
-  </div>
-
-  <div class="team-member">
-    <img src="images/gejun.JPG" alt="Chim Ge Jun">
-    <h3>Chim Ge Jun</h3>
-    <p>Year 2 School of Computing and Information Systems student</p>
-  </div>
-</div>
-
-
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
