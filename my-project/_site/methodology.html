@@ -176,7 +176,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<hr>
 <section id="problem-framing" class="level2">
 <h2 data-anchor-id="problem-framing">1. Problem Framing</h2>
 <section id="what-this-challenge-is" class="level3">
@@ -186,8 +185,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="why-it-matters" class="level3">
 <h3 data-anchor-id="why-it-matters">Why it matters</h3>
-<p>This is fundamentally a problem about the integrity of evidence. Both groups make confident accusations. Both groups have data. The question is whether the data was selected honestly or curated to manufacture a narrative. This has direct parallels to real-world government accountability and media bias — making the analytical approach here more than an academic exercise.</p>
-<p>The four questions we needed to answer were:</p>
+<p>This is fundamentally a problem about the <strong>integrity of evidence</strong>. Both groups make confident accusations. Both groups have data. The question is whether the data was selected honestly or curated to manufacture a narrative. This has direct parallels to real-world government accountability and media bias — making the analytical approach here more than an academic exercise.</p>
+<p>The four questions we needed to answer:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -195,26 +194,26 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th>Question</th>
+<th style="text-align: center;"></th>
+<th style="text-align: left;">Question</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Q1</td>
-<td>Do FILAH’s and TROUT’s own datasets support their accusations?</td>
+<td style="text-align: center;">Q1</td>
+<td style="text-align: left;">Do FILAH’s and TROUT’s own datasets support their accusations?</td>
 </tr>
 <tr class="even">
-<td>Q2</td>
-<td>Using the full journalist dataset, is the COOTEFOO board actually biased?</td>
+<td style="text-align: center;">Q2</td>
+<td style="text-align: left;">Using the full journalist dataset, is the COOTEFOO board actually biased?</td>
 </tr>
 <tr class="odd">
-<td>Q3</td>
-<td>Are the accusations strengthened or weakened when compared against the full dataset?</td>
+<td style="text-align: center;">Q3</td>
+<td style="text-align: left;">Are the accusations strengthened or weakened when compared against the full dataset?</td>
 </tr>
 <tr class="even">
-<td>Q4</td>
-<td>How does an individual member’s story change depending on which dataset you use?</td>
+<td style="text-align: center;">Q4</td>
+<td style="text-align: left;">How does an individual member’s story change depending on which dataset you use?</td>
 </tr>
 </tbody>
 </table>
@@ -226,22 +225,65 @@ ul.task-list li input[type="checkbox"] {
 <section id="from-knowledge-graph-to-relational-tables" class="level3">
 <h3 data-anchor-id="from-knowledge-graph-to-relational-tables">From knowledge graph to relational tables</h3>
 <p>The raw data is structured as a knowledge graph — nodes represent entities (people, organisations, topics, meetings, places, trips) and edges represent connections between them. Each edge has a <code>role</code> attribute describing the type of connection: <code>participant</code>, <code>about</code>, <code>part_of</code>, <code>plan</code>, <code>refers_to</code>, or <code>travel</code>.</p>
-<p>For Tableau, this was flattened into relational tables. The journalist links file (2,436 rows) became the base table. FILAH links (765 rows) and TROUT links (378 rows) were left-joined onto this base using a three-field composite key: <code>source + target + role</code>. This is non-trivial — a naive union of all three files produces triple-counting because every FILAH and TROUT row already exists in the journalist file. The join approach preserves exactly 2,436 rows while tagging each row with boolean flags (<code>In FILAH</code>, <code>In TROUT</code>) indicating which groups included it.</p>
+<p>For Tableau, this was flattened into relational tables. The journalist links file (2,436 rows) became the base table. FILAH links (765 rows) and TROUT links (378 rows) were left-joined onto this base using a three-field composite key: <code>source + target + role</code>.</p>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>A naive union of all three files produces triple-counting because every FILAH and TROUT row already exists in the journalist file. The join approach preserves exactly <strong>2,436 rows</strong> while tagging each row with boolean flags (<code>In FILAH</code>, <code>In TROUT</code>) indicating which groups included it.</p>
+</div>
+</div>
+</div>
 <p>The journalist nodes file (740 rows) was added as two separate related tables — Target Nodes and Source Nodes — to enable attribute lookups on both ends of each link. A geo nodes file (2,664 rows) was related separately for geographic enrichment of travel links.</p>
 </section>
 <section id="cleaning-and-assumptions" class="level3">
 <h3 data-anchor-id="cleaning-and-assumptions">Cleaning and assumptions</h3>
 <p>Several data quality issues required attention:</p>
-<ul>
-<li>The <code>industry</code> and <code>short_topic</code> columns exist in all three links files but contain no data. Topic classification was reconstructed from the <code>source</code> field using <code>STARTSWITH()</code> pattern matching against 15 known topic slugs. Industry classification (Fishing / Tourism / Other) was derived from those topic slugs.</li>
-<li>The <code>sentiment</code> column is stored as a string because some rows contain the literal text “NA”. A <code>FLOAT()</code> conversion was applied, returning NULL for non-numeric values.</li>
-<li>Sentiment scores only exist on <code>participant</code> role links (218 of 2,436 rows). All sentiment analysis is filtered to this role type.</li>
-<li>Geographic node IDs in travel links are numeric strings. A type mismatch with the geo nodes table was a recurring risk and required explicit string type enforcement on both sides of the relationship.</li>
-</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Issue</th>
+<th style="text-align: left;">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>industry</code> and <code>short_topic</code> columns exist but are empty</td>
+<td style="text-align: left;">Topic classification reconstructed from <code>source</code> field using <code>STARTSWITH()</code> pattern matching against 15 known topic slugs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sentiment</code> stored as a string with literal “NA” values</td>
+<td style="text-align: left;"><code>FLOAT()</code> conversion applied, returning NULL for non-numeric values</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sentiment scores only exist on <code>participant</code> role links</td>
+<td style="text-align: left;">All sentiment analysis filtered to this role type (218 of 2,436 rows)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geographic node IDs are numeric strings</td>
+<td style="text-align: left;">Explicit string type enforcement applied on both sides of the geo relationship</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="key-structural-decision-joins-not-unions" class="level3">
 <h3 data-anchor-id="key-structural-decision-joins-not-unions">Key structural decision: joins not unions</h3>
-<p>Using Tableau’s physical layer joins rather than a union was the core architectural decision. Unions would inflate counts and distort all proportional analysis. Joins allow the dataset membership flags to be computed at row level, enabling any chart to simulate the FILAH, TROUT, or Full Journalist perspective through a single filter switch — without maintaining three separate data sources.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Using Tableau’s <strong>physical layer joins</strong> rather than a union was the core architectural decision. Joins allow the dataset membership flags to be computed at row level, enabling any chart to simulate the FILAH, TROUT, or Full Journalist perspective through a single filter switch — without maintaining three separate data sources.</p>
+</div>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -249,27 +291,61 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-anchor-id="analytical-approach">3. Analytical Approach</h2>
 <section id="overlap-analysis" class="level3">
 <h3 data-anchor-id="overlap-analysis">Overlap analysis</h3>
-<p>Before building any visualisations, we verified the relationship between the three datasets programmatically. The key finding: all 765 FILAH rows and all 378 TROUT rows are exact subsets of the 2,436 journalist rows. This confirmed that the journalist dataset is a true superset and that both activist groups drew from the same evidence pool. This structural finding is the foundation for every analytical claim in the project.</p>
+<p>Before building any visualisations, we verified the relationship between the three datasets programmatically.</p>
+<div class="callout callout-style-simple callout-important no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Key finding:</strong> All 765 FILAH rows and all 378 TROUT rows are exact subsets of the 2,436 journalist rows. Both activist groups drew from the same evidence pool. This structural finding is the foundation for every analytical claim in the project.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="sentiment-analysis" class="level3">
 <h3 data-anchor-id="sentiment-analysis">Sentiment analysis</h3>
-<p>Sentiment scores (ranging from -1 to +1) on participant links capture how board members engaged with each discussion topic. We computed mean sentiment by industry (Fishing / Tourism / Other) and by member, across each dataset view. The divergence between FILAH and TROUT views — and the convergence toward balance in the full dataset — is the primary quantitative evidence of sampling bias.</p>
+<p>Sentiment scores (ranging from −1 to +1) on participant links capture how board members engaged with each discussion topic. We computed mean sentiment by industry and by member, across each dataset view. The divergence between FILAH and TROUT views — and the convergence toward balance in the full dataset — is the primary quantitative evidence of sampling bias.</p>
 </section>
 <section id="topic-coverage-analysis" class="level3">
 <h3 data-anchor-id="topic-coverage-analysis">Topic coverage analysis</h3>
-<p>We mapped which of the 15 known discussion topics appeared in each dataset. Two topics were completely absent from one group’s data: <code>concert</code> (a Tourism topic) was excluded by FILAH, and <code>seafood_festival</code> (a Fishing topic) was excluded by TROUT. This selective omission is direct evidence of deliberate curation rather than innocent sampling.</p>
+<p>We mapped which of the 15 known discussion topics appeared in each dataset. Two topics were completely absent from one group’s data:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><code>concert</code> (Tourism topic)<br>
+→ <strong>Excluded by FILAH</strong><br>
+Present in TROUT and Journalist</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><code>seafood_festival</code> (Fishing topic)<br>
+→ <strong>Excluded by TROUT</strong><br>
+Present in FILAH and Journalist</p>
+</div>
+</div>
+</div>
+<p>This selective omission is direct evidence of deliberate curation rather than innocent sampling.</p>
 </section>
 <section id="member-inclusion-analysis" class="level3">
 <h3 data-anchor-id="member-inclusion-analysis">Member inclusion analysis</h3>
-<p>We examined which board members appeared in each dataset. FILAH recorded only 3 of 6 members. TROUT recorded a different 3 of 6. One member — Tante Titan — appeared in neither group’s dataset, only in the journalist’s additional records. The selection pattern is not random: each group chose the members whose records best supported their narrative.</p>
+<p>FILAH recorded only 3 of 6 members. TROUT recorded a different 3 of 6. One member — Tante Titan — appeared in neither group’s dataset, only in the journalist’s additional records. The selection pattern is not random: each group chose the members whose records best supported their narrative.</p>
 </section>
 <section id="geographic-travel-analysis" class="level3">
 <h3 data-anchor-id="geographic-travel-analysis">Geographic / travel analysis</h3>
-<p>Travel links connect board members’ activities to physical locations with zone classifications (industrial, tourism, residential, government, commercial). FILAH recorded 15 of 22 travel links, predominantly to industrial zones. TROUT recorded only 4 of 22, suppressing nearly all geographic evidence. This geographic dimension provides a behavioural dimension beyond sentiment scores alone.</p>
+<p>Travel links connect board members’ activities to physical locations with zone classifications (industrial, tourism, residential, government, commercial). FILAH recorded 15 of 22 travel links, predominantly to industrial zones. TROUT recorded only 4 of 22, suppressing nearly all geographic evidence.</p>
 </section>
 <section id="comparison-framework" class="level3">
 <h3 data-anchor-id="comparison-framework">Comparison framework</h3>
-<p>All comparisons between datasets use proportions, not raw counts, because dataset sizes differ substantially (FILAH: 765, TROUT: 378, Journalist: 2,436). Every cross-dataset chart uses either normalised values or clearly labelled absolute counts with N displayed.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>All comparisons between datasets use <strong>proportions, not raw counts</strong>, because dataset sizes differ substantially (FILAH: 765, TROUT: 378, Journalist: 2,436). Every cross-dataset chart uses either normalised values or clearly labelled absolute counts with N displayed.</p>
+</div>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -285,66 +361,75 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Chart type</th>
-<th>Where used</th>
-<th>Why</th>
+<th style="text-align: left;">Chart type</th>
+<th style="text-align: left;">Where used</th>
+<th style="text-align: left;">Why</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Bar chart (trellis)</td>
-<td>Sentiment by industry, three dataset panels</td>
-<td>Directly comparable across panels when axes are locked to the same range (-1 to 1). Side-by-side panels make the FILAH/TROUT/Journalist divergence immediately legible.</td>
+<td style="text-align: left;">Bar chart (trellis)</td>
+<td style="text-align: left;">Sentiment by industry, three dataset panels</td>
+<td style="text-align: left;">Directly comparable across panels when axes are locked to the same range (−1 to 1). Side-by-side panels make the FILAH/TROUT/Journalist divergence immediately legible.</td>
 </tr>
 <tr class="even">
-<td>Heatmap</td>
-<td>Topic coverage across datasets</td>
-<td>The primary value is making absent cells visible. A heatmap makes zero counts and missing topics visually obvious at a glance — no other chart type achieves this as cleanly.</td>
+<td style="text-align: left;">Heatmap</td>
+<td style="text-align: left;">Topic coverage across datasets</td>
+<td style="text-align: left;">The primary value is making absent cells visible. A heatmap makes zero counts and missing topics visually obvious at a glance.</td>
 </tr>
 <tr class="odd">
-<td>Diverging stacked bar</td>
-<td>Board-wide positive vs negative engagement counts</td>
-<td>Answers Q2 directly by showing the ratio of positive to negative interactions per industry. Diverging layout from zero makes the asymmetry visible without requiring numerical literacy.</td>
+<td style="text-align: left;">Diverging stacked bar</td>
+<td style="text-align: left;">Board-wide positive vs negative engagement</td>
+<td style="text-align: left;">Answers Q2 directly by showing the ratio of positive to negative interactions per industry.</td>
 </tr>
 <tr class="even">
-<td>Dot plot</td>
-<td>Member sentiment by industry, per dataset panel</td>
-<td>Handles the sparse structure well — some members only appear in one or two datasets, creating NULLs that a bar chart would render as zero rather than absence.</td>
+<td style="text-align: left;">Dot plot</td>
+<td style="text-align: left;">Member sentiment by industry, per dataset panel</td>
+<td style="text-align: left;">Handles the sparse structure well — NULLs render as absence rather than zero.</td>
 </tr>
 <tr class="odd">
-<td>Bar chart (stacked, sorted)</td>
-<td>Member participation counts by industry</td>
-<td>Shows both volume (total bar length) and composition (colour segments) simultaneously. Sorted by total participation to surface Tante Titan’s unusual profile.</td>
+<td style="text-align: left;">Bar chart (stacked, sorted)</td>
+<td style="text-align: left;">Member participation counts by industry</td>
+<td style="text-align: left;">Shows both volume (total bar length) and composition (colour segments) simultaneously.</td>
 </tr>
 <tr class="even">
-<td>Heatmap (member × topic)</td>
-<td>Member engagement across all topics</td>
-<td>The richest single chart in the project. Two dimensions (members, topics) with colour encoding sentiment turns a 6×15 matrix into a scannable pattern. Red cells (negative) stand out immediately.</td>
+<td style="text-align: left;">Heatmap (member × topic)</td>
+<td style="text-align: left;">Member engagement across all topics</td>
+<td style="text-align: left;">Two dimensions (members, topics) with colour encoding turns a 6×15 matrix into a scannable pattern.</td>
 </tr>
 <tr class="odd">
-<td>Bar chart (grouped)</td>
-<td>Accusations vs Reality</td>
-<td>Six bars in two industry groups, comparing partial dataset claims against the full dataset baseline. Horizontal layout allows long label names to be readable.</td>
+<td style="text-align: left;">Bar chart (grouped)</td>
+<td style="text-align: left;">Accusations vs Reality</td>
+<td style="text-align: left;">Six bars in two industry groups comparing partial claims against the full dataset baseline.</td>
 </tr>
 <tr class="even">
-<td>Bar chart + dot plot (parameter-driven)</td>
-<td>Member spotlight</td>
-<td>Parameter controls allow the journalist to select any member and dataset view interactively. The bar chart gives industry-level summary; the dot plot beneath gives topic-level detail.</td>
+<td style="text-align: left;">Bar chart + dot plot (parameter-driven)</td>
+<td style="text-align: left;">Member spotlight</td>
+<td style="text-align: left;">Parameter controls allow the journalist to select any member and dataset view interactively.</td>
 </tr>
 <tr class="odd">
-<td>Bar chart (travel destinations)</td>
-<td>Travel zone by dataset</td>
-<td>Raw counts by destination zone across three panels. Honest representation of a small dataset (22 links) — percentage charts would be misleading at this sample size.</td>
+<td style="text-align: left;">Bar chart (travel destinations)</td>
+<td style="text-align: left;">Travel zone by dataset</td>
+<td style="text-align: left;">Raw counts by destination zone across three panels — honest at this sample size (22 links).</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="trade-offs-and-simplifications" class="level3">
 <h3 data-anchor-id="trade-offs-and-simplifications">Trade-offs and simplifications</h3>
-<p><strong>Sentiment as a proxy for bias.</strong> Sentiment scores were assigned in the original dataset and we treat them as given. We did not verify the scoring methodology. Sentiment is used as an indicator of engagement quality, not as a definitive measure of bias — a distinction worth noting.</p>
-<p><strong>No network visualisation.</strong> The data is structured as a knowledge graph and Gephi was mentioned in the project scope. However, for the specific analytical questions posed (sentiment comparison, topic coverage, member inclusion), tabular aggregations in Tableau proved more analytically tractable than network diagrams. A network view would show connectivity but not the quantitative divergence between datasets that is the core finding.</p>
-<p><strong>15 topics only.</strong> Our topic classification covers the 15 named topics visible in the journalist nodes file. Any discussion nodes that did not match a known topic prefix are classified as NULL and excluded from industry-level analysis. This is a conservative approach — we do not assign uncertain cases to a category.</p>
-<p><strong>Tableau relationships vs joins.</strong> We chose physical joins for the three links tables rather than Tableau relationships. Relationships would have prevented cross-table row-level calculations — specifically, the boolean membership flags that underpin all dataset comparison charts cannot be computed in a calculated field when the source tables are in different relationship contexts. The join approach trades some of Tableau’s fan-out protection for the ability to compute membership flags at row level.</p>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Sentiment as a proxy for bias.</strong> Sentiment scores were assigned in the original dataset and we treat them as given. We did not verify the scoring methodology. Sentiment is used as an indicator of engagement quality, not as a definitive measure of bias.</p>
+<p><strong>No network visualisation.</strong> The data is structured as a knowledge graph. However, for the specific analytical questions posed (sentiment comparison, topic coverage, member inclusion), tabular aggregations in Tableau proved more analytically tractable than network diagrams. A network view would show connectivity but not the quantitative divergence between datasets that is the core finding.</p>
+<p><strong>15 topics only.</strong> Our topic classification covers the 15 named topics visible in the journalist nodes file. Any discussion nodes that did not match a known topic prefix are classified as NULL and excluded from industry-level analysis.</p>
+<p><strong>Tableau relationships vs joins.</strong> We chose physical joins for the three links tables rather than Tableau relationships. Relationships would have prevented cross-table row-level calculations — specifically, the boolean membership flags that underpin all dataset comparison charts cannot be computed when source tables are in different relationship contexts.</p>
+</div>
+</div>
+</div>
 
 
 </section>
