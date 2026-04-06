@@ -12,7 +12,7 @@ website:
           text: Data
         - href: methodology.qmd
           text: Methodology
-        - href: results.qmd
+        - href: results_with_network.qmd
           text: Results
         - href: lessons.qmd
           text: Lessons learnt
