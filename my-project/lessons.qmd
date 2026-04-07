@@ -2,38 +2,21 @@
 title: "Lessons Learnt"
 ---
 
-## 1. Technical Learnings — Data & Tableau
+## 1. Technical Learnings: Data & Tableau
 
 ### The superset problem is not obvious until you check
 
 ::: {.callout-important appearance="minimal"}
-The single most consequential technical discovery was that FILAH and TROUT's datasets are **subsets** of the journalist file, not independent datasets. This is not stated anywhere in the challenge documentation — it required a programmatic overlap analysis to confirm.
+The single most consequential technical discovery was that FILAH and TROUT's datasets are **subsets** of the journalist file, not independent datasets. This is not stated anywhere in the challenge documentation. It required a trial and error to check if the data is accurate.
 :::
 
 The practical consequence was significant: a naive union of all three files would have inflated every count by up to 3× and made all sentiment averages meaningless. Verifying dataset relationships before building anything is not a step to skip.
 
-### Tableau relationships vs physical joins: knowing when to break the rules
+### Tableau relationships vs physical joins
+Tableau's default data model keeps tables separate to avoid double-counting. That same separation means it cannot check, for a single row, whether that row exists in two different tables at once, which is exactly what our inclusion indicators (In FILAH, In TROUT) needed to do.
+We switched to a direct join instead. This let us ask "is this journalist record also in FILAH? Also in TROUT?" all in one place. The downside of a direct join is that it can inflate row counts if the data isn't clean, so we verified the join keys were unique before committing to this approach. It worked here, but it's a decision that depends on knowing your data first.
 
-Tableau's relationship model is designed for many-to-many safety — it prevents fan-out by keeping tables in separate query contexts. That same isolation makes cross-table row-level calculations impossible. Our boolean membership flags (`In FILAH`, `In TROUT`) needed to check null values from two different joined tables simultaneously, which relationships cannot do.
-
-Switching to physical joins in the data source's logical layer solved this, at the cost of giving up Tableau's automatic fan-out protection. The tradeoff was worth it here because the join keys were verified unique — but this is a decision that requires understanding the data structure first, not a general recommendation.
-
-### LOD expressions require clean filter architecture
-
-FIXED LOD expressions compute before dimension filters but after context filters. This distinction matters enormously when building comparison charts. Several charts produced wrong numbers early in the build because `In Selected Dataset` was a regular filter (blue) rather than a context filter (grey).
-
-::: {.callout-note appearance="minimal"}
-**Tableau filter order of operations:**  
-Extract → Data Source → Context → FIXED LOD → Dimension → Measure
-
-The fix is mechanical — right-click → Add to Context — but the diagnostic reasoning requires understanding this order explicitly.
-:::
-
-### SUM vs AVG aggregation with colour dimensions
-
-When Industry Names was placed on the Color shelf alongside a `Mean Sentiment` calculated field (itself defined as `AVG()`), Tableau stacked the three industry averages into a single accumulated bar rather than showing them side by side. The fix was **Stack Marks Off**, but the root cause is worth understanding: Tableau computes the mark-level aggregation first (AVG per industry segment), then stacks those aggregations. Designing charts with colour dimensions requires thinking explicitly about how aggregations compose.
-
-### The raw `industry` and `short_topic` columns are a trap
+### The data `industry` and `short_topic` columns are empty
 
 Both columns exist in the links CSVs and appear in Tableau's Data pane. Both are completely empty. Using either one silently produces all-NULL output with no error message. This is a data quality issue that would not be caught without independently verifying field contents before building charts.
 
@@ -44,12 +27,12 @@ Both columns exist in the links CSVs and appear in Tableau's Data pane. Both are
 ### Absence of evidence is evidence
 
 ::: {.callout-important appearance="minimal"}
-The most powerful findings in this project came from what was **not there** — the missing `concert` topic in FILAH, the missing `seafood_festival` in TROUT, the missing Tante Titan in both datasets.
+The most powerful findings in this project came from what was **not there**: the missing `concert` topic in FILAH, the missing `seafood_festival` in TROUT, the missing Tante Titan in both datasets.
 :::
 
 Standard exploratory analysis focuses on what is present. For a bias investigation, systematically looking for absences is equally important. Heatmaps are particularly useful here because blank cells are visually salient in a way that missing rows in a table are not.
 
-### Sentiment scores don't change — dataset composition does
+### Sentiment scores don't change, but dataset composition does
 
 We initially expected to find that a member's sentiment scores would look different in the partial datasets versus the full dataset. They do not — because each member's records are exactly the same in the partial dataset as they are in the journalist dataset (since partial datasets are subsets).
 
@@ -57,15 +40,16 @@ What changes is **which members are present**. This is a subtle but important di
 
 ### Individual variation is not board-level bias
 
-Teddy Goldstein's Tourism sentiment of −0.50 is a real finding. But a board of six with one outlier is not a biased board — it is a board with one member who holds a strong position. Conflating individual member variation with board-level systematic bias is the analytical error both activist groups are exploiting.
+Teddy Goldstein’s Tourism sentiment of −0.50 is a real result. But having one strong opinion on a board of six does not mean the whole board is biased, it just means one member has a strong personal view.
+
+Both activist groups make the mistake of treating individual differences as if they reflect a pattern across the entire board.
 
 ::: {.callout-note appearance="minimal"}
-The summary of board-wide average sentiment (Fishing=0.490, Tourism=0.549) is important precisely because it contextualises the outlier. Without it, Teddy Goldstein looks like a symptom of a systemic problem. With it, he is clearly an individual exception.
+The overall board averages (Fishing = 0.490, Tourism = 0.549) matter because they provide context.
+
+Without these averages, Teddy Goldstein might look like evidence of a bigger problem.
+With them, it’s clear he is simply an outlier, not proof of board-wide bias.
 :::
-
-### Small sample sizes demand honest presentation
-
-The travel link dataset contains 22 rows. TROUT contributed 4 of them. Expressing this as "TROUT's industrial zone share was 41% below the journalist baseline" would be statistically irresponsible — that percentage is built on a denominator of 4. We chose to present absolute counts and let the raw numbers speak.
 
 ---
 
@@ -74,7 +58,7 @@ The travel link dataset contains 22 rows. TROUT contributed 4 of them. Expressin
 ### Validate data structure before any design work
 
 ::: {.callout-warning appearance="minimal"}
-We spent time building dashboard concepts before fully characterising the dataset. The discovery that FILAH and TROUT were subsets of the journalist file — not found until a systematic overlap check — required retroactively redesigning the entire data source architecture.
+We spent time building dashboard concepts before fully characterising the dataset. The discovery that FILAH and TROUT were subsets of the journalist file, not found until weird graphical representations came out, required redesigning the entire data source architecture.
 :::
 
 Running a thorough data audit (row counts, overlap analysis, field completeness check, type validation) before opening Tableau would have saved significant time.
@@ -92,41 +76,3 @@ Several early dashboard iterations used chart types that were technically functi
 
 The most impactful improvement to each dashboard came from asking **"what is the specific claim this chart needs to support?"** rather than **"what would look good here?"**
 
----
-
-## 4. What We Would Improve
-
-### Automate the data validation step
-
-The overlap analysis, field completeness check, and topic classification were done manually in Python before building in Tableau. Ideally, this would be codified into a repeatable validation script that could be run whenever the source data changes.
-
-### Temporal analysis
-
-The `time` column was not usable in its raw form due to inconsistent date storage. A proper temporal analysis — did board members' industry engagement shift over time? did the topics discussed change closer to elections or budget cycles? — would add a dimension the current dashboards do not address.
-
-### More explicit null handling in heatmaps
-
-Blank cells in the heatmap currently represent either true zero counts or topics a member never engaged with. These are analytically different:
-
-::: {layout-ncol=2}
-::: {}
-**Zero count**  
-Member engaged but count = 0  
-Should render as a distinct fill colour
-:::
-::: {}
-**NULL / absent**  
-Combination does not exist in the data  
-Should render as white / empty
-:::
-:::
-
-Distinguishing these more explicitly would make the heatmap more precise.
-
-### Parallel coordinates for member profiling
-
-A parallel coordinates chart with axes for Fishing sentiment, Tourism sentiment, Other sentiment, and total participation count would give a richer member profile view than the current bar chart and heatmap combination. It would also make outliers like Teddy Goldstein and Tante Titan immediately visible as lines that deviate from the cluster.
-
-### Dashboard narrative flow
-
-The current dashboards answer the four questions but require the viewer to synthesise the conclusion themselves. Adding explicit conclusion callouts — short text statements summarising what the chart shows before the viewer reads the data — would make the dashboards more useful for a journalistic audience who may not want to do analytical work on top of reading the charts.

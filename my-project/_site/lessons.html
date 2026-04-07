@@ -91,24 +91,24 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./challenge.html"> 
+<span class="menu-text">Challenge</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./methodology.html"> 
-<span class="menu-text">Methodology</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./results.html"> 
+    <a class="nav-link" href="./results_with_network.html"> 
 <span class="menu-text">Results</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./lessons.html" aria-current="page"> 
 <span class="menu-text">Lessons learnt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About us</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -126,34 +126,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#technical-learnings-data-tableau" id="toc-technical-learnings-data-tableau" class="nav-link active" data-scroll-target="#technical-learnings-data-tableau">1. Technical Learnings — Data &amp; Tableau</a>
+  <li><a href="#technical-learnings-data-tableau" id="toc-technical-learnings-data-tableau" class="nav-link active" data-scroll-target="#technical-learnings-data-tableau">1. Technical Learnings: Data &amp; Tableau</a>
   <ul class="collapse">
   <li><a href="#the-superset-problem-is-not-obvious-until-you-check" id="toc-the-superset-problem-is-not-obvious-until-you-check" class="nav-link" data-scroll-target="#the-superset-problem-is-not-obvious-until-you-check">The superset problem is not obvious until you check</a></li>
-  <li><a href="#tableau-relationships-vs-physical-joins-knowing-when-to-break-the-rules" id="toc-tableau-relationships-vs-physical-joins-knowing-when-to-break-the-rules" class="nav-link" data-scroll-target="#tableau-relationships-vs-physical-joins-knowing-when-to-break-the-rules">Tableau relationships vs physical joins: knowing when to break the rules</a></li>
-  <li><a href="#lod-expressions-require-clean-filter-architecture" id="toc-lod-expressions-require-clean-filter-architecture" class="nav-link" data-scroll-target="#lod-expressions-require-clean-filter-architecture">LOD expressions require clean filter architecture</a></li>
-  <li><a href="#sum-vs-avg-aggregation-with-colour-dimensions" id="toc-sum-vs-avg-aggregation-with-colour-dimensions" class="nav-link" data-scroll-target="#sum-vs-avg-aggregation-with-colour-dimensions">SUM vs AVG aggregation with colour dimensions</a></li>
-  <li><a href="#the-raw-industry-and-short_topic-columns-are-a-trap" id="toc-the-raw-industry-and-short_topic-columns-are-a-trap" class="nav-link" data-scroll-target="#the-raw-industry-and-short_topic-columns-are-a-trap">The raw <code>industry</code> and <code>short_topic</code> columns are a trap</a></li>
+  <li><a href="#tableau-relationships-vs-physical-joins" id="toc-tableau-relationships-vs-physical-joins" class="nav-link" data-scroll-target="#tableau-relationships-vs-physical-joins">Tableau relationships vs physical joins</a></li>
+  <li><a href="#the-data-industry-and-short_topic-columns-are-empty" id="toc-the-data-industry-and-short_topic-columns-are-empty" class="nav-link" data-scroll-target="#the-data-industry-and-short_topic-columns-are-empty">The data <code>industry</code> and <code>short_topic</code> columns are empty</a></li>
   </ul></li>
   <li><a href="#analytical-learnings" id="toc-analytical-learnings" class="nav-link" data-scroll-target="#analytical-learnings">2. Analytical Learnings</a>
   <ul class="collapse">
   <li><a href="#absence-of-evidence-is-evidence" id="toc-absence-of-evidence-is-evidence" class="nav-link" data-scroll-target="#absence-of-evidence-is-evidence">Absence of evidence is evidence</a></li>
-  <li><a href="#sentiment-scores-dont-change-dataset-composition-does" id="toc-sentiment-scores-dont-change-dataset-composition-does" class="nav-link" data-scroll-target="#sentiment-scores-dont-change-dataset-composition-does">Sentiment scores don’t change — dataset composition does</a></li>
+  <li><a href="#sentiment-scores-dont-change-but-dataset-composition-does" id="toc-sentiment-scores-dont-change-but-dataset-composition-does" class="nav-link" data-scroll-target="#sentiment-scores-dont-change-but-dataset-composition-does">Sentiment scores don’t change, but dataset composition does</a></li>
   <li><a href="#individual-variation-is-not-board-level-bias" id="toc-individual-variation-is-not-board-level-bias" class="nav-link" data-scroll-target="#individual-variation-is-not-board-level-bias">Individual variation is not board-level bias</a></li>
-  <li><a href="#small-sample-sizes-demand-honest-presentation" id="toc-small-sample-sizes-demand-honest-presentation" class="nav-link" data-scroll-target="#small-sample-sizes-demand-honest-presentation">Small sample sizes demand honest presentation</a></li>
   </ul></li>
   <li><a href="#project-team-learnings" id="toc-project-team-learnings" class="nav-link" data-scroll-target="#project-team-learnings">3. Project &amp; Team Learnings</a>
   <ul class="collapse">
   <li><a href="#validate-data-structure-before-any-design-work" id="toc-validate-data-structure-before-any-design-work" class="nav-link" data-scroll-target="#validate-data-structure-before-any-design-work">Validate data structure before any design work</a></li>
   <li><a href="#the-four-analytical-questions-map-naturally-to-dashboard-design" id="toc-the-four-analytical-questions-map-naturally-to-dashboard-design" class="nav-link" data-scroll-target="#the-four-analytical-questions-map-naturally-to-dashboard-design">The four analytical questions map naturally to dashboard design</a></li>
   <li><a href="#choosing-the-right-chart-type-matters-more-than-visual-polish" id="toc-choosing-the-right-chart-type-matters-more-than-visual-polish" class="nav-link" data-scroll-target="#choosing-the-right-chart-type-matters-more-than-visual-polish">Choosing the right chart type matters more than visual polish</a></li>
-  </ul></li>
-  <li><a href="#what-we-would-improve" id="toc-what-we-would-improve" class="nav-link" data-scroll-target="#what-we-would-improve">4. What We Would Improve</a>
-  <ul class="collapse">
-  <li><a href="#automate-the-data-validation-step" id="toc-automate-the-data-validation-step" class="nav-link" data-scroll-target="#automate-the-data-validation-step">Automate the data validation step</a></li>
-  <li><a href="#temporal-analysis" id="toc-temporal-analysis" class="nav-link" data-scroll-target="#temporal-analysis">Temporal analysis</a></li>
-  <li><a href="#more-explicit-null-handling-in-heatmaps" id="toc-more-explicit-null-handling-in-heatmaps" class="nav-link" data-scroll-target="#more-explicit-null-handling-in-heatmaps">More explicit null handling in heatmaps</a></li>
-  <li><a href="#parallel-coordinates-for-member-profiling" id="toc-parallel-coordinates-for-member-profiling" class="nav-link" data-scroll-target="#parallel-coordinates-for-member-profiling">Parallel coordinates for member profiling</a></li>
-  <li><a href="#dashboard-narrative-flow" id="toc-dashboard-narrative-flow" class="nav-link" data-scroll-target="#dashboard-narrative-flow">Dashboard narrative flow</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -181,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="technical-learnings-data-tableau" class="level2">
-<h2 data-anchor-id="technical-learnings-data-tableau">1. Technical Learnings — Data &amp; Tableau</h2>
+<h2 data-anchor-id="technical-learnings-data-tableau">1. Technical Learnings: Data &amp; Tableau</h2>
 <section id="the-superset-problem-is-not-obvious-until-you-check" class="level3">
 <h3 data-anchor-id="the-superset-problem-is-not-obvious-until-you-check">The superset problem is not obvious until you check</h3>
 <div class="callout callout-style-simple callout-important no-icon">
@@ -190,39 +179,18 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The single most consequential technical discovery was that FILAH and TROUT’s datasets are <strong>subsets</strong> of the journalist file, not independent datasets. This is not stated anywhere in the challenge documentation — it required a programmatic overlap analysis to confirm.</p>
+<p>The single most consequential technical discovery was that FILAH and TROUT’s datasets are <strong>subsets</strong> of the journalist file, not independent datasets. This is not stated anywhere in the challenge documentation. It required a trial and error to check if the data is accurate.</p>
 </div>
 </div>
 </div>
 <p>The practical consequence was significant: a naive union of all three files would have inflated every count by up to 3× and made all sentiment averages meaningless. Verifying dataset relationships before building anything is not a step to skip.</p>
 </section>
-<section id="tableau-relationships-vs-physical-joins-knowing-when-to-break-the-rules" class="level3">
-<h3 data-anchor-id="tableau-relationships-vs-physical-joins-knowing-when-to-break-the-rules">Tableau relationships vs physical joins: knowing when to break the rules</h3>
-<p>Tableau’s relationship model is designed for many-to-many safety — it prevents fan-out by keeping tables in separate query contexts. That same isolation makes cross-table row-level calculations impossible. Our boolean membership flags (<code>In FILAH</code>, <code>In TROUT</code>) needed to check null values from two different joined tables simultaneously, which relationships cannot do.</p>
-<p>Switching to physical joins in the data source’s logical layer solved this, at the cost of giving up Tableau’s automatic fan-out protection. The tradeoff was worth it here because the join keys were verified unique — but this is a decision that requires understanding the data structure first, not a general recommendation.</p>
+<section id="tableau-relationships-vs-physical-joins" class="level3">
+<h3 data-anchor-id="tableau-relationships-vs-physical-joins">Tableau relationships vs physical joins</h3>
+<p>Tableau’s default data model keeps tables separate to avoid double-counting. That same separation means it cannot check, for a single row, whether that row exists in two different tables at once, which is exactly what our inclusion indicators (In FILAH, In TROUT) needed to do. We switched to a direct join instead. This let us ask “is this journalist record also in FILAH? Also in TROUT?” all in one place. The downside of a direct join is that it can inflate row counts if the data isn’t clean, so we verified the join keys were unique before committing to this approach. It worked here, but it’s a decision that depends on knowing your data first.</p>
 </section>
-<section id="lod-expressions-require-clean-filter-architecture" class="level3">
-<h3 data-anchor-id="lod-expressions-require-clean-filter-architecture">LOD expressions require clean filter architecture</h3>
-<p>FIXED LOD expressions compute before dimension filters but after context filters. This distinction matters enormously when building comparison charts. Several charts produced wrong numbers early in the build because <code>In Selected Dataset</code> was a regular filter (blue) rather than a context filter (grey).</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Tableau filter order of operations:</strong><br>
-Extract → Data Source → Context → FIXED LOD → Dimension → Measure</p>
-<p>The fix is mechanical — right-click → Add to Context — but the diagnostic reasoning requires understanding this order explicitly.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="sum-vs-avg-aggregation-with-colour-dimensions" class="level3">
-<h3 data-anchor-id="sum-vs-avg-aggregation-with-colour-dimensions">SUM vs AVG aggregation with colour dimensions</h3>
-<p>When Industry Names was placed on the Color shelf alongside a <code>Mean Sentiment</code> calculated field (itself defined as <code>AVG()</code>), Tableau stacked the three industry averages into a single accumulated bar rather than showing them side by side. The fix was <strong>Stack Marks Off</strong>, but the root cause is worth understanding: Tableau computes the mark-level aggregation first (AVG per industry segment), then stacks those aggregations. Designing charts with colour dimensions requires thinking explicitly about how aggregations compose.</p>
-</section>
-<section id="the-raw-industry-and-short_topic-columns-are-a-trap" class="level3">
-<h3 data-anchor-id="the-raw-industry-and-short_topic-columns-are-a-trap">The raw <code>industry</code> and <code>short_topic</code> columns are a trap</h3>
+<section id="the-data-industry-and-short_topic-columns-are-empty" class="level3">
+<h3 data-anchor-id="the-data-industry-and-short_topic-columns-are-empty">The data <code>industry</code> and <code>short_topic</code> columns are empty</h3>
 <p>Both columns exist in the links CSVs and appear in Tableau’s Data pane. Both are completely empty. Using either one silently produces all-NULL output with no error message. This is a data quality issue that would not be caught without independently verifying field contents before building charts.</p>
 <hr>
 </section>
@@ -237,34 +205,32 @@ Extract → Data Source → Context → FIXED LOD → Dimension → Measure</p>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The most powerful findings in this project came from what was <strong>not there</strong> — the missing <code>concert</code> topic in FILAH, the missing <code>seafood_festival</code> in TROUT, the missing Tante Titan in both datasets.</p>
+<p>The most powerful findings in this project came from what was <strong>not there</strong>: the missing <code>concert</code> topic in FILAH, the missing <code>seafood_festival</code> in TROUT, the missing Tante Titan in both datasets.</p>
 </div>
 </div>
 </div>
 <p>Standard exploratory analysis focuses on what is present. For a bias investigation, systematically looking for absences is equally important. Heatmaps are particularly useful here because blank cells are visually salient in a way that missing rows in a table are not.</p>
 </section>
-<section id="sentiment-scores-dont-change-dataset-composition-does" class="level3">
-<h3 data-anchor-id="sentiment-scores-dont-change-dataset-composition-does">Sentiment scores don’t change — dataset composition does</h3>
+<section id="sentiment-scores-dont-change-but-dataset-composition-does" class="level3">
+<h3 data-anchor-id="sentiment-scores-dont-change-but-dataset-composition-does">Sentiment scores don’t change, but dataset composition does</h3>
 <p>We initially expected to find that a member’s sentiment scores would look different in the partial datasets versus the full dataset. They do not — because each member’s records are exactly the same in the partial dataset as they are in the journalist dataset (since partial datasets are subsets).</p>
 <p>What changes is <strong>which members are present</strong>. This is a subtle but important distinction: the bias mechanism is not in the scores, it is in the selection of whose scores to show. Slopegraph-style before/after charts would have been misleading here because the “before” and “after” values for included members are identical.</p>
 </section>
 <section id="individual-variation-is-not-board-level-bias" class="level3">
 <h3 data-anchor-id="individual-variation-is-not-board-level-bias">Individual variation is not board-level bias</h3>
-<p>Teddy Goldstein’s Tourism sentiment of −0.50 is a real finding. But a board of six with one outlier is not a biased board — it is a board with one member who holds a strong position. Conflating individual member variation with board-level systematic bias is the analytical error both activist groups are exploiting.</p>
+<p>Teddy Goldstein’s Tourism sentiment of −0.50 is a real result. But having one strong opinion on a board of six does not mean the whole board is biased, it just means one member has a strong personal view.</p>
+<p>Both activist groups make the mistake of treating individual differences as if they reflect a pattern across the entire board.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The summary of board-wide average sentiment (Fishing=0.490, Tourism=0.549) is important precisely because it contextualises the outlier. Without it, Teddy Goldstein looks like a symptom of a systemic problem. With it, he is clearly an individual exception.</p>
+<p>The overall board averages (Fishing = 0.490, Tourism = 0.549) matter because they provide context.</p>
+<p>Without these averages, Teddy Goldstein might look like evidence of a bigger problem. With them, it’s clear he is simply an outlier, not proof of board-wide bias.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="small-sample-sizes-demand-honest-presentation" class="level3">
-<h3 data-anchor-id="small-sample-sizes-demand-honest-presentation">Small sample sizes demand honest presentation</h3>
-<p>The travel link dataset contains 22 rows. TROUT contributed 4 of them. Expressing this as “TROUT’s industrial zone share was 41% below the journalist baseline” would be statistically irresponsible — that percentage is built on a denominator of 4. We chose to present absolute counts and let the raw numbers speak.</p>
 <hr>
 </section>
 </section>
@@ -278,7 +244,7 @@ Extract → Data Source → Context → FIXED LOD → Dimension → Measure</p>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>We spent time building dashboard concepts before fully characterising the dataset. The discovery that FILAH and TROUT were subsets of the journalist file — not found until a systematic overlap check — required retroactively redesigning the entire data source architecture.</p>
+<p>We spent time building dashboard concepts before fully characterising the dataset. The discovery that FILAH and TROUT were subsets of the journalist file, not found until weird graphical representations came out, required redesigning the entire data source architecture.</p>
 </div>
 </div>
 </div>
@@ -296,45 +262,6 @@ Extract → Data Source → Context → FIXED LOD → Dimension → Measure</p>
 <li>A stacked bar that summed three industry averages looked reasonable but was arithmetically meaningless.</li>
 </ul>
 <p>The most impactful improvement to each dashboard came from asking <strong>“what is the specific claim this chart needs to support?”</strong> rather than <strong>“what would look good here?”</strong></p>
-<hr>
-</section>
-</section>
-<section id="what-we-would-improve" class="level2">
-<h2 data-anchor-id="what-we-would-improve">4. What We Would Improve</h2>
-<section id="automate-the-data-validation-step" class="level3">
-<h3 data-anchor-id="automate-the-data-validation-step">Automate the data validation step</h3>
-<p>The overlap analysis, field completeness check, and topic classification were done manually in Python before building in Tableau. Ideally, this would be codified into a repeatable validation script that could be run whenever the source data changes.</p>
-</section>
-<section id="temporal-analysis" class="level3">
-<h3 data-anchor-id="temporal-analysis">Temporal analysis</h3>
-<p>The <code>time</code> column was not usable in its raw form due to inconsistent date storage. A proper temporal analysis — did board members’ industry engagement shift over time? did the topics discussed change closer to elections or budget cycles? — would add a dimension the current dashboards do not address.</p>
-</section>
-<section id="more-explicit-null-handling-in-heatmaps" class="level3">
-<h3 data-anchor-id="more-explicit-null-handling-in-heatmaps">More explicit null handling in heatmaps</h3>
-<p>Blank cells in the heatmap currently represent either true zero counts or topics a member never engaged with. These are analytically different:</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Zero count</strong><br>
-Member engaged but count = 0<br>
-Should render as a distinct fill colour</p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>NULL / absent</strong><br>
-Combination does not exist in the data<br>
-Should render as white / empty</p>
-</div>
-</div>
-</div>
-<p>Distinguishing these more explicitly would make the heatmap more precise.</p>
-</section>
-<section id="parallel-coordinates-for-member-profiling" class="level3">
-<h3 data-anchor-id="parallel-coordinates-for-member-profiling">Parallel coordinates for member profiling</h3>
-<p>A parallel coordinates chart with axes for Fishing sentiment, Tourism sentiment, Other sentiment, and total participation count would give a richer member profile view than the current bar chart and heatmap combination. It would also make outliers like Teddy Goldstein and Tante Titan immediately visible as lines that deviate from the cluster.</p>
-</section>
-<section id="dashboard-narrative-flow" class="level3">
-<h3 data-anchor-id="dashboard-narrative-flow">Dashboard narrative flow</h3>
-<p>The current dashboards answer the four questions but require the viewer to synthesise the conclusion themselves. Adding explicit conclusion callouts — short text statements summarising what the chart shows before the viewer reads the data — would make the dashboards more useful for a journalistic audience who may not want to do analytical work on top of reading the charts.</p>
 
 
 </section>

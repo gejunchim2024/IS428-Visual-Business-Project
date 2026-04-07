@@ -91,16 +91,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./challenge.html"> 
+<span class="menu-text">Challenge</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./data.html"> 
 <span class="menu-text">Data</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./methodology.html"> 
-<span class="menu-text">Methodology</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./results_with_network.html" aria-current="page"> 
@@ -109,6 +105,10 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./lessons.html"> 
 <span class="menu-text">Lessons learnt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About us</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -185,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Central finding:</strong> Neither FILAH’s nor TROUT’s accusations are fully supported by the complete evidence. Both groups curated their datasets to manufacture a narrative — selecting records that supported their case and quietly omitting those that contradicted it. When viewed through the full journalist dataset, the COOTEFOO board shows near-balanced engagement with both fishing and tourism industries.</p>
+<p><strong>Central finding:</strong> Neither FILAH’s nor TROUT’s accusations are fully supported by the complete evidence. Both groups curated their datasets to manufacture a narrative: selecting records that supported their case and quietly omitting those that contradicted it. When viewed through the full journalist dataset, the COOTEFOO board shows near-balanced engagement with both fishing and tourism industries.</p>
 </div>
 </div>
 </div>
@@ -200,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Answer:</strong> Yes, superficially — but the support is manufactured through selective inclusion.</p>
+<p><strong>Answer:</strong> Yes, but the support is manufactured through selective inclusion.</p>
 </div>
 </div>
 </div>
@@ -209,14 +209,14 @@ ul.task-list li input[type="checkbox"] {
 <p>When analysed in isolation, both datasets appear to support their respective accusations:</p>
 <ul>
 <li><strong>FILAH’s data</strong> shows board members engaging with Tourism topics at a mean sentiment of <strong>0.740</strong> versus Fishing topics at only <strong>0.209</strong>. This appears to validate FILAH’s claim that the board is biased toward tourism.</li>
-<li><strong>TROUT’s data</strong> shows the exact inverse — Fishing sentiment of <strong>0.720</strong> versus Tourism sentiment of only <strong>0.141</strong>. This appears to validate TROUT’s claim of pro-fishing bias.</li>
+<li><strong>TROUT’s data</strong> shows the exact inverse: Fishing sentiment of <strong>0.720</strong> versus Tourism sentiment of only <strong>0.141</strong>. This appears to validate TROUT’s claim of pro-fishing bias.</li>
 </ul>
 <p>These are not small differences. They look like compelling evidence.</p>
-<p>The dashboard below places all three datasets side by side — the trellis (top left) shows how dramatically sentiment shifts depending on whose records you use, and the Accusations vs Reality chart (bottom right) makes the overstatement explicit.</p>
+<p>The dashboard below places all three datasets side by side: the trellis (top left) shows how dramatically sentiment shifts depending on whose records you use, and the Accusations vs Reality chart (bottom right) makes the overstatement explicit.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="_site/images/dashboard1.JPG" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption><strong>Figure Q1.1 — Sentiment Overview Dashboard.</strong> Top row: sentiment bar chart trellis comparing mean sentiment by industry across FILAH (Fishing=0.209, Tourism=0.740), Journalist (Fishing=0.490, Tourism=0.549), and TROUT (Fishing=0.720, Tourism=0.141). Bottom left: topic coverage heatmap showing frequency of mentions per topic across all three datasets. Bottom right: Accusations vs Reality chart directly comparing each group’s claimed sentiment against the full journalist baseline.</figcaption>
+<figcaption><strong>Figure Q1.1 — Sentiment Overview Dashboard.</strong> <br>Top row: sentiment bar chart trellis comparing mean sentiment by industry across FILAH (Fishing=0.209, Tourism=0.740), Journalist (Fishing=0.490, Tourism=0.549), and TROUT (Fishing=0.720, Tourism=0.141). <br> Bottom left: Topic coverage heatmap showing frequency of mentions per topic across all three datasets. <br>Bottom right: Accusations vs Reality chart directly comparing each group’s claimed sentiment against the full journalist baseline.</figcaption>
 </figure>
 </div>
 <hr>
@@ -225,14 +225,14 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-anchor-id="the-heatmap-evidence">The heatmap evidence</h3>
 <p>The topic coverage heatmap reveals the mechanism behind the distortion. The two circled cells below are the smoking gun:</p>
 <ul>
-<li><strong>FILAH recorded zero links for <code>concert</code></strong> — a Tourism topic — while accusing the board of pro-tourism bias.</li>
-<li><strong>TROUT recorded zero links for <code>seafood_festival</code></strong> — a Fishing topic — while accusing the board of pro-fishing bias.</li>
+<li><strong>FILAH recorded zero links for <code>concert</code></strong>: a Tourism topic, while accusing the board of pro-tourism bias.</li>
+<li><strong>TROUT recorded zero links for <code>seafood_festival</code></strong>: a Fishing topic, while accusing the board of pro-fishing bias.</li>
 </ul>
 <p>These are not gaps from incomplete data collection. Both groups removed the topic that most weakened their argument.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="_site/images/dashboard1b.JPG" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption><strong>Figure Q1.2 — Topic Coverage Heatmap.</strong> Frequency of mentions per topic across FILAH, Journalist, and TROUT datasets. The two red circles highlight deliberate omissions: FILAH’s zero for <code>concert</code> and TROUT’s zero for <code>seafood_festival</code>. Neither omission appears in the journalist’s data.</figcaption>
+<figcaption><strong>Figure Q1.2 — Topic Coverage Heatmap.</strong></figcaption>
 </figure>
 </div>
 <hr>
@@ -264,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Each group overstated the apparent bias by approximately <strong>0.2 sentiment points</strong> through selective inclusion alone — not by fabricating numbers, but by choosing which records to show.</p>
+<p>Each group overstated the apparent bias by approximately <strong>0.2 sentiment points</strong> through selective inclusion alone, not by fabricating numbers, but by choosing which records to show.</p>
 <hr>
 </section>
 </section>
@@ -297,7 +297,7 @@ Mean sentiment = <strong>0.549</strong><br>
 </div>
 </div>
 </div>
-<p>A difference of <strong>0.059</strong> across a −1 to +1 scale does not constitute meaningful bias. Both industries receive overwhelmingly positive engagement.</p>
+<p>A difference of <strong>0.059</strong> across a −1 to +1 scale does not constitute meaningful bias. Both industries receive positive engagement.</p>
 <p>The chart below shows Board Sentiment Direction (top) and member participation breakdown (bottom) using the full journalist dataset. The green bars vastly outweigh the red across both industries.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">

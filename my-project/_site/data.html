@@ -91,24 +91,24 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./challenge.html"> 
+<span class="menu-text">Challenge</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./data.html" aria-current="page"> 
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./methodology.html"> 
-<span class="menu-text">Methodology</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./results.html"> 
+    <a class="nav-link" href="./results_with_network.html"> 
 <span class="menu-text">Results</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./lessons.html"> 
 <span class="menu-text">Lessons learnt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About us</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -130,16 +130,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-files" id="toc-the-files" class="nav-link" data-scroll-target="#the-files">The files</a></li>
   <li><a href="#the-graph-structure" id="toc-the-graph-structure" class="nav-link" data-scroll-target="#the-graph-structure">The graph structure</a></li>
   <li><a href="#the-cootefoo-board-members" id="toc-the-cootefoo-board-members" class="nav-link" data-scroll-target="#the-cootefoo-board-members">The COOTEFOO board members</a></li>
-  <li><a href="#the-critical-structural-finding" id="toc-the-critical-structural-finding" class="nav-link" data-scroll-target="#the-critical-structural-finding">The critical structural finding</a></li>
+  <li><a href="#the-critical-finding" id="toc-the-critical-finding" class="nav-link" data-scroll-target="#the-critical-finding">The critical finding</a></li>
   <li><a href="#understanding-what-bias-means-in-this-data" id="toc-understanding-what-bias-means-in-this-data" class="nav-link" data-scroll-target="#understanding-what-bias-means-in-this-data">Understanding what “bias” means in this data</a>
   <ul class="collapse">
   <li><a href="#layer-1-sentiment-bias" id="toc-layer-1-sentiment-bias" class="nav-link" data-scroll-target="#layer-1-sentiment-bias">Layer 1 — Sentiment bias</a></li>
   <li><a href="#layer-2-topic-omission-bias" id="toc-layer-2-topic-omission-bias" class="nav-link" data-scroll-target="#layer-2-topic-omission-bias">Layer 2 — Topic omission bias</a></li>
   <li><a href="#layer-3-member-exclusion-bias" id="toc-layer-3-member-exclusion-bias" class="nav-link" data-scroll-target="#layer-3-member-exclusion-bias">Layer 3 — Member exclusion bias</a></li>
   </ul></li>
-  <li><a href="#data-columns-we-could-not-use" id="toc-data-columns-we-could-not-use" class="nav-link" data-scroll-target="#data-columns-we-could-not-use">Data columns we could not use</a></li>
   <li><a href="#how-we-structured-the-data-in-tableau" id="toc-how-we-structured-the-data-in-tableau" class="nav-link" data-scroll-target="#how-we-structured-the-data-in-tableau">How we structured the data in Tableau</a></li>
-  <li><a href="#the-15-topics-and-their-industry-classification" id="toc-the-15-topics-and-their-industry-classification" class="nav-link" data-scroll-target="#the-15-topics-and-their-industry-classification">The 15 topics and their industry classification</a></li>
+  <li><a href="#classification-of-topics" id="toc-classification-of-topics" class="nav-link" data-scroll-target="#classification-of-topics">Classification of Topics</a></li>
   </ul>
 </nav>
     </div>
@@ -167,16 +166,15 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level2">
 <h2 data-anchor-id="overview">Overview</h2>
-<p>The MC2 dataset represents Oceanus as a knowledge graph: entities are nodes, and relationships between them are edges. This page explains what the data contains, how we understood it, and the analytical decisions we made before touching any visualisation.</p>
-<hr>
+<p>The MC2 dataset represents Oceanus as a knowledge graph: entities are nodes, and relationships between them are edges. In this page, we break down the data, how we understood it, and the analytical decisions we made before working on the visualisations.</p>
 </section>
 <section id="the-files" class="level2">
 <h2 data-anchor-id="the-files">The files</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 65%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -189,46 +187,45 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;"><code>mc2_journalist_links.csv</code></td>
 <td style="text-align: center;">2,436</td>
-<td style="text-align: left;"><strong>Base table and ground truth.</strong> Every link in the complete dataset.</td>
+<td style="text-align: left;"><strong>The journalist links file has the complete source of truth to identify any bias based on the organisations’ claims.</strong> Every link is a relationship between nodes in the journalist_nodes file, filling us with the full picture.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>mc2_jounalist_nodes.csv</code></td>
 <td style="text-align: center;">740</td>
-<td style="text-align: left;"><strong>Base nodes table.</strong> All entities in the complete dataset. Note: filename is misspelled in the original data.</td>
+<td style="text-align: left;"><strong>The journalist nodes file contains every entity in the complete dataset</strong>: meetings, people, topics, and travel destinations. All FILAH and TROUT nodes are fully in the file.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>mc2_FILAH_links.csv</code></td>
 <td style="text-align: center;">765</td>
-<td style="text-align: left;">FILAH’s submitted evidence — a cherry-picked subset of the journalist file.</td>
+<td style="text-align: left;"><strong>FILAH’s submitted evidence: a cherry-picked subset of the journalist links file.</strong> Every record here exists in the journalist file; what differs is what FILAH chose to leave out to support their pro-tourism bias narrative.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>mc2_TROUT_links.csv</code></td>
-<td style="text-align: center;">378</td>
-<td style="text-align: left;">TROUT’s submitted evidence — a different cherry-picked subset of the journalist file.</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;"><code>mc2_FILAH_nodes.csv</code></td>
 <td style="text-align: center;">396</td>
-<td style="text-align: left;">FILAH’s node list. Fully contained within the journalist nodes. Not used in the main analysis.</td>
+<td style="text-align: left;"><strong>FILAH’s node list, fully part of the journalist nodes file.</strong> Node-level comparisons are handled through the links files and the journalist nodes as the single authoritative reference.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>mc2_TROUT_links.csv</code></td>
+<td style="text-align: center;">378</td>
+<td style="text-align: left;"><strong>TROUT’s submitted evidence: a different cherry-picked subset of the journalist links file.</strong> A smaller slice than FILAH’s dataset, curated to suppress travel evidence and overrepresent fishing activity in support of their own counter-narrative.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>mc2_TROUT_nodes.csv</code></td>
 <td style="text-align: center;">164</td>
-<td style="text-align: left;">TROUT’s node list. Fully contained within the journalist nodes. Not used in the main analysis.</td>
+<td style="text-align: left;"><strong>TROUT’s node list, fully part of the journalist nodes file.</strong> Notably smaller dataset, reflecting TROUT’s narrower evidence pool.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>mc2_geo_nodes.csv</code></td>
 <td style="text-align: center;">2,664</td>
-<td style="text-align: left;">Physical locations in Oceanus with zone classification and coordinates. Used to enrich travel links.</td>
+<td style="text-align: left;"><strong>Physical locations in Oceanus with zone classification and coordinates.</strong> Used to enrich travel links and determine whether COOTEFOO members’ travel destinations skewed toward fishing or tourism zones.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>mc2_geo_edges.csv</code></td>
 <td style="text-align: center;">3,420</td>
-<td style="text-align: left;">Road network between locations. Not used — not relevant to the analytical questions.</td>
+<td style="text-align: left;"><strong>The road network connecting locations across Oceanus.</strong></td>
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
 <section id="the-graph-structure" class="level2">
 <h2 data-anchor-id="the-graph-structure">The graph structure</h2>
@@ -244,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="header">
 <th style="text-align: left;">Role</th>
 <th style="text-align: center;">Count (journalist)</th>
-<th style="text-align: left;">What it connects</th>
+<th style="text-align: left;">Source-Target</th>
 <th style="text-align: left;">Analytical use</th>
 </tr>
 </thead>
@@ -293,11 +290,11 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Only <strong>218 of 2,436 rows</strong> are <code>participant</code> type. Every sentiment analysis in this project is filtered exclusively to this role. Forgetting this filter produces meaningless averages across thousands of NULL sentiment values.</p>
+<p>Only 218 of 2,436 rows are participant type. The remaining 2,218 rows carry no sentiment values: 1,705 have no role assigned at all, and the other 513 belong to structural roles like about, part_of, and plan. Every sentiment analysis in this project is filtered exclusively to participant links. Forgetting this filter produces meaningless averages across thousands of NULL sentiment values.</p>
 </div>
 </div>
 </div>
-<p>Nodes contain: <code>type</code>, <code>id</code>, <code>name</code>, <code>role</code>, <code>short_topic</code>, <code>lat</code>, <code>lon</code>, <code>zone</code>, <code>city_name</code>, <code>date</code>, <code>start</code>, <code>end</code>.</p>
+<p>Nodes contain: <code>type</code>, <code>id</code>, <code>name</code>, <code>role</code>, <code>label</code>,<code>short_topic</code>, <code>long_topic</code>, <code>lat</code>, <code>lon</code>, <code>zone</code>, <code>zone_detail</code>, <code>date</code>, <code>start</code>, <code>end</code>.</p>
 <p>Node types present: <code>entity.person</code>, <code>entity.organization</code>, <code>meeting</code>, <code>discussion</code>, <code>plan</code>, <code>trip</code>, <code>place</code>, <code>topic</code>.</p>
 <hr>
 </section>
@@ -365,15 +362,15 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>FILAH recorded 3 members. TROUT recorded a <strong>different</strong> 3. Tante Titan — whose full record shows balanced, positive engagement across both industries — was excluded by <strong>both</strong> groups. Neither set of 3 members is an accident.</p>
+<p>FILAH recorded 3 members; TROUT recorded 3 members, but they share Seal in common. The two groups each omitted members that inconvenienced their narrative: FILAH dropped Ed Helpsford and Teddy Goldstein; TROUT dropped Simone Kat and Carol Limpet. Tante Titan, whose full record shows balanced, positive engagement across both industries, was excluded by both groups.</p>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="the-critical-structural-finding" class="level2">
-<h2 data-anchor-id="the-critical-structural-finding">The critical structural finding</h2>
-<p>Before building any visualisation, we ran a full overlap analysis on the three links files using composite keys (<code>source + target + role</code>).</p>
+<section id="the-critical-finding" class="level2">
+<h2 data-anchor-id="the-critical-finding">The critical finding</h2>
+<p>Before building any visualisation, we analysed the data using the three links files using (<code>source + target + role</code>).</p>
 <div class="callout callout-style-simple callout-important no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -381,7 +378,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <p><strong>Result: 100% of FILAH’s 765 rows exist inside the journalist file. 100% of TROUT’s 378 rows also exist inside the journalist file.</strong></p>
-<p>The journalist file is a complete superset. FILAH and TROUT did not collect independent data — they each drew from the same pool of 2,436 records and selectively chose what to submit.</p>
+<p>The journalist file is a complete superset. FILAH and TROUT did not collect independent data, they each drew from the same pool of 2,436 records and selectively chose what to submit.</p>
 </div>
 </div>
 </div>
@@ -415,12 +412,12 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><strong>1,472 records — 60% of the journalist’s dataset — were never shown to anyone by either activist group.</strong></p>
+<p><strong>1,472 records: 60% of the journalist’s dataset were not presented by either activist group.</strong></p>
 <hr>
 </section>
 <section id="understanding-what-bias-means-in-this-data" class="level2">
 <h2 data-anchor-id="understanding-what-bias-means-in-this-data">Understanding what “bias” means in this data</h2>
-<p>The data does not contain a direct “bias” column. Bias must be inferred from patterns. We identified three distinct layers:</p>
+<p>The data does not contain a direct “bias” column. Bias must be inferred from patterns. We identified three layers:</p>
 <section id="layer-1-sentiment-bias" class="level3">
 <h3 data-anchor-id="layer-1-sentiment-bias">Layer 1 — Sentiment bias</h3>
 <p><code>participant</code> links carry a sentiment score from −1 (very negative) to +1 (very positive). If one group’s data shows systematically different sentiment toward fishing vs tourism topics, that is evidence of bias in the data they chose to submit.</p>
@@ -435,18 +432,18 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">FILAH</td>
-<td style="text-align: center;">0.209</td>
-<td style="text-align: center;"><strong>0.740</strong></td>
+<td style="text-align: center;">0.334</td>
+<td style="text-align: center;"><strong>0.679</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">TROUT</td>
-<td style="text-align: center;"><strong>0.720</strong></td>
-<td style="text-align: center;">0.141</td>
+<td style="text-align: center;"><strong>0.400</strong></td>
+<td style="text-align: center;">0.191</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Full Journalist</td>
-<td style="text-align: center;">0.490</td>
-<td style="text-align: center;">0.549</td>
+<td style="text-align: center;">0.449</td>
+<td style="text-align: center;">0.531</td>
 </tr>
 </tbody>
 </table>
@@ -459,19 +456,19 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><strong>FILAH omitted:</strong><br>
-<code>concert</code> — a Tourism topic<br>
+<code>concert</code>: a Tourism topic<br>
 Present in TROUT and Journalist<br>
 Missing while accusing the board of <strong>pro-tourism</strong> bias</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><strong>TROUT omitted:</strong><br>
-<code>seafood_festival</code> — a Fishing topic<br>
+<code>seafood_festival</code>: a Fishing topic<br>
 Present in FILAH and Journalist<br>
 Missing while accusing the board of <strong>pro-fishing</strong> bias</p>
 </div>
 </div>
 </div>
-<p>These are not gaps from random sampling. Each group removed the topic that most undermined their accusation.</p>
+<p>These are not gaps from random sampling. Each group removed the topic that goes against their accusation.</p>
 </section>
 <section id="layer-3-member-exclusion-bias" class="level3">
 <h3 data-anchor-id="layer-3-member-exclusion-bias">Layer 3 — Member exclusion bias</h3>
@@ -479,63 +476,67 @@ Missing while accusing the board of <strong>pro-fishing</strong> bias</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>FILAH excluded:</strong><br>
-Teddy Goldstein (Fishing=0.85, Tourism=−0.50)<br>
-Ed Helpsford (Fishing=1.0)<br>
-Tante Titan (balanced)</p>
+<p><strong>FILAH excluded:</strong></p>
+<ol type="1">
+<li>Teddy Goldstein (Fishing=0.85, Tourism=−0.50)<br>
+</li>
+<li>Ed Helpsford (Fishing=1.0)<br>
+</li>
+<li>Tante Titan (balanced)</li>
+</ol>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><strong>TROUT excluded:</strong><br>
-Simone Kat (Tourism=0.91)<br>
-Carol Limpet<br>
-Tante Titan (balanced)</p>
+1. Simone Kat (Tourism=0.91)<br>
+2. Carol Limpet<br>
+3. Tante Titan (balanced)</p>
 </div>
 </div>
 </div>
 <p>The pattern is consistent: each group excluded members whose records would have weakened their narrative and included those whose records strengthened it.</p>
-<hr>
-</section>
-</section>
-<section id="data-columns-we-could-not-use" class="level2">
-<h2 data-anchor-id="data-columns-we-could-not-use">Data columns we could not use</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
+<table class="table">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Column</th>
-<th style="text-align: left;">Problem</th>
+<tr>
+<th style="text-align:left;">
+FILAH excluded
+</th>
+<th style="text-align:left;">
+TROUT excluded
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>industry</code></td>
-<td style="text-align: left;">Exists in all links files but contains no data in any row. We reconstructed industry classification from the <code>source</code> field using topic prefix matching.</td>
+<tr>
+<td>
+<b>Teddy Goldstein <br>(Fishing=0.786, Tourism=−0.500)</b> <br>Strong pro-fishing, anti-tourism record would have undermined FILAH’s narrative
+</td>
+<td>
+<b>Simone Kat <br>(Fishing=0.379, Tourism=0.908)</b> <br>Strongly pro-tourism record would have undermined TROUT’s narrative
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>short_topic</code></td>
-<td style="text-align: left;">Same — structurally present but empty. We derived topic names from source IDs using <code>STARTSWITH()</code> logic against 15 known topic slugs.</td>
+<tr>
+<td>
+<b>Ed Helpsford <br>(Fishing=1.0, Tourism=0.714)</b> <br>Uniformly positive across both industries, not a useful villain
+</td>
+<td>
+<b>Carol Limpet <br>(Fishing=0.750, Tourism=0.682)</b> <br>Balanced across both industries, not useful for TROUT’s case either
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>sentiment</code> (raw)</td>
-<td style="text-align: left;">Stored as a string. Some rows contain the literal text “NA”. Requires <code>FLOAT()</code> conversion before use.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Geographic coordinates</td>
-<td style="text-align: left;">Available in <code>mc2_geo_nodes.csv</code> (x, y fields). Not used for mapping because the analysis questions focused on zone type and city rather than precise coordinates.</td>
+<tr>
+<td colspan="2" class="align-middle" style="text-align: center;">
+<b>Tante Titan <br>(Fishing=0.750, Tourism=0.471)</b> <br>Both excluded: Positive and balanced across both industries; directly contradicts both groups’ bias claims
+</td>
 </tr>
 </tbody>
 </table>
-<hr>
+</section>
 </section>
 <section id="how-we-structured-the-data-in-tableau" class="level2">
 <h2 data-anchor-id="how-we-structured-the-data-in-tableau">How we structured the data in Tableau</h2>
-<p>The journalist links file became the single base table. FILAH and TROUT links were left-joined onto it using a three-field composite key.</p>
+<p>The journalist links file became the single base table. FILAH and TROUT links were left-joined onto it using a two-field composite key.</p>
 <pre><code>Base: mc2_journalist_links.csv (2,436 rows)
-  └─ LEFT JOIN mc2_FILAH_links.csv  ON source + target + role
-  └─ LEFT JOIN mc2_TROUT_links.csv  ON source + target + role</code></pre>
+  └─ LEFT JOIN mc2_FILAH_links.csv  ON source + target 
+  └─ LEFT JOIN mc2_TROUT_links.csv  ON source + target </code></pre>
 <p>After the join, rows where FILAH’s <code>source</code> column is NULL were excluded by FILAH. Rows where TROUT’s <code>source</code> column is NULL were excluded by TROUT. Two boolean calculated fields (<code>In FILAH</code>, <code>In TROUT</code>) capture this. A parameter (<code>Dataset View</code>) switches the filter between FILAH, TROUT, and Full Journalist perspectives without requiring separate data sources.</p>
 <p>The journalist nodes file was added twice as related tables — once for target node attributes, once for source node attributes. The geo nodes file was added as a third relationship, keyed on <code>target = id</code>, resolving only for travel links where the target is a geographic node ID.</p>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -544,81 +545,109 @@ Tante Titan (balanced)</p>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Why not union?</strong> Unioning all three links files would duplicate the 765 FILAH rows and 378 TROUT rows that already exist in the journalist file, inflating all counts by up to 3×. The join approach preserves exactly 2,436 rows while making membership flags computable at row level.</p>
+<p><strong>Why not union?</strong> Unioning all three links files would duplicate the 765 FILAH rows and 378 TROUT rows that already exist in the journalist file, inflating all counts by up to 3×. The join approach preserves exactly 2,436 rows.</p>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="the-15-topics-and-their-industry-classification" class="level2">
-<h2 data-anchor-id="the-15-topics-and-their-industry-classification">The 15 topics and their industry classification</h2>
-<table class="caption-top table">
+<section id="classification-of-topics" class="level2">
+<h2 data-anchor-id="classification-of-topics">Classification of Topics</h2>
+<table class="table">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Topic</th>
-<th style="text-align: left;">Industry</th>
+<tr>
+<th style="text-align:left;">
+Industry
+</th>
+<th style="text-align:left;">
+Topic
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>fish_vacuum</code></td>
-<td style="text-align: left;">Fishing</td>
+<tr>
+<td rowspan="6" class="align-middle">
+Fishing
+</td>
+<td>
+<code>fish_vacuum</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>deep_fishing_dock</code></td>
-<td style="text-align: left;">Fishing</td>
+<tr>
+<td>
+<code>deep_fishing_dock</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>new_crane_lomark</code></td>
-<td style="text-align: left;">Fishing</td>
+<tr>
+<td>
+<code>new_crane_lomark</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>low_volume_crane</code></td>
-<td style="text-align: left;">Fishing</td>
+<tr>
+<td>
+<code>low_volume_crane</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>seafood_festival</code></td>
-<td style="text-align: left;">Fishing</td>
+<tr>
+<td>
+<code>seafood_festival</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>affordable_housing</code></td>
-<td style="text-align: left;">Fishing</td>
+<tr>
+<td>
+<code>affordable_housing</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>expanding_tourist_wharf</code></td>
-<td style="text-align: left;">Tourism</td>
+<tr>
+<td rowspan="5" class="align-middle">
+Tourism
+</td>
+<td>
+<code>expanding_tourist_wharf</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>marine_life_deck</code></td>
-<td style="text-align: left;">Tourism</td>
+<tr>
+<td>
+<code>marine_life_deck</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>waterfront_market</code></td>
-<td style="text-align: left;">Tourism</td>
+<tr>
+<td>
+<code>waterfront_market</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>heritage_walking_tour</code></td>
-<td style="text-align: left;">Tourism</td>
+<tr>
+<td>
+<code>heritage_walking_tour</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>concert</code></td>
-<td style="text-align: left;">Tourism</td>
+<tr>
+<td>
+<code>concert</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>statue_john_smoth</code></td>
-<td style="text-align: left;">Other</td>
+<tr>
+<td rowspan="4" class="align-middle">
+Other
+</td>
+<td>
+<code>statue_john_smoth</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>renaming_park_himark</code></td>
-<td style="text-align: left;">Other</td>
+<tr>
+<td>
+<code>renaming_park_himark</code>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>name_harbor_area</code></td>
-<td style="text-align: left;">Other</td>
+<tr>
+<td>
+<code>name_harbor_area</code>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>name_inspection_office</code></td>
-<td style="text-align: left;">Other</td>
+<tr>
+<td>
+<code>name_inspection_office</code>
+</td>
 </tr>
 </tbody>
 </table>
@@ -628,7 +657,7 @@ Tante Titan (balanced)</p>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Topic classification was not provided in the data — we assigned each topic to an industry category based on the long-form topic description in the nodes file. All classifications are arguable. <code>affordable_housing</code> in particular could reasonably be placed in Other, but it is explicitly described as a conflict between fishing workers and short-term rentals, placing it in the Fishing sphere.</p>
+<p>Topic classification was not provided in the data: we assigned each topic to an industry category based on the short-form topic description in the nodes file. The topics were grouped based on our assumption of fishing and tourism activites.</p>
 </div>
 </div>
 </div>

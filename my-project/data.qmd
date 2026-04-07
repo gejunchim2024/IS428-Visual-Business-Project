@@ -4,30 +4,28 @@ title: "Data"
 
 ## Overview
 
-The MC2 dataset represents Oceanus as a knowledge graph: entities are nodes, and relationships between them are edges. This page explains what the data contains, how we understood it, and the analytical decisions we made before touching any visualisation.
-
----
+The MC2 dataset represents Oceanus as a knowledge graph: entities are nodes, and relationships between them are edges. In this page, we break down the data, how we understood it, and the analytical decisions we made before working on the visualisations.
 
 ## The files
 
 | File | Rows | Role in analysis |
 |:--|:-:|:--|
-| `mc2_journalist_links.csv` | 2,436 | **Base table and ground truth.** Every link in the complete dataset. |
-| `mc2_jounalist_nodes.csv` | 740 | **Base nodes table.** All entities in the complete dataset. Note: filename is misspelled in the original data. |
-| `mc2_FILAH_links.csv` | 765 | FILAH's submitted evidence — a cherry-picked subset of the journalist file. |
-| `mc2_TROUT_links.csv` | 378 | TROUT's submitted evidence — a different cherry-picked subset of the journalist file. |
-| `mc2_FILAH_nodes.csv` | 396 | FILAH's node list. Fully contained within the journalist nodes. Not used in the main analysis. |
-| `mc2_TROUT_nodes.csv` | 164 | TROUT's node list. Fully contained within the journalist nodes. Not used in the main analysis. |
-| `mc2_geo_nodes.csv` | 2,664 | Physical locations in Oceanus with zone classification and coordinates. Used to enrich travel links. |
-| `mc2_geo_edges.csv` | 3,420 | Road network between locations. Not used — not relevant to the analytical questions. |
+| `mc2_journalist_links.csv` | 2,436 | **The journalist links file has the complete source of truth to identify any bias based on the organisations' claims.** Every link is a relationship between nodes in the journalist_nodes file, filling us with the full picture. |
+| `mc2_jounalist_nodes.csv` | 740 | **The journalist nodes file contains every entity in the complete dataset**: meetings, people, topics, and travel destinations. All FILAH and TROUT nodes are fully in the file.|
+| `mc2_FILAH_links.csv` | 765 | **FILAH's submitted evidence: a cherry-picked subset of the journalist links file.** Every record here exists in the journalist file; what differs is what FILAH chose to leave out to support their pro-tourism bias narrative. |
+| `mc2_FILAH_nodes.csv` | 396 | **FILAH's node list, fully part of the journalist nodes file.** Node-level comparisons are handled through the links files and the journalist nodes as the single authoritative reference. |
+| `mc2_TROUT_links.csv` | 378 | **TROUT's submitted evidence: a different cherry-picked subset of the journalist links file.** A smaller slice than FILAH's dataset, curated to suppress travel evidence and overrepresent fishing activity in support of their own counter-narrative. |
+| `mc2_TROUT_nodes.csv` | 164 | **TROUT's node list, fully part of the journalist nodes file.** Notably smaller dataset, reflecting TROUT's narrower evidence pool. |
+| `mc2_geo_nodes.csv` | 2,664 | **Physical locations in Oceanus with zone classification and coordinates.** Used to enrich travel links and determine whether COOTEFOO members' travel destinations skewed toward fishing or tourism zones. |
+| `mc2_geo_edges.csv` | 3,420 | **The road network connecting locations across Oceanus.**|
 
----
+: {tbl-colwidths="[20,10,65]"}
 
 ## The graph structure
 
 Each links file contains edges between nodes. Every row is one connection. The critical column is `role`, which defines what kind of connection it is.
 
-| Role | Count (journalist) | What it connects | Analytical use |
+| Role | Count (journalist) | Source-Target | Analytical use |
 |:--|:-:|:--|:--|
 | `participant` | 218 | Discussion → Member or Organisation | **Primary analysis.** Only role that carries sentiment scores. |
 | `about` | 200 | Discussion → Topic | Topic coverage analysis |
@@ -37,10 +35,10 @@ Each links file contains edges between nodes. Every row is one connection. The c
 | `refers_to` | 43 | Document → Document | Cross-reference network |
 
 ::: {.callout-warning appearance="minimal"}
-Only **218 of 2,436 rows** are `participant` type. Every sentiment analysis in this project is filtered exclusively to this role. Forgetting this filter produces meaningless averages across thousands of NULL sentiment values.
+Only 218 of 2,436 rows are participant type. The remaining 2,218 rows carry no sentiment values: 1,705 have no role assigned at all, and the other 513 belong to structural roles like about, part_of, and plan. Every sentiment analysis in this project is filtered exclusively to participant links. Forgetting this filter produces meaningless averages across thousands of NULL sentiment values.
 :::
 
-Nodes contain: `type`, `id`, `name`, `role`, `short_topic`, `lat`, `lon`, `zone`, `city_name`, `date`, `start`, `end`.
+Nodes contain: `type`, `id`, `name`, `role`, `label`,`short_topic`, `long_topic`, `lat`, `lon`, `zone`, `zone_detail`, `date`, `start`, `end`.
 
 Node types present: `entity.person`, `entity.organization`, `meeting`, `discussion`, `plan`, `trip`, `place`, `topic`.
 
@@ -60,19 +58,19 @@ Six people sit on the COOTEFOO board. They appear as `target` values in `partici
 | Tante Titan | Member | — | — | ✓ |
 
 ::: {.callout-important appearance="minimal"}
-FILAH recorded 3 members. TROUT recorded a **different** 3. Tante Titan — whose full record shows balanced, positive engagement across both industries — was excluded by **both** groups. Neither set of 3 members is an accident.
+FILAH recorded 3 members; TROUT recorded 3 members, but they share Seal in common. The two groups each omitted members that inconvenienced their narrative: FILAH dropped Ed Helpsford and Teddy Goldstein; TROUT dropped Simone Kat and Carol Limpet. Tante Titan, whose full record shows balanced, positive engagement across both industries, was excluded by both groups. 
 :::
 
 ---
 
-## The critical structural finding
+## The critical finding
 
-Before building any visualisation, we ran a full overlap analysis on the three links files using composite keys (`source + target + role`).
+Before building any visualisation, we analysed the data using the three links files using (`source + target + role`).
 
 ::: {.callout-important appearance="minimal"}
 **Result: 100% of FILAH's 765 rows exist inside the journalist file. 100% of TROUT's 378 rows also exist inside the journalist file.**
 
-The journalist file is a complete superset. FILAH and TROUT did not collect independent data — they each drew from the same pool of 2,436 records and selectively chose what to submit.
+The journalist file is a complete superset. FILAH and TROUT did not collect independent data, they each drew from the same pool of 2,436 records and selectively chose what to submit.
 :::
 
 | Segment | Count |
@@ -83,13 +81,13 @@ The journalist file is a complete superset. FILAH and TROUT did not collect inde
 | In Journalist only (neither group) | 1,472 |
 | **Total unique journalist links** | **2,436** |
 
-**1,472 records — 60% of the journalist's dataset — were never shown to anyone by either activist group.**
+**1,472 records: 60% of the journalist's dataset were not presented by either activist group.**
 
 ---
 
 ## Understanding what "bias" means in this data
 
-The data does not contain a direct "bias" column. Bias must be inferred from patterns. We identified three distinct layers:
+The data does not contain a direct "bias" column. Bias must be inferred from patterns. We identified three layers:
 
 ### Layer 1 — Sentiment bias
 
@@ -97,9 +95,9 @@ The data does not contain a direct "bias" column. Bias must be inferred from pat
 
 | Dataset | Fishing sentiment | Tourism sentiment |
 |:--|:-:|:-:|
-| FILAH | 0.209 | **0.740** |
-| TROUT | **0.720** | 0.141 |
-| Full Journalist | 0.490 | 0.549 |
+| FILAH | 0.334 | **0.679** |
+| TROUT | **0.400** | 0.191 |
+| Full Journalist | 0.449 | 0.531 |
 
 FILAH's data makes the board look strongly pro-tourism. TROUT's data makes the board look strongly pro-fishing. The full dataset shows near-equal engagement with both. The gap between each group's view and reality is the quantified sampling bias.
 
@@ -110,19 +108,19 @@ Two topics are completely absent from one group's data:
 ::: {layout-ncol=2}
 ::: {}
 **FILAH omitted:**  
-`concert` — a Tourism topic  
+`concert`: a Tourism topic  
 Present in TROUT and Journalist  
 Missing while accusing the board of **pro-tourism** bias
 :::
 ::: {}
 **TROUT omitted:**  
-`seafood_festival` — a Fishing topic  
+`seafood_festival`: a Fishing topic  
 Present in FILAH and Journalist  
 Missing while accusing the board of **pro-fishing** bias
 :::
 :::
 
-These are not gaps from random sampling. Each group removed the topic that most undermined their accusation.
+These are not gaps from random sampling. Each group removed the topic that goes against their accusation.
 
 ### Layer 3 — Member exclusion bias
 
@@ -130,42 +128,58 @@ Beyond topics, the groups excluded entire people:
 
 ::: {layout-ncol=2}
 ::: {}
-**FILAH excluded:**  
-Teddy Goldstein (Fishing=0.85, Tourism=−0.50)  
-Ed Helpsford (Fishing=1.0)  
-Tante Titan (balanced)
+**FILAH excluded:**
+
+1. Teddy Goldstein (Fishing=0.85, Tourism=−0.50)  
+2. Ed Helpsford (Fishing=1.0)  
+3. Tante Titan (balanced)
 :::
 ::: {}
+
 **TROUT excluded:**  
-Simone Kat (Tourism=0.91)  
-Carol Limpet  
-Tante Titan (balanced)
+1. Simone Kat (Tourism=0.91)  
+2. Carol Limpet  
+3. Tante Titan (balanced)
 :::
 :::
 
 The pattern is consistent: each group excluded members whose records would have weakened their narrative and included those whose records strengthened it.
 
----
-
-## Data columns we could not use
-
-| Column | Problem |
-|:--|:--|
-| `industry` | Exists in all links files but contains no data in any row. We reconstructed industry classification from the `source` field using topic prefix matching. |
-| `short_topic` | Same — structurally present but empty. We derived topic names from source IDs using `STARTSWITH()` logic against 15 known topic slugs. |
-| `sentiment` (raw) | Stored as a string. Some rows contain the literal text "NA". Requires `FLOAT()` conversion before use. |
-| Geographic coordinates | Available in `mc2_geo_nodes.csv` (x, y fields). Not used for mapping because the analysis questions focused on zone type and city rather than precise coordinates. |
-
----
+<table class="table">
+<thead>
+<tr>
+<th style="text-align:left;">FILAH excluded</th>
+<th style="text-align:left;">TROUT excluded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Teddy Goldstein <br>(Fishing=0.786, Tourism=−0.500)</b>
+<br>Strong pro-fishing, anti-tourism record would have undermined FILAH's narrative</td>
+<td><b>Simone Kat <br>(Fishing=0.379, Tourism=0.908)</b>
+<br>Strongly pro-tourism record would have undermined TROUT's narrative</td>
+</tr>
+<tr>
+<td><b>Ed Helpsford <br>(Fishing=1.0, Tourism=0.714)</b> 
+<br>Uniformly positive across both industries, not a useful villain</td>
+<td><b>Carol Limpet <br>(Fishing=0.750, Tourism=0.682)</b>
+<br>Balanced across both industries, not useful for TROUT's case either</td>
+</tr>
+<tr>
+<td colspan="2" class="align-middle" style="text-align: center;"><b>Tante Titan <br>(Fishing=0.750, Tourism=0.471)</b>
+<br>Both excluded: Positive and balanced across both industries; directly contradicts both groups' bias claims</td>
+</tr>
+</tbody>
+</table>
 
 ## How we structured the data in Tableau
 
-The journalist links file became the single base table. FILAH and TROUT links were left-joined onto it using a three-field composite key.
+The journalist links file became the single base table. FILAH and TROUT links were left-joined onto it using a two-field composite key.
 
 ```
 Base: mc2_journalist_links.csv (2,436 rows)
-  └─ LEFT JOIN mc2_FILAH_links.csv  ON source + target + role
-  └─ LEFT JOIN mc2_TROUT_links.csv  ON source + target + role
+  └─ LEFT JOIN mc2_FILAH_links.csv  ON source + target 
+  └─ LEFT JOIN mc2_TROUT_links.csv  ON source + target 
 ```
 
 After the join, rows where FILAH's `source` column is NULL were excluded by FILAH. Rows where TROUT's `source` column is NULL were excluded by TROUT. Two boolean calculated fields (`In FILAH`, `In TROUT`) capture this. A parameter (`Dataset View`) switches the filter between FILAH, TROUT, and Full Journalist perspectives without requiring separate data sources.
@@ -173,31 +187,48 @@ After the join, rows where FILAH's `source` column is NULL were excluded by FILA
 The journalist nodes file was added twice as related tables — once for target node attributes, once for source node attributes. The geo nodes file was added as a third relationship, keyed on `target = id`, resolving only for travel links where the target is a geographic node ID.
 
 ::: {.callout-note appearance="minimal"}
-**Why not union?** Unioning all three links files would duplicate the 765 FILAH rows and 378 TROUT rows that already exist in the journalist file, inflating all counts by up to 3×. The join approach preserves exactly 2,436 rows while making membership flags computable at row level.
+**Why not union?** Unioning all three links files would duplicate the 765 FILAH rows and 378 TROUT rows that already exist in the journalist file, inflating all counts by up to 3×. The join approach preserves exactly 2,436 rows. 
 :::
 
 ---
 
-## The 15 topics and their industry classification
+## Classification of Topics 
 
-| Topic | Industry |
-|:--|:--|
-| `fish_vacuum` | Fishing |
-| `deep_fishing_dock` | Fishing |
-| `new_crane_lomark` | Fishing |
-| `low_volume_crane` | Fishing |
-| `seafood_festival` | Fishing |
-| `affordable_housing` | Fishing |
-| `expanding_tourist_wharf` | Tourism |
-| `marine_life_deck` | Tourism |
-| `waterfront_market` | Tourism |
-| `heritage_walking_tour` | Tourism |
-| `concert` | Tourism |
-| `statue_john_smoth` | Other |
-| `renaming_park_himark` | Other |
-| `name_harbor_area` | Other |
-| `name_inspection_office` | Other |
+<table class="table">
+<thead>
+<tr>
+<th style="text-align:left;">Industry</th>
+<th style="text-align:left;">Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="6" class="align-middle">Fishing</td>
+<td><code>fish_vacuum</code></td>
+</tr>
+<tr><td><code>deep_fishing_dock</code></td></tr>
+<tr><td><code>new_crane_lomark</code></td></tr>
+<tr><td><code>low_volume_crane</code></td></tr>
+<tr><td><code>seafood_festival</code></td></tr>
+<tr><td><code>affordable_housing</code></td></tr>
+<tr>
+<td rowspan="5" class="align-middle">Tourism</td>
+<td><code>expanding_tourist_wharf</code></td>
+</tr>
+<tr><td><code>marine_life_deck</code></td></tr>
+<tr><td><code>waterfront_market</code></td></tr>
+<tr><td><code>heritage_walking_tour</code></td></tr>
+<tr><td><code>concert</code></td></tr>
+<tr>
+<td rowspan="4" class="align-middle">Other</td>
+<td><code>statue_john_smoth</code></td>
+</tr>
+<tr><td><code>renaming_park_himark</code></td></tr>
+<tr><td><code>name_harbor_area</code></td></tr>
+<tr><td><code>name_inspection_office</code></td></tr>
+</tbody>
+</table>
 
 ::: {.callout-caution appearance="minimal"}
-Topic classification was not provided in the data — we assigned each topic to an industry category based on the long-form topic description in the nodes file. All classifications are arguable. `affordable_housing` in particular could reasonably be placed in Other, but it is explicitly described as a conflict between fishing workers and short-term rentals, placing it in the Fishing sphere.
+Topic classification was not provided in the data: we assigned each topic to an industry category based on the short-form topic description in the nodes file. The topics were grouped based on our assumption of fishing and tourism activites. 
 :::

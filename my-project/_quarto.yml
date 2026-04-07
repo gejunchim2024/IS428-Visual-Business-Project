@@ -7,15 +7,16 @@ website:
       left:
         - href: index.qmd
           text: Home
-        - about.qmd
+        - href: challenge.qmd
+          text: Challenge
         - href: data.qmd
           text: Data
-        - href: methodology.qmd
-          text: Methodology
         - href: results_with_network.qmd
           text: Results
         - href: lessons.qmd
           text: Lessons learnt
+        - href: about.qmd
+          text: About us
 
 format:
     html:

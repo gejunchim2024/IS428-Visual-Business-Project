@@ -1,0 +1,28 @@
+---
+title: "Challenge"
+---
+
+## 1. Problem Framing
+
+### What this challenge is
+
+**Fishing is Living and Heritage (FILAH)** is an activist group representing the interests of Oceanus's traditional fishing economy. They believe that COOTEFOO: the government oversight board tasked with advising on Oceanus's economic future, have pro-tourism sentiment, and that board members are systematically neglecting the fishing industry that has historically powered the region. FILAH submitted a dataset of 765 links as evidence, to show board members engaging positively with tourism-related discussions while appearing indifferent or hostile toward fishing. 
+
+**Tourism Raises Oceanus Together (TROUT)** is an activist group on the opposite side of the same dispute. They argue that COOTEFOO has been focused on fishing, and that board members are dragging their feet on the economic opportunities that tourism represents for Oceanus's future. TROUT submitted a dataset of 378 links as their counter-evidence, to show board members favouring fishing-related activity and ignoring tourism.
+
+
+VAST Challenge 2025 Mini-Challenge 2 presents a bias investigation framed around a fictional coastal town, Oceanus. The town's oversight board, COOTEFOO, has been accused of economic bias by two opposing activist groups: FILAH (pro-fishing) and TROUT (pro-tourism), who each submitted datasets as evidence. A journalist, Edwina Darling Moray, has obtained both datasets alongside additional records of her own.
+
+The task uses visual analytics to determine whether the accusations are supported by evidence, whether that evidence is trustworthy, and what the complete picture looks like once all available records are considered.
+
+
+
+## The four questions we needed to answer
+
+| | Question |
+|:-:|:--|
+| Q1 | Based on the datasets that TROUT & FILAH have provided, use visual analytics to determine if each group's accusations are supported by their own record set. Is there evidence of bias in the COOTEFOO member actions in either dataset? |
+| Q2 | Is the committee as a whole biased? Provide visual evidence for your conclusions. |
+| Q3 | Are the accusations of TROUT strengthened, weakened or unchanged when taken in context of the whole dataset? |
+| Q4 | Design a visualization that allows Ms. Moray to pick a person and highlight the differences in that person's behavior as illustrated through the different datasets. |
+: {tbl-colwidths="[20,65]"}

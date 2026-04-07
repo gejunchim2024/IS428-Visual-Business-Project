@@ -5,7 +5,7 @@ title: "Results and Analysis"
 ## Overview of Findings
 
 ::: {.callout-important appearance="minimal"}
-**Central finding:** Neither FILAH's nor TROUT's accusations are fully supported by the complete evidence. Both groups curated their datasets to manufacture a narrative — selecting records that supported their case and quietly omitting those that contradicted it. When viewed through the full journalist dataset, the COOTEFOO board shows near-balanced engagement with both fishing and tourism industries.
+**Central finding:** Neither FILAH's nor TROUT's accusations are fully supported by the complete evidence. Both groups curated their datasets to manufacture a narrative: selecting records that supported their case and quietly omitting those that contradicted it. When viewed through the full journalist dataset, the COOTEFOO board shows near-balanced engagement with both fishing and tourism industries.
 :::
 
 What makes this finding analytically interesting is that both groups were working from the same pool of evidence. This was not two independent observers reaching different conclusions. It was two groups with opposing agendas selectively extracting from a shared record.
@@ -15,7 +15,7 @@ What makes this finding analytically interesting is that both groups were workin
 ## Q1 — Do FILAH's and TROUT's own datasets support their accusations?
 
 ::: {.callout-note appearance="minimal"}
-**Answer:** Yes, superficially — but the support is manufactured through selective inclusion.
+**Answer:** Yes, but the support is manufactured through selective inclusion.
 :::
 
 ### What each group's data shows
@@ -23,13 +23,17 @@ What makes this finding analytically interesting is that both groups were workin
 When analysed in isolation, both datasets appear to support their respective accusations:
 
 - **FILAH's data** shows board members engaging with Tourism topics at a mean sentiment of **0.740** versus Fishing topics at only **0.209**. This appears to validate FILAH's claim that the board is biased toward tourism.
-- **TROUT's data** shows the exact inverse — Fishing sentiment of **0.720** versus Tourism sentiment of only **0.141**. This appears to validate TROUT's claim of pro-fishing bias.
+- **TROUT's data** shows the exact inverse: Fishing sentiment of **0.720** versus Tourism sentiment of only **0.141**. This appears to validate TROUT's claim of pro-fishing bias.
 
 These are not small differences. They look like compelling evidence.
 
-The dashboard below places all three datasets side by side — the trellis (top left) shows how dramatically sentiment shifts depending on whose records you use, and the Accusations vs Reality chart (bottom right) makes the overstatement explicit.
+The dashboard below places all three datasets side by side: the trellis (top left) shows how dramatically sentiment shifts depending on whose records you use, and the Accusations vs Reality chart (bottom right) makes the overstatement explicit.
 
-![**Figure Q1.1 — Sentiment Overview Dashboard.** Top row: sentiment bar chart trellis comparing mean sentiment by industry across FILAH (Fishing=0.209, Tourism=0.740), Journalist (Fishing=0.490, Tourism=0.549), and TROUT (Fishing=0.720, Tourism=0.141). Bottom left: topic coverage heatmap showing frequency of mentions per topic across all three datasets. Bottom right: Accusations vs Reality chart directly comparing each group's claimed sentiment against the full journalist baseline.](_site/images/dashboard1.JPG){fig-align="left" width="100%"}
+![**Figure Q1.1 — Sentiment Overview Dashboard.** 
+<br>Top row: sentiment bar chart trellis comparing mean sentiment by industry across FILAH (Fishing=0.209, Tourism=0.740), Journalist (Fishing=0.490, Tourism=0.549), and TROUT (Fishing=0.720, Tourism=0.141). 
+<br>
+Bottom left: Topic coverage heatmap showing frequency of mentions per topic across all three datasets. 
+<br>Bottom right: Accusations vs Reality chart directly comparing each group's claimed sentiment against the full journalist baseline.](_site/images/dashboard1.JPG){fig-align="left" width="100%"}
 
 ---
 
@@ -37,12 +41,12 @@ The dashboard below places all three datasets side by side — the trellis (top 
 
 The topic coverage heatmap reveals the mechanism behind the distortion. The two circled cells below are the smoking gun:
 
-- **FILAH recorded zero links for `concert`** — a Tourism topic — while accusing the board of pro-tourism bias.
-- **TROUT recorded zero links for `seafood_festival`** — a Fishing topic — while accusing the board of pro-fishing bias.
+- **FILAH recorded zero links for `concert`**: a Tourism topic, while accusing the board of pro-tourism bias.
+- **TROUT recorded zero links for `seafood_festival`**: a Fishing topic, while accusing the board of pro-fishing bias.
 
 These are not gaps from incomplete data collection. Both groups removed the topic that most weakened their argument.
 
-![**Figure Q1.2 — Topic Coverage Heatmap.** Frequency of mentions per topic across FILAH, Journalist, and TROUT datasets. The two red circles highlight deliberate omissions: FILAH's zero for `concert` and TROUT's zero for `seafood_festival`. Neither omission appears in the journalist's data.](_site/images/dashboard1b.JPG){fig-align="left" width="100%"}
+![**Figure Q1.2 — Topic Coverage Heatmap.** ](_site/images/dashboard1b.JPG){fig-align="left" width="100%"}
 
 ---
 
@@ -55,7 +59,7 @@ Comparing each group's claimed sentiment values against the full journalist base
 | Tourism sentiment | 0.74 | 0.55 | **+0.19** |
 | Fishing sentiment (TROUT) | 0.72 | 0.49 | **+0.23** |
 
-Each group overstated the apparent bias by approximately **0.2 sentiment points** through selective inclusion alone — not by fabricating numbers, but by choosing which records to show.
+Each group overstated the apparent bias by approximately **0.2 sentiment points** through selective inclusion alone, not by fabricating numbers, but by choosing which records to show.
 
 ---
 
@@ -82,7 +86,7 @@ Mean sentiment = **0.549**
 :::
 :::
 
-A difference of **0.059** across a −1 to +1 scale does not constitute meaningful bias. Both industries receive overwhelmingly positive engagement.
+A difference of **0.059** across a −1 to +1 scale does not constitute meaningful bias. Both industries receive positive engagement.
 
 The chart below shows Board Sentiment Direction (top) and member participation breakdown (bottom) using the full journalist dataset. The green bars vastly outweigh the red across both industries.
 
