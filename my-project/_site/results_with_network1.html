@@ -1,327 +1,469 @@
----
-title: "Results and Analysis"
----
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-## Overview of Findings
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.31">
 
-::: {.callout-important appearance="minimal"}
-**Central finding:** Neither FILAH's nor TROUT's accusations are fully supported by the complete evidence. Both groups curated their datasets to manufacture a narrative: selecting records that supported their case and quietly omitting those that contradicted it. When viewed through the full journalist dataset, the COOTEFOO board shows near-balanced engagement with both fishing and tourism industries.
-:::
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-What makes this finding analytically interesting is that both groups were working from the same pool of evidence. This was not two independent observers reaching different conclusions. It was two groups with opposing agendas selectively extracting from a shared record.
 
----
+<title>Results and Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
 
-## Q1 — Do FILAH's and TROUT's own datasets support their accusations?
 
-::: {.callout-note appearance="minimal"}
-**Answer:** Yes, but the support is manufactured through selective inclusion.
-:::
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-54ca3c8880fd8c986106ce3bf5c7adc7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
-### What each group's data shows
 
-When analysed in isolation, both datasets appear to support their respective accusations:
+<link rel="stylesheet" href="styles.css">
+</head>
 
-- **FILAH's data** shows board members engaging with Tourism topics at a mean sentiment of **0.740** versus Fishing topics at only **0.209**. This appears to validate FILAH's claim that the board is biased toward tourism.
-- **TROUT's data** shows the exact inverse: Fishing sentiment of **0.720** versus Tourism sentiment of only **0.141**. This appears to validate TROUT's claim of pro-fishing bias.
+<body class="nav-fixed quarto-light">
 
-These are not small differences. They look like compelling evidence.
-
-### Bias or Perception? Uncovering Narrative Distortions in Industry Sentiment
-
-This dashboard places all three datasets side by side, making the distortions immediately visible by comparing FILAH’s and TROUT’s self-serving narratives against the journalist’s baseline reality.
-
-#### FILAH Narrative: Industry Sentiment Bias
-
-A horizontal bar chart showing mean sentiment by industry using only FILAH’s data. Fishing sits at **0.209** and Tourism at **0.740** — a gap of over 0.5 sentiment points that appears to validate FILAH’s pro-tourism bias claim. The chart has no negative bars, meaning FILAH’s curated records show universally positive board sentiment. The extreme disproportion between the two industry bars is the manufactured signal.
-
-#### Baseline Reality: Journalist’s Data
-
-The same bar chart format applied to the full journalist dataset. Fishing sits at **0.490** and Tourism at **0.549** — a difference of less than 0.06 across the full −1 to +1 scale. The two bars are nearly equal in length. This is the ground truth that both activist groups were working from and chose to distort.
-
-#### TROUT Narrative: Industry Sentiment Bias
-
-TROUT’s version of the same chart produces the mirror image of FILAH’s. Fishing now dominates at **0.720** while Tourism is compressed to **0.141**. The chart is the visual inverse of FILAH’s — which is precisely what you would expect if both groups cherry-picked from the same underlying pool of records.
-
-#### Topic Coverage Comparison Across Datasets
-
-A trellis bar chart showing the frequency of mentions per topic, with three columns side by side: Links in FILAH, Links in Journalist, and Links in TROUT. Each row is a topic, grouped by industry (Fishing, Tourism, Other). This chart is the mechanism-level evidence.
-
-The interactive dashboard below places all three datasets side by side: the trellis shows how dramatically sentiment shifts depending on whose records you use, the topic coverage view shows the mechanism behind the distortion, and the Accusations vs Reality chart makes the overstatement explicit.
-
-**Figure Q1.1 — Sentiment Overview Dashboard (interactive).** Sentiment bar chart trellis comparing mean sentiment by industry across FILAH (Fishing=0.209, Tourism=0.740), Journalist (Fishing=0.490, Tourism=0.549), and TROUT (Fishing=0.720, Tourism=0.141); topic coverage heatmap for mentions per topic across all three datasets; Accusations vs Reality chart comparing each group's claimed sentiment against the full journalist baseline.
-
-```{=html}
-<div class="tableau-embed" style="width:100%; min-height:827px; margin:1rem 0;">
-<iframe title="Q1 — Bias or Perception: Narrative Distortions in Industry Sentiment"
-  src="https://public.tableau.com/views/NarrativeDistortionsinFILAHTROUTDatasets/BiasorPerceptionUncoveringNarrativeDistortionsinIndustrySentiment?:showVizHome=no&:embed=true&:toolbar=yes"
-  width="100%" height="827" style="border:0;"></iframe>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./challenge.html"> 
+<span class="menu-text">Challenge</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./results_with_network.html"> 
+<span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./lessons.html"> 
+<span class="menu-text">Lessons learnt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About us</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-```
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-of-findings" id="toc-overview-of-findings" class="nav-link active" data-scroll-target="#overview-of-findings">Overview of Findings</a></li>
+  <li><a href="#q1-do-filahs-and-trouts-own-datasets-support-their-accusations" id="toc-q1-do-filahs-and-trouts-own-datasets-support-their-accusations" class="nav-link" data-scroll-target="#q1-do-filahs-and-trouts-own-datasets-support-their-accusations">Q1 — Do FILAH’s and TROUT’s own datasets support their accusations?</a>
+  <ul class="collapse">
+  <li><a href="#bias-or-perception-uncovering-narrative-distortions-in-industry-sentiment" id="toc-bias-or-perception-uncovering-narrative-distortions-in-industry-sentiment" class="nav-link" data-scroll-target="#bias-or-perception-uncovering-narrative-distortions-in-industry-sentiment">Bias or Perception? Uncovering Narrative Distortions in Industry Sentiment</a></li>
+  </ul></li>
+  <li><a href="#q2-is-the-cootefoo-board-actually-biased" id="toc-q2-is-the-cootefoo-board-actually-biased" class="nav-link" data-scroll-target="#q2-is-the-cootefoo-board-actually-biased">Q2 — Is the COOTEFOO board actually biased?</a>
+  <ul class="collapse">
+  <li><a href="#inside-the-board-member-contributions-and-sentiment-patterns" id="toc-inside-the-board-member-contributions-and-sentiment-patterns" class="nav-link" data-scroll-target="#inside-the-board-member-contributions-and-sentiment-patterns">Inside the Board: Member Contributions and Sentiment Patterns</a></li>
+  </ul></li>
+  <li><a href="#q3-are-the-accusations-weakened-by-the-full-dataset" id="toc-q3-are-the-accusations-weakened-by-the-full-dataset" class="nav-link" data-scroll-target="#q3-are-the-accusations-weakened-by-the-full-dataset">Q3 — Are the accusations weakened by the full dataset?</a>
+  <ul class="collapse">
+  <li><a href="#the-suppression-numbers" id="toc-the-suppression-numbers" class="nav-link" data-scroll-target="#the-suppression-numbers">The suppression numbers</a></li>
+  <li><a href="#who-shapes-the-narrative-member-inclusion-and-topic-focus" id="toc-who-shapes-the-narrative-member-inclusion-and-topic-focus" class="nav-link" data-scroll-target="#who-shapes-the-narrative-member-inclusion-and-topic-focus">Who Shapes the Narrative? Member Inclusion and Topic Focus</a></li>
+  <li><a href="#the-travel-evidence" id="toc-the-travel-evidence" class="nav-link" data-scroll-target="#the-travel-evidence">The travel evidence</a></li>
+  <li><a href="#tante-titan-the-suppressed-member" id="toc-tante-titan-the-suppressed-member" class="nav-link" data-scroll-target="#tante-titan-the-suppressed-member">Tante Titan — the suppressed member</a></li>
+  <li><a href="#evaluating-activist-claims-against-full-evidence-and-member-level-sentiment" id="toc-evaluating-activist-claims-against-full-evidence-and-member-level-sentiment" class="nav-link" data-scroll-target="#evaluating-activist-claims-against-full-evidence-and-member-level-sentiment">Evaluating Activist Claims Against Full Evidence and Member-Level Sentiment</a></li>
+  </ul></li>
+  <li><a href="#network-graph-board-member-connections" id="toc-network-graph-board-member-connections" class="nav-link" data-scroll-target="#network-graph-board-member-connections">Network Graph — Board Member Connections</a></li>
+  <li><a href="#q4-how-does-an-individual-members-story-change-across-datasets" id="toc-q4-how-does-an-individual-members-story-change-across-datasets" class="nav-link" data-scroll-target="#q4-how-does-an-individual-members-story-change-across-datasets">Q4 — How does an individual member’s story change across datasets?</a>
+  <ul class="collapse">
+  <li><a href="#the-most-demonstrative-case-teddy-goldstein" id="toc-the-most-demonstrative-case-teddy-goldstein" class="nav-link" data-scroll-target="#the-most-demonstrative-case-teddy-goldstein">The most demonstrative case: Teddy Goldstein</a></li>
+  <li><a href="#the-most-dramatic-absence-tante-titan" id="toc-the-most-dramatic-absence-tante-titan" class="nav-link" data-scroll-target="#the-most-dramatic-absence-tante-titan">The most dramatic absence: Tante Titan</a></li>
+  <li><a href="#breaking-down-member-sentiment" id="toc-breaking-down-member-sentiment" class="nav-link" data-scroll-target="#breaking-down-member-sentiment">Breaking Down Member Sentiment</a></li>
+  </ul></li>
+  <li><a href="#limitations-of-evidence" id="toc-limitations-of-evidence" class="nav-link" data-scroll-target="#limitations-of-evidence">Limitations of Evidence</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
 
-If the interactive embed doesn’t load, open it directly on Tableau Public: [Bias or Perception (Tableau Public)](https://public.tableau.com/app/profile/riona.ng/viz/NarrativeDistortionsinFILAHTROUTDatasets/BiasorPerceptionUncoveringNarrativeDistortionsinIndustrySentiment?publish=yes).
-
-<details>
-<summary><strong>View static screenshots (fallback)</strong></summary>
-
-![](images/tableau-archive/dashboard1.png){width="100%"}
-
-</details>
-
----
-
-### The heatmap evidence
-
-The topic coverage heatmap reveals the mechanism behind the distortion. The two circled cells in the dashboard above are the smoking gun:
-
-- **FILAH recorded zero links for `concert`**: a Tourism topic, while accusing the board of pro-tourism bias.
-- **TROUT recorded zero links for `seafood_festival`**: a Fishing topic, while accusing the board of pro-fishing bias.
-
-These are not gaps from incomplete data collection. Both groups removed the topic that most weakened their argument.
-
----
-
-### The accusations vs reality
-
-Comparing each group's claimed sentiment values against the full journalist baseline makes the overstatement measurable:
-
-| | Claimed | Reality | Gap |
-|:--|:-:|:-:|:-:|
-| FILAH Tourism | 0.74 | 0.55 | **+0.19** |
-| FILAH Fishing | 0.21 | 0.49 | **−0.28** |
-| TROUT Fishing | 0.72 | 0.49 | **+0.23** |
-| TROUT Tourism | 0.14 | 0.55 | **−0.41** |
-
-TROUT’s tourism understatement of **−0.41** is the largest single distortion in the comparison and the primary mechanism behind their pro-fishing bias claim.
-
----
-
-## Q2 — Is the COOTEFOO board actually biased?
-
-::: {.callout-note appearance="minimal"}
-**Answer:** No. The full dataset shows near-equal engagement with both industries at the board level.
-:::
-
-### Board-wide sentiment
-
-Using the complete journalist dataset across all 6 members:
-
-::: {layout-ncol=2}
-::: {}
-**Fishing**  
-Mean sentiment = **0.490**  
-43 positive / 10 negative interactions
-:::
-::: {}
-**Tourism**  
-Mean sentiment = **0.549**  
-58 positive / 6 negative interactions
-:::
-:::
-
-A difference of **0.059** across a −1 to +1 scale does not constitute meaningful bias. Both industries receive positive engagement.
-
-The interactive dashboard below uses the full journalist dataset. It includes Board Sentiment Direction (positive vs negative interactions by industry), member participation by industry, the FILAH / Journalist / TROUT sentiment trellis (the Journalist dataset sits between the two partisan extremes), member vs board average bars, and the member × topic sentiment heatmap.
-
-**Figure Q2.1 — Inside the Board: Member Contributions and Sentiment Patterns (interactive).** Board Sentiment Direction; member participation stacked bars; partisan trellis; member vs board average; member × topic heatmap.
-
-```{=html}
-<div class="tableau-embed" style="width:100%; min-height:827px; margin:1rem 0;">
-<iframe title="Q2 — Inside the Board: Member Contributions and Sentiment Patterns"
-  src="https://public.tableau.com/views/InsidetheBoard/InsidetheBoardMemberContributionsandSentimentPatterns?:showVizHome=no&:embed=true&:toolbar=yes"
-  width="100%" height="827" style="border:0;"></iframe>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Results and Analysis</h1>
 </div>
-```
 
-If the interactive embed doesn’t load, open it directly on Tableau Public: [Inside the Board (Tableau Public)](https://public.tableau.com/app/profile/riona.ng/viz/InsidetheBoard/InsidetheBoardMemberContributionsandSentimentPatterns?publish=yes).
 
-<details>
-<summary><strong>View static screenshots (fallback)</strong></summary>
 
-![](images/tableau-archive/dashboard2.png){width="100%"}
+<div class="quarto-title-meta">
 
-</details>
+    
+  
+    
+  </div>
+  
 
-### Inside the Board: Member Contributions and Sentiment Patterns
 
-This dashboard uses the full journalist dataset to examine what the board actually does — how members distribute their participation across industries and whether sentiment patterns suggest any systematic lean.
+</header>
 
-#### Board Sentiment Direction
 
-A diverging bar chart showing the net count of positive versus negative board interactions by industry, using the full journalist dataset. Green bars extend right (positive interactions), red bars extend left (negative interactions). Fishing shows roughly 43 positive against 10 negative; Tourism shows roughly 58 positive against 6 negative; Other shows a similar positive-dominant profile. The green bars dominate across all three industry categories — the board as a whole engages positively with both Fishing and Tourism, with no meaningful directional imbalance.
-
-#### Member Contribution by Industry Topics
-
-A stacked horizontal bar chart showing each member’s total participation link count, broken down by industry (Fishing = orange, Tourism = blue, Other = grey). Members are sorted by total contribution count. Tante Titan and Simone Kat are the two highest contributors overall. Teddy Goldstein’s bar is exclusively Fishing — a visually distinctive profile explained by his TROUT-only presence. Seal has the lowest total count across all members.
-
-#### Member-Level Sentiment Across Topics
-
-A heatmap with members as rows and individual topics as columns, grouped by industry. Cell colour encodes mean sentiment on a red (−1) to blue (+1) scale. The key analytical signal here is coverage: blank cells indicate a member has no recorded participation in that topic under the current dataset view.
-
-#### Member Sentiment vs Board Average
-
-A horizontal bar chart showing each member’s mean sentiment per industry (Fishing = orange, Tourism = blue, Other = grey), plotted against a vertical reference line marking the board-wide average. The most notable departure is Teddy Goldstein’s tourism bar, which extends left to **−0.50** — the only negative industry-level value on the entire chart. The individual variation is real, but it is variation between members, not a systematic board-level lean.
-
----
-
-### Member-level variation exists — but it is not systemic
-
-Individual members do show different industry orientations:
-
-| Member | Fishing sentiment | Tourism sentiment | Profile |
-|:--|:-:|:-:|:--|
-| Tante Titan | 0.75 | 0.47 | Broadly positive across both |
-| Ed Helpsford | 1.00 | 0.00 | Fishing-positive, tourism-neutral |
-| Carol Limpet | — | 0.68 | Tourism-leaning |
-| Simone Kat | 0.12 | 0.91 | Strongly tourism-leaning |
-| Teddy Goldstein | 0.85 | **−0.50** | Only member with negative industry sentiment |
-| Seal | 0.20 | 0.20 | Low but balanced |
-
-The individual variation is real — but it is variation **between members**, not a systematic board-level lean.
-
----
-
-## Q3 — Are the accusations weakened by the full dataset?
-
-::: {.callout-note appearance="minimal"}
-**Answer:** Yes, substantially — for both groups.
-:::
-
-### What changed and why
-
-The sentiment scores for individual members do not change between datasets. What changes is **who is present** and **what topics are covered** — and this shifts the overall picture dramatically.
-
-::: {layout-ncol=2}
-::: {}
-**FILAH excluded:**  
-Teddy Goldstein (Fishing=0.85)  
-Ed Helpsford (Fishing=1.0)  
-Tante Titan (Fishing=0.75)  
-
-→ These three are precisely the strongest pro-fishing members. Their absence drove FILAH's fishing average down to 0.209.
-:::
-::: {}
-**TROUT excluded:**  
-Simone Kat (Tourism=0.91)  
-Carol Limpet (Tourism=0.68)  
-Tante Titan (Tourism=0.47)  
-
-→ These three are precisely the strongest pro-tourism members. Their absence drove TROUT's tourism average down to 0.141.
-:::
-:::
-
-### The suppression numbers
-
-| | Missing from FILAH | Missing from TROUT |
-|:--|:-:|:-:|
-| Fishing participation links | 28 | 32 |
-| Tourism participation links | 30 | **47** |
-| Other participation links | 38 | 41 |
-
-::: {.callout-warning appearance="minimal"}
-TROUT suppressed **47 tourism participation links** — more than any other category from either organisation. This is the clearest quantification of editorial bias in the dataset.
-:::
-
-### Who Shapes the Narrative? Member Inclusion and Topic Focus
-
-This dashboard reveals the editorial decisions each group made: which members they included, which they excluded, and which topics each included member dominated.
-
-#### Member Inclusion in FILAH
-
-A bubble chart with members as rows and two columns: Included (green bubbles) and Excluded (red bubbles). Bubble size encodes participation count. Tante Titan (54 records), Teddy Goldstein (22 records), and Ed Helpsford (20 records) appear as large red bubbles in the Excluded column — they were entirely omitted from FILAH’s dataset. The excluded members are precisely the three with the highest pro-fishing sentiment scores in the full dataset.
-
-#### Member Inclusion in TROUT
-
-The mirror-image bubble chart for TROUT. Here Tante Titan (54), Simone Kat (45), and Carol Limpet (21) appear as large red excluded bubbles. Teddy Goldstein (22), Ed Helpsford (20), and Seal (12) are included. The symmetry between the two charts is the analytical core: each group excluded precisely the members whose records would have moderated their claimed bias.
-
-#### Board Participation by Member and Topic Area
-
-A treemap broken out by industry colour (Fishing = orange, Tourism = blue, Other = grey), where each tile represents a member–topic pairing sized by participation count. The largest tiles are Tante Titan × `seafood_festival` / `waterfront_market`, and Simone Kat × `fish_vacuum` / `heritage_walking_tour`.
-
-**Figure Q3.1 — Who Shapes the Narrative: Member Inclusion and Topic Focus (interactive).** Member inclusion views for FILAH and TROUT, topic focus treemap, and related views showing which records each group chose to include or exclude.
-
-```{=html}
-<div class="tableau-embed" style="width:100%; min-height:827px; margin:1rem 0;">
-<iframe title="Q3 — Who Shapes the Narrative: Member Inclusion and Topic Focus"
-  src="https://public.tableau.com/views/WhoShapestheNarrative/WhoShapestheNarrativeMemberInclusionandTopicFocus?:showVizHome=no&:embed=true&:toolbar=yes"
-  width="100%" height="827" style="border:0;"></iframe>
+<section id="overview-of-findings" class="level2">
+<h2 data-anchor-id="overview-of-findings">Overview of Findings</h2>
+<div class="callout callout-style-simple callout-important no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-```
-
-If the interactive embed doesn’t load, open it directly on Tableau Public: [Who Shapes the Narrative? (Tableau Public)](https://public.tableau.com/app/profile/riona.ng/viz/WhoShapestheNarrative/WhoShapestheNarrativeMemberInclusionandTopicFocus?publish=yes).
-
-<details>
-<summary><strong>View static screenshots (fallback)</strong></summary>
-
-![](images/tableau-archive/dashboard3.png){width="100%"}
-
-</details>
-
----
-
-### The travel evidence
-
-FILAH recorded **15 of 22** travel links. TROUT recorded only **4 of 22**. The near-total absence of travel records from TROUT's dataset is striking — the geographic dimension of board member activity was almost entirely suppressed. Of FILAH's 15 recorded travel links, 7 were to industrial zones associated with fishing activity, directly contradicting their claim of pro-tourism bias.
-
-![**Figure Q3.2 / Q4.1 — Travelled Destinations and Evidence Missing by Organisation.** Left: Travelled Destinations showing travel records contributed per dataset by industry and zone type — TROUT's near-absence is immediately visible. Right: Evidence Missing by Organisation quantifying participation links absent from each partial dataset relative to the full journalist record.](_site/images/dashboard4.JPG){fig-align="left" width="100%"}
-
----
-
-### Tante Titan — the suppressed member
-
-::: {.callout-warning appearance="minimal"}
-Tante Titan has **54 participation records** in the journalist dataset — more than any other member. Her engagement is broadly positive (Fishing=0.75, Tourism=0.47, Other=1.0). **Neither FILAH nor TROUT included a single one of her records.**
-:::
-
-She does not fit either narrative. She is not dramatically pro-tourism (which would support FILAH's case) nor dramatically pro-fishing (which would support TROUT's case). Her balanced profile made her inconvenient for both groups, so both groups removed her entirely.
-
-The Gephi ego network export (see **Network Graph** section below) provides the structural reason: Tante Titan’s connections span multiple industries and contexts, and her high volume would materially moderate any partial dataset average she appears in.
-
-### Evaluating activist claims against full evidence (interactive)
-
-**Figure Q3.3 — Evaluating Activist Claims Against Full Evidence and Member-Level Sentiment (interactive).** Slopegraph, claimed-vs-reality bullet chart, and swing-witness scatterplot comparing each group's framing to the full journalist record.
-
-```{=html}
-<div class="tableau-embed" style="width:100%; min-height:827px; margin:1rem 0;">
-<iframe title="Q3 — Evaluating Activist Claims Against Full Evidence and Member-Level Sentiment"
-  src="https://public.tableau.com/views/EvaluatingActivistClaims/EvaluatingActivistClaimsAgainstFullEvidenceandMember-LevelSentiment?:showVizHome=no&:embed=true&:toolbar=yes"
-  width="100%" height="827" style="border:0;"></iframe>
+<div class="callout-body-container">
+<p><strong>Central finding:</strong> Neither FILAH’s nor TROUT’s accusations are fully supported by the complete evidence. Both groups curated their datasets to manufacture a narrative: selecting records that supported their case and quietly omitting those that contradicted it. When viewed through the full journalist dataset, the COOTEFOO board shows near-balanced engagement with both fishing and tourism industries.</p>
 </div>
-```
-
-If the interactive embed doesn’t load, open it directly on Tableau Public: [Evaluating Activist Claims (Tableau Public)](https://public.tableau.com/app/profile/riona.ng/viz/EvaluatingActivistClaims/EvaluatingActivistClaimsAgainstFullEvidenceandMember-LevelSentiment?publish=yes).
-
-<details>
-<summary><strong>View static screenshots (fallback)</strong></summary>
-
-![](images/tableau-archive/dashboard4.png){width="100%"}
-
-</details>
-
-This dashboard directly confronts the gap between what each group claimed and what the full record shows, using three charts that together move from individual trajectories to group-level overstatement to a spatial summary of who was useful to whom.
-
-#### Changes in Member Sentiment Under Partial vs Full Evidence
-
-A slopegraph tracing each board member’s sentiment value across four vantage points: Fishing Sentiment (FILAH), Fishing Sentiment (Full Board), Tourism Sentiment (Full Board), and Tourism Sentiment (TROUT). The key signal is that the same members look different not because their records changed, but because of who chose to include them.
-
-The most striking trajectory is Teddy Goldstein: he is absent from FILAH, then appears as strongly pro-fishing (~0.85) in the full board view, and ends at **−0.50** for tourism under TROUT — the only negative endpoint. Simone Kat runs in the opposite direction, ending at **0.91** for tourism in the full board view — a value TROUT suppressed by excluding her.
-
-#### Counterfactual: Claimed vs Reality
-
-A bullet chart with four rows — FILAH × Fishing, FILAH × Tourism, TROUT × Fishing, TROUT × Tourism — where each row shows the group’s claimed sentiment and the full journalist reality. TROUT’s Tourism understatement (~**−0.41**) is the largest single distortion.
-
-#### Swing Witness Scatterplot
-
-A scatterplot of Fishing Sentiment (Full Board) vs Tourism Sentiment (Full Board) with reference lines at Fishing = **0.5917** and Tourism = **0.396**. Tante Titan sits near the middle (balanced and high volume), Simone Kat is the tourism outlier, and Teddy Goldstein is the only member with negative tourism sentiment.
-
----
-
-
-## Network Graph — Board Member Connections
-
-This interactive network maps each board member's participation across discussions and travel records. Click a board member to highlight their connections. Use the filter buttons to switch between datasets.
-
-```{=html}
+</div>
+</div>
+<p>What makes this finding analytically interesting is that both groups were working from the same pool of evidence. This was not two independent observers reaching different conclusions. It was two groups with opposing agendas selectively extracting from a shared record.</p>
+<hr>
+</section>
+<section id="q1-do-filahs-and-trouts-own-datasets-support-their-accusations" class="level2">
+<h2 data-anchor-id="q1-do-filahs-and-trouts-own-datasets-support-their-accusations">Q1 — Do FILAH’s and TROUT’s own datasets support their accusations?</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Answer:</strong> Yes, but the support is manufactured through selective inclusion.</p>
+</div>
+</div>
+</div>
+<p>When analysed in isolation, both datasets appear to support their respective accusations:</p>
+<ul>
+<li><strong>FILAH’s data</strong> shows board members engaging with Tourism topics at a mean sentiment of <strong>0.740</strong> versus Fishing topics at only <strong>0.209</strong>. This appears to validate FILAH’s claim that the board is biased toward tourism.</li>
+<li><strong>TROUT’s data</strong> shows the exact inverse: Fishing sentiment of <strong>0.720</strong> versus Tourism sentiment of only <strong>0.141</strong>. This appears to validate TROUT’s claim of pro-fishing bias.</li>
+</ul>
+<p>These are not small differences. They look like compelling evidence.</p>
+<section id="bias-or-perception-uncovering-narrative-distortions-in-industry-sentiment" class="level3">
+<h3 data-anchor-id="bias-or-perception-uncovering-narrative-distortions-in-industry-sentiment">Bias or Perception? Uncovering Narrative Distortions in Industry Sentiment</h3>
+<p>This dashboard places all three datasets side by side, making the distortions immediately visible by comparing FILAH’s and TROUT’s self-serving narratives against the journalist’s baseline reality.</p>
+<section id="filah-narrative-industry-sentiment-bias" class="level4">
+<h4 data-anchor-id="filah-narrative-industry-sentiment-bias">FILAH Narrative: Industry Sentiment Bias</h4>
+<p>A horizontal bar chart showing mean sentiment by industry using only FILAH’s data. Fishing sits at <strong>0.209</strong> and Tourism at <strong>0.740</strong> — a gap of over 0.5 sentiment points that appears to validate FILAH’s pro-tourism bias claim. The chart has no negative bars, meaning FILAH’s curated records show universally positive board sentiment. The extreme disproportion between the two industry bars is the manufactured signal.</p>
+</section>
+<section id="baseline-reality-journalists-data" class="level4">
+<h4 data-anchor-id="baseline-reality-journalists-data">Baseline Reality: Journalist’s Data</h4>
+<p>The same bar chart format applied to the full journalist dataset. Fishing sits at <strong>0.490</strong> and Tourism at <strong>0.549</strong> — a difference of less than 0.06 across the full −1 to +1 scale. The two bars are nearly equal in length. This is the ground truth that both activist groups were working from and chose to distort.</p>
+</section>
+<section id="trout-narrative-industry-sentiment-bias" class="level4">
+<h4 data-anchor-id="trout-narrative-industry-sentiment-bias">TROUT Narrative: Industry Sentiment Bias</h4>
+<p>TROUT’s version of the same chart produces the mirror image of FILAH’s. Fishing now dominates at <strong>0.720</strong> while Tourism is compressed to <strong>0.141</strong>. The chart is the visual inverse of FILAH’s — which is precisely what you would expect if both groups cherry-picked from the same underlying pool of records.</p>
+</section>
+<section id="topic-coverage-comparison-across-datasets" class="level4">
+<h4 data-anchor-id="topic-coverage-comparison-across-datasets">Topic Coverage Comparison Across Datasets</h4>
+<p>A trellis bar chart showing the frequency of mentions per topic, with three columns side by side: Links in FILAH, Links in Journalist, and Links in TROUT. Each row is a topic, grouped by industry (Fishing, Tourism, Other). This chart is the mechanism-level evidence. Two cells stand out immediately:</p>
+<ul>
+<li><strong>FILAH recorded zero links for <code>concert</code></strong> — a Tourism topic — while accusing the board of pro-tourism bias.</li>
+<li><strong>TROUT recorded zero links for <code>seafood_festival</code></strong> — a Fishing topic — while accusing the board of pro-fishing bias.</li>
+</ul>
+<p>These are not gaps from incomplete data collection. The full journalist column shows non-zero counts for both topics. Both groups removed the single topic that most directly undermined their argument.</p>
+</section>
+<section id="perceived-bias-vs-actual-sentiment-gap" class="level4">
+<h4 data-anchor-id="perceived-bias-vs-actual-sentiment-gap">Perceived Bias vs Actual Sentiment Gap</h4>
+<p>A diverging bar chart quantifying the overstatement in each group’s claims, with each group–industry combination as a row. Negative bars extend left (understatement), positive bars extend right (overstatement):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Claimed</th>
+<th style="text-align: center;">Reality</th>
+<th style="text-align: center;">Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FILAH Tourism</td>
+<td style="text-align: center;">0.74</td>
+<td style="text-align: center;">0.55</td>
+<td style="text-align: center;"><strong>+0.19</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FILAH Fishing</td>
+<td style="text-align: center;">0.21</td>
+<td style="text-align: center;">0.49</td>
+<td style="text-align: center;"><strong>−0.28</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TROUT Fishing</td>
+<td style="text-align: center;">0.72</td>
+<td style="text-align: center;">0.49</td>
+<td style="text-align: center;"><strong>+0.23</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TROUT Tourism</td>
+<td style="text-align: center;">0.14</td>
+<td style="text-align: center;">0.55</td>
+<td style="text-align: center;"><strong>−0.41</strong></td>
+</tr>
+</tbody>
+</table>
+<p>TROUT’s tourism understatement of −0.41 is the largest single distortion in the chart — and the most consequential, as it is the primary mechanism behind their pro-fishing bias claim.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="q2-is-the-cootefoo-board-actually-biased" class="level2">
+<h2 data-anchor-id="q2-is-the-cootefoo-board-actually-biased">Q2 — Is the COOTEFOO board actually biased?</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Answer:</strong> No.&nbsp;The full dataset shows near-equal engagement with both industries at the board level.</p>
+</div>
+</div>
+</div>
+<p>Using the complete journalist dataset across all 6 members:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Fishing</strong><br>
+Mean sentiment = <strong>0.490</strong><br>
+43 positive / 10 negative interactions</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Tourism</strong><br>
+Mean sentiment = <strong>0.549</strong><br>
+58 positive / 6 negative interactions</p>
+</div>
+</div>
+</div>
+<p>A difference of <strong>0.059</strong> across a −1 to +1 scale does not constitute meaningful bias. Both industries receive positive engagement.</p>
+<section id="inside-the-board-member-contributions-and-sentiment-patterns" class="level3">
+<h3 data-anchor-id="inside-the-board-member-contributions-and-sentiment-patterns">Inside the Board: Member Contributions and Sentiment Patterns</h3>
+<p>This dashboard uses the full journalist dataset to examine what the board actually does — how members distribute their participation across industries and whether sentiment patterns suggest any systematic lean.</p>
+<section id="board-sentiment-direction" class="level4">
+<h4 data-anchor-id="board-sentiment-direction">Board Sentiment Direction</h4>
+<p>A diverging bar chart showing the net count of positive versus negative board interactions by industry, using the full journalist dataset. Green bars extend right (positive interactions), red bars extend left (negative interactions). Fishing shows roughly 43 positive against 10 negative; Tourism shows roughly 58 positive against 6 negative; Other shows a similar positive-dominant profile. The green bars dominate across all three industry categories — the board as a whole engages positively with both Fishing and Tourism, with no meaningful directional imbalance.</p>
+</section>
+<section id="member-contribution-by-industry-topics" class="level4">
+<h4 data-anchor-id="member-contribution-by-industry-topics">Member Contribution by Industry Topics</h4>
+<p>A stacked horizontal bar chart showing each member’s total participation link count, broken down by industry (Fishing = orange, Tourism = blue, Other = grey). Members are sorted by total contribution count. Tante Titan and Simone Kat are the two highest contributors overall. Tante Titan’s bar is dominated by Other and Fishing; Simone Kat’s by Tourism and Fishing in roughly equal measure. Teddy Goldstein’s bar is exclusively Fishing — a visually distinctive profile explained by his TROUT-only presence. Seal has the lowest total count across all members. This chart establishes the raw participation baseline before sentiment values are applied.</p>
+</section>
+<section id="member-level-sentiment-across-topics" class="level4">
+<h4 data-anchor-id="member-level-sentiment-across-topics">Member-Level Sentiment Across Topics</h4>
+<p>A heatmap with members as rows and individual topics as columns, grouped by industry. Cell colour encodes mean sentiment on a red (−1) to blue (+1) scale. The key analytical signal here is coverage: blank cells indicate a member has no recorded participation in that topic under the current dataset view. Simone Kat’s deep red cell in the <code>affordable_housing</code> fishing topic and Teddy Goldstein’s red cell in <code>expanding_tourist_wharf</code> are the two most notable negative-sentiment entries. The spread of coloured cells across both Fishing and Tourism columns for most members confirms that no member is exclusively engaged with one industry.</p>
+</section>
+<section id="member-sentiment-vs-board-average" class="level4">
+<h4 data-anchor-id="member-sentiment-vs-board-average">Member Sentiment vs Board Average</h4>
+<p>A horizontal bar chart showing each member’s mean sentiment per industry (Fishing = orange, Tourism = blue, Other = grey), plotted against a vertical reference line marking the board-wide average of <strong>0.449</strong>. The most notable departure is Teddy Goldstein’s tourism bar, which extends left to <strong>−0.50</strong> — the only negative industry-level bar on the entire chart. Simone Kat’s tourism bar extends to approximately <strong>0.91</strong>, the highest individual value. All other members cluster between 0 and 1. The individual variation is real, but it is variation between members, not a systematic board-level lean.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="q3-are-the-accusations-weakened-by-the-full-dataset" class="level2">
+<h2 data-anchor-id="q3-are-the-accusations-weakened-by-the-full-dataset">Q3 — Are the accusations weakened by the full dataset?</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Answer:</strong> Yes, substantially — for both groups.</p>
+</div>
+</div>
+</div>
+<p>The sentiment scores for individual members do not change between datasets. What changes is <strong>who is present</strong> and <strong>what topics are covered</strong> — and this shifts the overall picture dramatically.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>FILAH excluded:</strong><br>
+Teddy Goldstein (Fishing=0.85)<br>
+Ed Helpsford (Fishing=1.0)<br>
+Tante Titan (Fishing=0.75)</p>
+<p>→ These three are precisely the strongest pro-fishing members. Their absence drove FILAH’s fishing average down to 0.209.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>TROUT excluded:</strong><br>
+Simone Kat (Tourism=0.91)<br>
+Carol Limpet (Tourism=0.68)<br>
+Tante Titan (Tourism=0.47)</p>
+<p>→ These three are precisely the strongest pro-tourism members. Their absence drove TROUT’s tourism average down to 0.141.</p>
+</div>
+</div>
+</div>
+<section id="the-suppression-numbers" class="level3">
+<h3 data-anchor-id="the-suppression-numbers">The suppression numbers</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Missing from FILAH</th>
+<th style="text-align: center;">Missing from TROUT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fishing participation links</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tourism participation links</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;"><strong>47</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Other participation links</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">41</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>TROUT suppressed <strong>47 tourism participation links</strong> — more than any other category from either organisation. This is the clearest quantification of editorial bias in the dataset.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="who-shapes-the-narrative-member-inclusion-and-topic-focus" class="level3">
+<h3 data-anchor-id="who-shapes-the-narrative-member-inclusion-and-topic-focus">Who Shapes the Narrative? Member Inclusion and Topic Focus</h3>
+<p>This dashboard reveals the editorial decisions each group made: which members they included, which they excluded, and which topics each included member dominated.</p>
+<section id="member-inclusion-in-filah" class="level4">
+<h4 data-anchor-id="member-inclusion-in-filah">Member Inclusion in FILAH</h4>
+<p>A bubble chart with members as rows and two columns: Included (green bubbles) and Excluded (red bubbles). Bubble size encodes participation count. Tante Titan (54 records), Teddy Goldstein (22 records), and Ed Helpsford (20 records) appear as large red bubbles in the Excluded column — they were entirely omitted from FILAH’s dataset. Simone Kat (45), Carol Limpet (21), and Seal (12) appear as green bubbles in the Included column. The pattern is not random: the three excluded members are precisely the three with the highest pro-fishing sentiment scores in the full dataset.</p>
+</section>
+<section id="member-inclusion-in-trout" class="level4">
+<h4 data-anchor-id="member-inclusion-in-trout">Member Inclusion in TROUT</h4>
+<p>The mirror-image bubble chart for TROUT. Here Tante Titan (54), Simone Kat (45), and Carol Limpet (21) appear as large red excluded bubbles. Teddy Goldstein (22), Ed Helpsford (20), and Seal (12) are included. Again, the excluded members are not arbitrary — they are the three with the highest pro-tourism sentiment scores. The symmetry between the two charts is the analytical core of this dashboard: each group excluded precisely the members whose records would have moderated their claimed bias.</p>
+</section>
+<section id="board-participation-by-member-and-topic-area" class="level4">
+<h4 data-anchor-id="board-participation-by-member-and-topic-area">Board Participation by Member and Topic Area</h4>
+<p>A treemap broken out by industry colour (Fishing = orange, Tourism = blue, Other = grey), where each tile represents a member–topic pairing sized by participation count. The largest tiles are Tante Titan × <code>seafood_festival</code> and <code>waterfront_market</code>, and Simone Kat × <code>fish_vacuum</code> and <code>heritage_walking_tour</code>. The treemap makes visible which member–topic combinations carry the most weight in each industry group — and which are conspicuously absent when switching between dataset views.</p>
+</section>
+</section>
+<section id="the-travel-evidence" class="level3">
+<h3 data-anchor-id="the-travel-evidence">The travel evidence</h3>
+<p>FILAH recorded <strong>15 of 22</strong> travel links. TROUT recorded only <strong>4 of 22</strong>. The near-total absence of travel records from TROUT’s dataset is striking — the geographic dimension of board member activity was almost entirely suppressed. Of FILAH’s 15 recorded travel links, 7 were to industrial zones associated with fishing activity, directly contradicting their claim of pro-tourism bias.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="_site/images/dashboard4.JPG" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption><strong>Figure Q3.1 — Travelled Destinations and Evidence Missing by Organisation.</strong> Left: Travelled Destinations showing travel records contributed per dataset by industry and zone type — TROUT’s near-absence is immediately visible. Right: Evidence Missing by Organisation quantifying participation links absent from each partial dataset relative to the full journalist record.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="tante-titan-the-suppressed-member" class="level3">
+<h3 data-anchor-id="tante-titan-the-suppressed-member">Tante Titan — the suppressed member</h3>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Tante Titan has <strong>54 participation records</strong> in the journalist dataset — more than any other member. Her engagement is broadly positive (Fishing=0.75, Tourism=0.47, Other=1.0). <strong>Neither FILAH nor TROUT included a single one of her records.</strong></p>
+</div>
+</div>
+</div>
+<p>She does not fit either narrative. She is not dramatically pro-tourism (which would support FILAH’s case) nor dramatically pro-fishing (which would support TROUT’s case). Her balanced profile made her inconvenient for both groups, so both groups removed her entirely.</p>
+</section>
+<section id="evaluating-activist-claims-against-full-evidence-and-member-level-sentiment" class="level3">
+<h3 data-anchor-id="evaluating-activist-claims-against-full-evidence-and-member-level-sentiment">Evaluating Activist Claims Against Full Evidence and Member-Level Sentiment</h3>
+<p>This dashboard directly confronts the gap between what each group claimed and what the full record shows, using three charts that together move from individual trajectories to group-level overstatement to a spatial summary of who was useful to whom.</p>
+<section id="changes-in-member-sentiment-under-partial-vs-full-evidence" class="level4">
+<h4 data-anchor-id="changes-in-member-sentiment-under-partial-vs-full-evidence">Changes in Member Sentiment Under Partial vs Full Evidence</h4>
+<p>A slopegraph tracing each board member’s sentiment value across four sequential vantage points along the x-axis: Fishing Sentiment (FILAH), Fishing Sentiment (Full Board), Tourism Sentiment (Full Board), and Tourism Sentiment (TROUT). Each coloured line is one member. Reading left to right, the chart reveals how dramatically sentiment profiles shift as the evidence base expands from partial to complete.</p>
+<p>The most striking trajectory is Teddy Goldstein (dark blue line): he does not appear at all in the FILAH column because FILAH excluded him entirely, so his line begins at the Full Board fishing column at roughly 0.85, then plunges to <strong>−0.50</strong> at the TROUT tourism column — the most extreme endpoint on the chart and the only negative value. This single line captures both editorial strategies simultaneously: FILAH hid him, and TROUT showed precisely his most damaging dimension.</p>
+<p>Simone Kat (green) runs in the opposite direction, ending at <strong>0.91</strong> for tourism in the full board view — a value TROUT suppressed by excluding her. Carol Limpet (yellow, ending at 0.68) and Tante Titan (orange, ending at 0.47) converge in the middle range. Seal (teal) remains flat near 0.10 across all four positions, confirming her profile was not selectively useful to either group. The convergence and divergence of lines across the four columns makes visible what summary tables cannot: the same members look different not because their records changed, but because of who chose to include them.</p>
+</section>
+<section id="counterfactual-claimed-vs-reality" class="level4">
+<h4 data-anchor-id="counterfactual-claimed-vs-reality">Counterfactual: Claimed vs Reality</h4>
+<p>A bullet chart with four rows — FILAH × Fishing, FILAH × Tourism, TROUT × Fishing, TROUT × Tourism — where each row shows the group’s claimed sentiment as an orange bar and the full journalist reality as a blue dot.</p>
+<p>For FILAH, the Tourism bar extends to approximately 0.83, while the reality dot sits at 0.55 — an overstatement of roughly <strong>+0.19</strong>. The Fishing bar is compressed to around 0.25 while the journalist reality dot sits near 0.51 — an understatement of <strong>−0.28</strong>, which is the directional gap FILAH needed to construct its pro-tourism bias narrative.</p>
+<p>For TROUT, the Fishing bar stretches close to the full axis at approximately 0.95, while reality sits at ~0.51 — an overstatement of <strong>+0.23</strong>. The Tourism bar is compressed to roughly 0.18, against a journalist reality of ~0.55 — an understatement of <strong>−0.41</strong>, the largest single distortion in the chart and the clearest single quantification of editorial bias in the project.</p>
+</section>
+<section id="swing-witness-scatterplot" class="level4">
+<h4 data-anchor-id="swing-witness-scatterplot">Swing Witness Scatterplot</h4>
+<p>A scatterplot with Fishing Sentiment (Full Board) on the x-axis and Tourism Sentiment (Full Board) on the y-axis. Each board member is a labelled point. Reference lines mark the board-wide averages: Fishing = <strong>0.5917</strong>, Tourism = <strong>0.396</strong>, dividing the space into four quadrants.</p>
+<p>The positions are analytically revealing. Ed Helpsford sits far right at approximately (0.95, 0.55) — high fishing, moderate tourism — a profile FILAH needed to hide. Tante Titan sits near (0.75, 0.50), close to the board average on both axes, which explains precisely why both groups excluded her: she is the most balanced member and therefore the least useful to either partisan argument. Carol Limpet clusters near Ed Helpsford at roughly (0.70, 0.55). Simone Kat sits in the extreme upper-left at approximately (0.10, 1.00) — very low fishing, maximum tourism — the clearest outlier on tourism sentiment and the member TROUT most needed to suppress. Teddy Goldstein sits in the lower-right at approximately (0.85, −0.50) — high fishing, the only negative tourism value on the board — the member FILAH most needed to hide. Seal sits in the lower-left near (0.10, 0.05), low engagement across both industries and consistent across all datasets.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="network-graph-board-member-connections" class="level2">
+<h2 data-anchor-id="network-graph-board-member-connections">Network Graph — Board Member Connections</h2>
+<p>This interactive network maps each board member’s participation across discussions and travel records. Node size reflects connection count. Edge colour reflects dataset source. <strong>Click a board member</strong> to highlight their connections. Use the filter buttons to switch between datasets.</p>
 <!-- ===== INTERACTIVE NETWORK GRAPH SECTION ===== -->
 <!-- Insert this block anywhere in results.html where you want the network to appear -->
 <!-- Requires: no external dependencies (uses inline D3 from CDN) -->
@@ -380,15 +522,15 @@ This interactive network maps each board member's participation across discussio
     <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1rem;">
       <div style="flex:1; min-width:280px;">
         <p style="font-size:0.8rem; color:#555; margin-bottom:4px;"><strong>Tante Titan</strong> — 54 records, absent from both FILAH and TROUT</p>
-        <img src="images/gephi/TanteTitan.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Tante Titan network (Gephi export)" />
+        <img src="_site/images/TanteTitan.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Tante Titan network">
       </div>
       <div style="flex:1; min-width:280px;">
         <p style="font-size:0.8rem; color:#555; margin-bottom:4px;"><strong>Teddy Goldstein</strong> — Only in TROUT; hidden by FILAH entirely</p>
-        <img src="images/gephi/TeddyGoldstein.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Teddy Goldstein network (Gephi export)" />
+        <img src="_site/images/TeddyGoldstein.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Teddy Goldstein network">
       </div>
       <div style="flex:1; min-width:280px;">
         <p style="font-size:0.8rem; color:#555; margin-bottom:4px;"><strong>Full journalist network</strong> — all 6 board members, all topics</p>
-        <img src="images/gephi/NetworkGraph.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Full network graph (Gephi export)" />
+        <img src="_site/images/NetworkGraph.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Full network graph">
       </div>
     </div>
   </details>
@@ -603,89 +745,500 @@ buildGraph("all");
 })();
 </script>
 <!-- ===== END NETWORK GRAPH SECTION ===== -->
-```
-
-The static Gephi exports (Tante Titan, Teddy Goldstein, full network) are embedded below the interactive graph.
-
-The three static Gephi network exports (Tante Titan, Teddy Goldstein, and the full journalist network) each serve a distinct analytical purpose:
-
-#### Full Journalist Network
-
-**Technical read:** A force-directed network export of the complete journalist evidence. **Red nodes** are board members; other nodes represent linked discussions/topics/travel entities. **Node size** is scaled by connection count (degree). **Edge colours** reflect dataset provenance (FILAH / TROUT / Journalist Only / FILAH+TROUT), matching the legend in the interactive network.\n\n**Analytical takeaway:** The full network is densely interwoven across topic colours/industries rather than split into clean “fishing” vs “tourism” clusters. This supports the central finding that the board-wide picture is not structurally polarized; the strongest distortions arise from selective inclusion/exclusion of members and topics, not from isolated sub-networks.
-
-#### Tante Titan Ego Network
-
-**Technical read:** An ego-network centered on Tante Titan (largest red node). Edges show her direct participation links to topic/discussion/travel nodes, retaining the same node/edge encoding as the full export.\n\n**Analytical takeaway:** Her connections span multiple industries and contexts rather than concentrating in a single partisan cluster. Because she is both high-volume and broadly connected, including her would pull both groups’ partial averages back toward the journalist baseline—explaining why both FILAH and TROUT omit her entirely.
-
-#### Teddy Goldstein Ego Network
-
-**Technical read:** An ego-network centered on Teddy Goldstein. The subgraph is smaller than Tante Titan’s, reflecting fewer recorded participation links.\n\n**Analytical takeaway:** The structure highlights why Teddy is narratively powerful: many of his links run through tourism-related nodes even though his tourism sentiment is negative (−0.50 in the sentiment analysis). TROUT’s partial dataset foregrounds him because he visually and numerically supports their claim; FILAH excludes him for the same reason.
-
----
-
-## Q4 — How does an individual member's story change across datasets?
-
-::: {.callout-note appearance="minimal"}
-**Answer:** Dramatically — the same person can look like a partisan, a moderate, or simply not exist, depending on whose dataset you use.
-:::
-
-### The most demonstrative case: Teddy Goldstein
-
-Teddy appears only in TROUT's dataset. Switching the Dataset View reveals:
-
-- **In TROUT's view:** Teddy is visible. Fishing=0.85, Tourism=−0.50. He looks like a fishing partisan and provides strong apparent support for TROUT's accusation.
-- **In FILAH's view:** Teddy does not exist. FILAH recorded none of his 22 participation records.
-- **In Full Journalist:** Same values as TROUT (0.85 / −0.50) — the full dataset does not add new Teddy records, it adds other members who counterbalance him.
-
-TROUT showed Teddy because his profile fit their narrative. FILAH hid him because his pro-fishing sentiment would have undermined their claim.
-
-The Gephi export in the **Network Graph** section below shows why he is so narratively useful: his ego network is smaller than high-volume members like Tante Titan, but it contains many tourism-linked connections alongside his negative tourism sentiment.
-
-### The most dramatic absence: Tante Titan
-
-Selecting Tante Titan and switching to FILAH or TROUT view produces **empty charts**. Switching to Full Journalist reveals 54 records with a balanced, positive profile. The contrast between empty panels and populated full-dataset panels is the clearest single illustration of deliberate suppression in the entire project.
-
-The interactive dashboard below makes this visible — members absent from a dataset simply do not appear in that panel. **The missing rows are the story.**
-
-**Figure Q4.2 — Breaking Down Member Sentiment (interactive).** Use the member and dataset filters to compare industry-level bars and topic-level dots across FILAH, TROUT, and the full journalist record.
-
-```{=html}
-<div class="tableau-embed" style="width:100%; min-height:827px; margin:1rem 0;">
-<iframe title="Q4 — Breaking Down Member Sentiment"
-  src="https://public.tableau.com/views/BreakingDownIndividualBoardMemberSentiments/BreakingDownMemberSentiment?:showVizHome=no&:embed=true&:toolbar=yes"
-  width="100%" height="827" style="border:0;"></iframe>
+<p>The three static Gephi network exports embedded above (Tante Titan, Teddy Goldstein, and full journalist network) each serve a distinct analytical purpose and are described below.</p>
+<section id="full-journalist-network" class="level4">
+<h4 data-anchor-id="full-journalist-network">Full Journalist Network</h4>
+<p>The full journalist network renders all 740 nodes and their connections simultaneously. Board members appear as large red nodes scaled by connection count — Tante Titan and Simone Kat are immediately the most prominent by size, reflecting their 54 and 45 participation records respectively. Topic nodes are coloured by industry: blue for Tourism, orange for Fishing, green for Other, grey for uncategorised. The density of the network at full scale makes individual profiles difficult to read, but the overall structure confirms that board members are connected to nodes across all three industry colour groups — no member is visually isolated to a single industry cluster. This is the network-level baseline for the near-balance finding in Q2.</p>
+</section>
+<section id="tante-titan-ego-network" class="level4">
+<h4 data-anchor-id="tante-titan-ego-network">Tante Titan Ego Network</h4>
+<p>Filtering to Tante Titan’s connections produces the largest ego network on the board. Her node dominates by size, and her edges reach across orange Fishing, green Other, and blue Tourism topic nodes in roughly even proportion. There is no visible clustering toward any single industry. This network export is the most direct visual answer to why both groups excluded her: there is no clean narrative to extract from her record. She is too balanced to serve either accusation, and her sheer volume of 54 records means her inclusion would have substantially moderated whichever group’s averages she appeared in.</p>
+</section>
+<section id="teddy-goldstein-ego-network" class="level4">
+<h4 data-anchor-id="teddy-goldstein-ego-network">Teddy Goldstein Ego Network</h4>
+<p>Teddy Goldstein’s ego network is substantially smaller — 22 records against Tante Titan’s 54 — but its edge composition is analytically striking. The majority of his connections run to blue Tourism topic nodes, yet his sentiment scores on those connections are negative (−0.50 across tourism topics). Edge colours confirm that almost all of Teddy’s connections were recorded exclusively by TROUT — there are essentially no FILAH-coloured edges in this export. Seal also appears as a labelled board member node, indicating at least one shared participation context. This graph provides the network-level confirmation of what the slopegraph and scatterplot showed numerically: Teddy is TROUT’s most useful exhibit precisely because his tourism connections carry negative sentiment, and FILAH suppressed him entirely for the same reason.</p>
+<hr>
+</section>
+</section>
+<section id="q4-how-does-an-individual-members-story-change-across-datasets" class="level2">
+<h2 data-anchor-id="q4-how-does-an-individual-members-story-change-across-datasets">Q4 — How does an individual member’s story change across datasets?</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-```
+<div class="callout-body-container">
+<p><strong>Answer:</strong> Dramatically — the same person can look like a partisan, a moderate, or simply not exist, depending on whose dataset you use.</p>
+</div>
+</div>
+</div>
+<section id="the-most-demonstrative-case-teddy-goldstein" class="level3">
+<h3 data-anchor-id="the-most-demonstrative-case-teddy-goldstein">The most demonstrative case: Teddy Goldstein</h3>
+<p>Teddy appears only in TROUT’s dataset. Switching the Dataset View reveals:</p>
+<ul>
+<li><strong>In TROUT’s view:</strong> Teddy is visible. Fishing=0.85, Tourism=−0.50. He looks like a fishing partisan and provides strong apparent support for TROUT’s accusation.</li>
+<li><strong>In FILAH’s view:</strong> Teddy does not exist. FILAH recorded none of his 22 participation records.</li>
+<li><strong>In Full Journalist:</strong> Same values as TROUT (0.85 / −0.50) — the full dataset does not add new Teddy records, it adds other members who counterbalance him.</li>
+</ul>
+<p>TROUT showed Teddy because his profile fit their narrative. FILAH hid him because his pro-fishing sentiment would have undermined their claim.</p>
+</section>
+<section id="the-most-dramatic-absence-tante-titan" class="level3">
+<h3 data-anchor-id="the-most-dramatic-absence-tante-titan">The most dramatic absence: Tante Titan</h3>
+<p>Selecting Tante Titan and switching to FILAH or TROUT view produces <strong>empty charts</strong>. Switching to Full Journalist reveals 54 records with a balanced, positive profile. The contrast between empty panels and populated full-dataset panels is the clearest single illustration of deliberate suppression in the entire project.</p>
+</section>
+<section id="breaking-down-member-sentiment" class="level3">
+<h3 data-anchor-id="breaking-down-member-sentiment">Breaking Down Member Sentiment</h3>
+<p>This dashboard is designed for Ms.&nbsp;Moray to explore any individual member’s profile interactively — selecting a name and toggling the dataset view to see how the story changes. The two charts work together: the upper chart gives the industry-level summary, and the lower chart gives the topic-level detail.</p>
+<section id="member-sentiment-by-industry" class="level4">
+<h4 data-anchor-id="member-sentiment-by-industry">Member Sentiment by Industry</h4>
+<p>A horizontal bar chart showing the selected member’s mean sentiment broken down by industry (Fishing = orange, Tourism = blue, Other = grey), plotted on a −1 to +1 scale with a dashed zero-line as reference. The chart responds to two filter controls: <strong>Member Name</strong> and <strong>Dataset View</strong> (Full Journalist / FILAH / TROUT).</p>
+<p>When <strong>Tante Titan</strong> is selected under <strong>Full Journalist</strong> view, her bars read approximately Fishing = <strong>0.75</strong>, Tourism = <strong>0.47</strong>, Other well above zero — a broadly positive, balanced profile. Switching the Dataset View to FILAH or TROUT collapses the chart to empty: no bars appear because neither group recorded a single one of her 54 links. The contrast between a fully populated full-journalist chart and completely blank partial-dataset panels is the dashboard’s analytical core. <strong>The absence of bars is itself the evidence.</strong></p>
+<p>For members who do appear in partial datasets — for example, selecting Teddy Goldstein with TROUT view — the bar chart shows Fishing strongly positive and Tourism negative, precisely the profile TROUT needed to support their accusation.</p>
+</section>
+<section id="sentiment-by-topic" class="level4">
+<h4 data-anchor-id="sentiment-by-topic">Sentiment by Topic</h4>
+<p>A dot plot beneath the industry bar chart that breaks the same selection down to individual topic level. Each row is a short topic name; each dot is the member’s mean sentiment on that topic, coloured by industry. The dot plot is chosen over a bar chart because it communicates both the value and the presence or absence of participation cleanly — a missing row is a missing record, not a zero.</p>
+<p>With Tante Titan selected in Full Journalist view, dots appear across topics spanning both Fishing and Tourism columns: <code>seafood_festival</code> (Fishing, orange, ~0.75), <code>concert</code> (Tourism, blue, ~0.47), <code>waterfront_market</code>, <code>heritage_walking_tour</code>, and several Others. The spread confirms the balanced engagement visible in the bar chart above. Switching to FILAH or TROUT view removes all dots entirely — the empty axis tells the story more powerfully than any filled chart could.</p>
+<p>For Teddy Goldstein in TROUT view, the dot plot shows his tourism-topic dots clustered below zero (expanding tourist wharf, marine life deck) while his fishing-topic dots sit above 0.8. The topic-level granularity here is what the industry-aggregated bar chart cannot show alone: the pattern is not just directional, it is topic-specific and deliberate.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="limitations-of-evidence" class="level2">
+<h2 data-anchor-id="limitations-of-evidence">Limitations of Evidence</h2>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Sentiment as a proxy
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sentiment scores are assigned in the original dataset and we treat them as given. The scoring methodology is not documented. Whether a 0.5 vs 0.75 distinction is analytically meaningful is uncertain. We use sentiment as a directional indicator, not a precise measurement.</p>
+<section id="small-sample-sizes-in-some-comparisons" class="level3">
+<h3 data-anchor-id="small-sample-sizes-in-some-comparisons">Small sample sizes in some comparisons</h3>
+<p>The travel link analysis covers only 22 rows total, with TROUT’s contribution being just 4. Percentage-based comparisons at this scale are unreliable — we deliberately chose raw counts for the travel chart for this reason.</p>
+</section>
+<section id="topic-classification-is-interpretive" class="level3">
+<h3 data-anchor-id="topic-classification-is-interpretive">Topic classification is interpretive</h3>
+<p>The assignment of topics to Fishing, Tourism, or Other was made by us based on topic descriptions. <code>affordable_housing</code> in particular could reasonably be classified differently. This classification affects industry-level sentiment averages.</p>
+</section>
+<section id="no-causal-inference" class="level3">
+<h3 data-anchor-id="no-causal-inference">No causal inference</h3>
+<p>We can show that each group’s data produces a biased picture and that they excluded records that would have moderated their claims. We cannot prove intent — it is possible, if unlikely, that the omissions were accidental. The pattern is consistent enough to be analytically suspicious, but a journalist like Moray would want to treat this as a hypothesis to investigate further rather than a proven conclusion.</p>
+</section>
+<section id="temporal-analysis-not-performed" class="level3">
+<h3 data-anchor-id="temporal-analysis-not-performed">Temporal analysis not performed</h3>
+<p>The links files contain a <code>time</code> column, but dates are stored inconsistently. Timeline analysis was not attempted. It is possible that the pattern of board activity changed over time in ways that would complicate the industry-level averages we report. This is a gap worth noting.</p>
+</section>
+</div>
+</div>
+</div>
 
-If the interactive embed doesn’t load, open it directly on Tableau Public: [Breaking Down Member Sentiment (Tableau Public)](https://public.tableau.com/app/profile/riona.ng/viz/BreakingDownIndividualBoardMemberSentiments/BreakingDownMemberSentiment?publish=yes).
 
-<details>
-<summary><strong>View static screenshots (fallback)</strong></summary>
+</section>
 
-**Member views**
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
 
-![](images/tableau-archive/dashboard5-tante.png){width="100%"}
-![](images/tableau-archive/dashboard5-teddy.png){width="100%"}
-![](images/tableau-archive/dashboard5-simone.png){width="100%"}
-![](images/tableau-archive/dashboard5-carol.png){width="100%"}
-![](images/tableau-archive/dashboard5-ed.png){width="100%"}
-![](images/tableau-archive/dashboard5-seal.png){width="100%"}
 
-</details>
 
-### Breaking Down Member Sentiment
 
-This dashboard is designed to explore any individual member’s profile interactively — selecting a name and toggling the dataset view to see how the story changes. The two views work together: the upper view gives the industry-level summary, and the lower view gives the topic-level detail.
-
-#### Member Sentiment by Industry
-
-A horizontal bar chart showing the selected member’s mean sentiment broken down by industry (Fishing / Tourism / Other), plotted on a −1 to +1 scale with a dashed zero-line as reference. It responds to two filter controls: **Member Name** and **Dataset View** (Full Journalist / FILAH / TROUT).
-
-When **Tante Titan** is selected under **Full Journalist** view, the bars show a broadly positive, balanced profile. Switching Dataset View to FILAH or TROUT collapses the chart to empty because neither group recorded any of her 54 links. **The absence of bars is itself the evidence.**
-
-#### Sentiment by Topic
-
-A dot plot beneath the industry view that breaks the same selection down to individual topic level. Each row is a topic; each dot is the member’s mean sentiment on that topic, coloured by industry. Switching from Full Journalist to FILAH or TROUT makes missing participation visually explicit: dots (and sometimes entire topic rows) disappear because the underlying records were suppressed.
-
----
-
+</body></html>
