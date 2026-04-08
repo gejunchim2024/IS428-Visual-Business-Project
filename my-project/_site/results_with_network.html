@@ -312,7 +312,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><strong>Fishing</strong><br>
 Mean sentiment = <strong>0.490</strong><br>
-43 positive / 10 negative interactions</p>
+33 positive / 6 negative interactions <em>(participant links only; counts exclude non-participant roles)</em></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><strong>Tourism</strong><br>
@@ -340,7 +340,7 @@ Mean sentiment = <strong>0.549</strong><br>
 <p>This dashboard uses the full journalist dataset to examine what the board actually does, how members distribute their participation across industries and whether sentiment patterns suggest any systematic lean.</p>
 <section id="board-sentiment-direction" class="level4">
 <h4 data-anchor-id="board-sentiment-direction">Board Sentiment Direction</h4>
-<p>A diverging bar chart showing the net count of positive versus negative board interactions by industry, using the full journalist dataset. Green bars extend right (positive interactions), red bars extend left (negative interactions). Fishing shows roughly 35 positive against 10 negative; Tourism shows roughly 45 positive against 6 negative; Other shows a similar positive-dominant profile. The green bars dominate across all three industry categories — the board as a whole engages positively with both Fishing and Tourism, with no meaningful directional imbalance.</p>
+<p>A diverging bar chart showing the net count of positive versus negative board interactions by industry, using the full journalist dataset. Green bars extend right (positive interactions), red bars extend left (negative interactions). Fishing shows roughly 33 positive against 6 negative (participant links); Tourism shows roughly 45 positive against 6 negative; Other shows a similar positive-dominant profile. The green bars dominate across all three industry categories — the board as a whole engages positively with both Fishing and Tourism, with no meaningful directional imbalance.</p>
 </section>
 <section id="member-contribution-by-industry-topics" class="level4">
 <h4 data-anchor-id="member-contribution-by-industry-topics">Member Contribution by Industry Topics</h4>
@@ -352,7 +352,7 @@ Mean sentiment = <strong>0.549</strong><br>
 </section>
 <section id="member-sentiment-vs-board-average" class="level4">
 <h4 data-anchor-id="member-sentiment-vs-board-average">Member Sentiment vs Board Average</h4>
-<p>A horizontal bar chart showing each member’s mean sentiment per industry (Fishing = orange, Tourism = blue, Other = grey), plotted against a vertical reference line marking the board-wide average. The most notable departure is Teddy Goldstein’s tourism bar, which extends left to <strong>−0.50</strong> — the only negative industry-level value on the entire chart. The individual variation is real, but it is variation between members, not a board-level lean. The board-wide average line is calculated as the mean sentiment across all members and all industries in the full journalist dataset.</p>
+<p>A horizontal bar chart showing each member’s mean sentiment per industry (Fishing = orange, Tourism = blue, Other = grey), plotted against a vertical reference line marking the board-wide average. The most notable departure is Teddy Goldstein’s tourism bar, which extends left to <strong>−0.50</strong> — the only negative industry-level value on the entire chart. The individual variation is real, but it is variation between members, not a board-level lean. The vertical reference line in Tableau reflects that workbook’s aggregation (it can read near <strong>0.43</strong> in the viz); it is not the same as a flat mean across every participant-link sentiment row in the raw CSVs (<strong>≈0.597</strong>) or a simple mean of each member’s per-industry means (<strong>≈0.62</strong>). Use the line as the dashboard’s board-wide benchmark, not as an unweighted CSV summary statistic.</p>
 <hr>
 </section>
 </section>
@@ -384,18 +384,18 @@ Mean sentiment = <strong>0.549</strong><br>
 <tr class="even">
 <td style="text-align: left;">Ed Helpsford</td>
 <td style="text-align: center;">1.00</td>
-<td style="text-align: center;">0.00</td>
-<td style="text-align: left;">Fishing-positive, tourism-neutral</td>
+<td style="text-align: center;">0.71</td>
+<td style="text-align: left;">Fishing-positive, tourism-positive</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Carol Limpet</td>
-<td style="text-align: center;">—*</td>
+<td style="text-align: center;">0.75†</td>
 <td style="text-align: center;">0.68</td>
-<td style="text-align: left;">Tourism-leaning</td>
+<td style="text-align: left;">Tourism-leaning; fishing via <code>seafood_festival</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Simone Kat</td>
-<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">0.38‡</td>
 <td style="text-align: center;">0.91</td>
 <td style="text-align: left;">Strongly tourism-leaning</td>
 </tr>
@@ -413,7 +413,8 @@ Mean sentiment = <strong>0.549</strong><br>
 </tr>
 </tbody>
 </table>
-<p><em>* Carol Limpet has no fishing-classified participation records in the journalist dataset — the dash indicates absence of data, not a zero or neutral score.</em></p>
+<p><em>† Five fishing participation links on <code>seafood_festival</code> in the raw CSVs (sentiment 0.75 each); mean <strong>0.75</strong>.</em><br>
+<em>‡ <strong>0.38</strong> is the flat mean across Simone Kat’s fishing participant links in the raw CSVs; Tableau’s member-level fishing mark may differ (e.g.&nbsp;<strong>0.12</strong>) depending on aggregation.</em></p>
 <p>The individual variation is real, but it is variation <strong>between members</strong>, not a board-level lean.</p>
 <p>Seal occupies a distinct analytical position. With 12 participant records in the journalist dataset, Seal is fully present in both FILAH’s dataset (12 records) and TROUT’s (12 records), the only member included without suppression by either group. His consistently low sentiment across both industries is not an artefact of selective inclusion; it is stable across all three dataset views. Seal appears to be a genuinely low-engagement member rather than a partisan one, and his profile does not shift when the fuller evidence is introduced. This makes him the one board member neither group had a strong reason to suppress or highlight.</p>
 <hr>

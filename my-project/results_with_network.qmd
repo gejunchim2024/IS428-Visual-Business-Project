@@ -100,7 +100,7 @@ Using the complete journalist dataset across all 6 members:
 ::: {}
 **Fishing**  
 Mean sentiment = **0.490**  
-43 positive / 10 negative interactions
+33 positive / 6 negative interactions *(participant links only; counts exclude non-participant roles)*
 :::
 ::: {}
 **Tourism**  
@@ -137,7 +137,7 @@ This dashboard uses the full journalist dataset to examine what the board actual
 
 #### Board Sentiment Direction
 
-A diverging bar chart showing the net count of positive versus negative board interactions by industry, using the full journalist dataset. Green bars extend right (positive interactions), red bars extend left (negative interactions). Fishing shows roughly 35 positive against 10 negative; Tourism shows roughly 45 positive against 6 negative; Other shows a similar positive-dominant profile. The green bars dominate across all three industry categories — the board as a whole engages positively with both Fishing and Tourism, with no meaningful directional imbalance.
+A diverging bar chart showing the net count of positive versus negative board interactions by industry, using the full journalist dataset. Green bars extend right (positive interactions), red bars extend left (negative interactions). Fishing shows roughly 33 positive against 6 negative (participant links); Tourism shows roughly 45 positive against 6 negative; Other shows a similar positive-dominant profile. The green bars dominate across all three industry categories — the board as a whole engages positively with both Fishing and Tourism, with no meaningful directional imbalance.
 
 #### Member Contribution by Industry Topics
 
@@ -149,7 +149,7 @@ A heatmap with members as rows and individual topics as columns, grouped by indu
 
 #### Member Sentiment vs Board Average
 
-A horizontal bar chart showing each member’s mean sentiment per industry (Fishing = orange, Tourism = blue, Other = grey), plotted against a vertical reference line marking the board-wide average. The most notable departure is Teddy Goldstein’s tourism bar, which extends left to **−0.50** — the only negative industry-level value on the entire chart. The individual variation is real, but it is variation between members, not a board-level lean. The board-wide average line is calculated as the mean sentiment across all members and all industries in the full journalist dataset.
+A horizontal bar chart showing each member’s mean sentiment per industry (Fishing = orange, Tourism = blue, Other = grey), plotted against a vertical reference line marking the board-wide average. The most notable departure is Teddy Goldstein’s tourism bar, which extends left to **−0.50** — the only negative industry-level value on the entire chart. The individual variation is real, but it is variation between members, not a board-level lean. The vertical reference line in Tableau reflects that workbook’s aggregation (it can read near **0.43** in the viz); it is not the same as a flat mean across every participant-link sentiment row in the raw CSVs (**≈0.597**) or a simple mean of each member’s per-industry means (**≈0.62**). Use the line as the dashboard’s board-wide benchmark, not as an unweighted CSV summary statistic.
 
 ---
 
@@ -160,13 +160,14 @@ Individual members do show different industry orientations:
 | Member | Fishing sentiment | Tourism sentiment | Profile |
 |:--|:-:|:-:|:--|
 | Tante Titan | 0.75 | 0.47 | Broadly positive across both |
-| Ed Helpsford | 1.00 | 0.00 | Fishing-positive, tourism-neutral |
-| Carol Limpet | —* | 0.68 | Tourism-leaning |
-| Simone Kat | 0.12 | 0.91 | Strongly tourism-leaning |
+| Ed Helpsford | 1.00 | 0.71 | Fishing-positive, tourism-positive |
+| Carol Limpet | 0.75† | 0.68 | Tourism-leaning; fishing via `seafood_festival` |
+| Simone Kat | 0.38‡ | 0.91 | Strongly tourism-leaning |
 | Teddy Goldstein | 0.85 | **−0.50** | Only member with negative industry sentiment |
 | Seal | 0.20 | 0.20 | Low but balanced |
 
-*\* Carol Limpet has no fishing-classified participation records in the journalist dataset — the dash indicates absence of data, not a zero or neutral score.*
+*† Five fishing participation links on `seafood_festival` in the raw CSVs (sentiment 0.75 each); mean **0.75**.*  
+*‡ **0.38** is the flat mean across Simone Kat’s fishing participant links in the raw CSVs; Tableau’s member-level fishing mark may differ (e.g. **0.12**) depending on aggregation.*
 
 The individual variation is real, but it is variation **between members**, not a board-level lean.
 
@@ -225,7 +226,7 @@ The sentiment scores for individual members do not change between datasets. What
 ::: {}
 **FILAH excluded:**  
 Teddy Goldstein (Fishing=0.85)  
-Ed Helpsford (Fishing=1.0)  
+Ed Helpsford (Fishing=1.0, Tourism=0.71)  
 Tante Titan (Fishing=0.75)  
 
 These three are precisely the strongest pro-fishing members. Their absence drove FILAH's fishing average down to 0.209.
