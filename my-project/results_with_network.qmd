@@ -64,12 +64,12 @@ TROUT’s version of the same chart produces the mirror image of FILAH’s. Fish
 
 ### The heatmap evidence
 
-The topic coverage heatmap reveals the distortion. The two short topic, concert and seafood_festival in the dashboard above are the smoking gun:
+The topic coverage heatmap reveals the mechanism behind the distortion. Two topics stand out:
 
 - **FILAH recorded zero links for `concert`**: a Tourism topic, while accusing the board of pro-tourism bias.
 - **TROUT recorded zero links for `seafood_festival`**: a Fishing topic, while accusing the board of pro-fishing bias.
 
-This pattern is consistent with deliberate editorial selection rather than incomplete data collection. both absences occur at precisely the topic most damaging to each group's respective argument. We treated this as a strong analytical indicator of intentional omission. 
+Both absences occur at precisely the topic most damaging to each group's respective argument. This pattern is consistent with deliberate editorial selection rather than incomplete data collection, and we treat it as a strong analytical indicator of intentional omission — though, as noted in the Limitations section, we cannot establish this with certainty from the data alone.
 
 ### The accusations vs reality
 
@@ -161,10 +161,12 @@ Individual members do show different industry orientations:
 |:--|:-:|:-:|:--|
 | Tante Titan | 0.75 | 0.47 | Broadly positive across both |
 | Ed Helpsford | 1.00 | 0.00 | Fishing-positive, tourism-neutral |
-| Carol Limpet | — | 0.68 | Tourism-leaning |
+| Carol Limpet | —* | 0.68 | Tourism-leaning |
 | Simone Kat | 0.12 | 0.91 | Strongly tourism-leaning |
 | Teddy Goldstein | 0.85 | **−0.50** | Only member with negative industry sentiment |
 | Seal | 0.20 | 0.20 | Low but balanced |
+
+*\* Carol Limpet has no fishing-classified participation records in the journalist dataset — the dash indicates absence of data, not a zero or neutral score.*
 
 The individual variation is real, but it is variation **between members**, not a board-level lean.
 
@@ -652,7 +654,7 @@ Teddy appears only in TROUT's dataset. Switching the Dataset View reveals:
 
 TROUT showed Teddy because his profile fit their narrative. FILAH hid him because his pro-fishing sentiment would have undermined their claim.
 
-The Gephi export in the **Network Graph** section below shows why he is so narratively useful: his ego network is smaller than high-volume members like Tante Titan, but it contains many tourism-linked connections alongside his negative tourism sentiment.
+The Gephi export above shows why he is so narratively useful: his ego network is smaller than high-volume members like Tante Titan, but it contains many tourism-linked connections alongside his negative tourism sentiment.
 
 ### Key evidence missing from TROUT that changed Teddy Goldstein's story
 
@@ -665,4 +667,3 @@ Without these omissions, Teddy Goldstein remains a member with a distinctive ind
 ### Ed Helpsford: the quietly erased fishing supporter
 
 Ed Helpsford is a clean case of asymmetric suppression. FILAH excluded all 20 of his journalist participation records; TROUT included every one of them. His strong pro-fishing profile made him a liability for FILAH's narrative of anti-fishing board bias, and an asset for TROUT's. The contrast between his complete absence in FILAH's view and his full presence in TROUT's is one of the clearest examples in the dataset of the same person being shown or hidden depending on whose story is being told.
-
