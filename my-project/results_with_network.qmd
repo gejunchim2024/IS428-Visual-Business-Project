@@ -2,6 +2,10 @@
 title: "Results and Analysis"
 ---
 
+::: {.callout-tip appearance="minimal"}
+**Full story:** This page walks through our analysis section by section. For the complete interactive narrative in one place — perception vs reality across FILAH, TROUT, and the full journalist dataset — open our Tableau story: [Understanding bias in industry narratives: a comparison of perception and reality](https://public.tableau.com/app/profile/riona.ng/viz/UnderstandingFILAHTROUTSentimentsagainsttheBoard/UnderstandingBiasinIndustryNarrativesAComparisonofPerceptionandReality?publish=yes).
+:::
+
 ## Overview of Findings
 
 ::: {.callout-important appearance="minimal"}
