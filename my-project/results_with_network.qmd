@@ -212,6 +212,12 @@ A bubble chart with members as rows and two columns: Included (green bubbles) an
 
 The mirror-image bubble chart for TROUT. Here Tante Titan (54), Simone Kat (45), and Carol Limpet (21) appear as large red excluded bubbles. Teddy Goldstein (22), Ed Helpsford (20), and Seal (12) are included. The symmetry between the two charts: each group excluded precisely the members whose records would have moderated their claimed bias.
 
+::: {.callout-important appearance="minimal"}
+**Tante Titan: 54 records — excluded by both groups. She contradicts both narratives.**
+
+She has more participation records than any other board member. Her sentiment is broadly positive across fishing (0.75), tourism (0.47), and other topics (1.00). Neither FILAH nor TROUT included a single one of her records — she is too balanced to support either group's claim of bias. Her absence is not a data gap. It is the most deliberate editorial decision in the entire dataset.
+:::
+
 #### Board Participation by Member and Topic Area
 
 A treemap segmented by industry colour (Fishing = orange, Tourism = blue, Other = grey), where each tile represents a member–topic pairing sized by participation count. The largest tiles are Tante Titan × `seafood_festival` / `waterfront_market`, and Simone Kat × `fish_vacuum` / `heritage_walking_tour`.
@@ -252,13 +258,29 @@ These three are precisely the strongest pro-tourism members. Their absence drove
 *Note: Industry classification (Fishing / Tourism / Other) is derived from topic names in the Tableau data model, not from a raw industry field in the source CSVs. The `industry` column in all three links files is null in the raw data. These figures reflect the topic-based industry classification applied consistently across all datasets in Tableau.*
 
 ::: {.callout-warning appearance="minimal"}
-TROUT suppressed **47 tourism-classified participation links**, more than any other category from either organisation, based on the topic-name industry classification applied in our Tableau model. This is the clearest quantification of editorial bias in the dataset.
+TROUT suppressed **47 tourism-classified participation links** — more than any other category from either organisation. That is **55% of all tourism participation links** in the full journalist dataset, removed by a single group in a single category.
+:::
+
+::: {.callout-warning appearance="minimal"}
+**TROUT travel records: 4 of 22 — near-total suppression of geographic evidence.**
+
+The full journalist dataset contains 22 travel links. FILAH recorded 15 of them. TROUT recorded only 4 — an 82% omission rate. The geographic dimension of board member activity was almost entirely removed from TROUT's submission.
 :::
 
 
-**Verdict on TROUT:** TROUT's accusations are substantially weakened by the full dataset. The appearance of pro-fishing board bias in TROUT's data is manufactured almost entirely by the suppression of Simone Kat (45 journalist records, 0 in TROUT), Carol Limpet (21 journalist records, 0 in TROUT), and Tante Titan (54 journalist records, 0 in TROUT). These three members account for the board's most pro-tourism engagement. Removing them collapses TROUT's tourism average to 0.141. In the full journalist dataset, tourism sentiment rises to 0.549, nearly four times higher. The accusation is not strengthened or unchanged; it is directly contradicted by the evidence TROUT chose not to show.
+```{=html}
+<div style="background:#457b9d;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;">
+  <div style="display:inline-block;background:rgba(255,255,255,0.25);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:0.6rem;">Verdict on TROUT</div>
+  <p style="margin:0;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;line-height:1.7;">TROUT's accusations are substantially weakened by the full dataset. The appearance of pro-fishing board bias in TROUT's data is manufactured almost entirely by the suppression of Simone Kat (45 journalist records, 0 in TROUT), Carol Limpet (21 journalist records, 0 in TROUT), and Tante Titan (54 journalist records, 0 in TROUT). These three members account for the board's most pro-tourism engagement. Removing them collapses TROUT's tourism average to 0.141. In the full journalist dataset, tourism sentiment rises to 0.549, nearly four times higher. The accusation is not strengthened or unchanged; it is directly contradicted by the evidence TROUT chose not to show.</p>
+</div>
+```
 
-**Verdict on FILAH:** Ed Helpsford's exclusion from FILAH is analytically significant. He contributes 20 participant records in the full journalist dataset, none of which appear in FILAH's submission. His fishing sentiment in the full dataset is the highest of any board member, and removing him directly lowers the average fishing sentiment in FILAH's dataset, which is precisely what their narrative required. TROUT, by contrast, included all 20 of his records, surfacing exactly the evidence that served their case.
+```{=html}
+<div style="background:#c0392b;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;">
+  <div style="display:inline-block;background:rgba(255,255,255,0.25);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:0.6rem;">Verdict on FILAH</div>
+  <p style="margin:0;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;line-height:1.7;">Ed Helpsford's exclusion from FILAH is analytically significant. He contributes 20 participant records in the full journalist dataset, none of which appear in FILAH's submission. His fishing sentiment in the full dataset is the highest of any board member, and removing him directly lowers the average fishing sentiment in FILAH's dataset, which is precisely what their narrative required. TROUT, by contrast, included all 20 of his records, surfacing exactly the evidence that served their case.</p>
+</div>
+```
 
 ### Evaluating activist claims against full evidence 
 
@@ -287,6 +309,12 @@ This dashboard directly confronts the gap between what each group claimed and wh
 A slopegraph tracing each board member’s sentiment value across four vantage points: Fishing Sentiment (FILAH), Fishing Sentiment (Full Board), Tourism Sentiment (Full Board), and Tourism Sentiment (TROUT). 
 
 The most obvious omission is Teddy Goldstein: he is absent from FILAH, then appears as strongly pro-fishing (~0.85) in the full board view, and ends at **−0.50** for tourism under TROUT, the only negative endpoint. Simone Kat runs in the opposite direction, ending at **0.91** for tourism in the full board view — a value TROUT suppressed by excluding her.
+
+::: {.callout-warning appearance="minimal"}
+**Teddy Goldstein: the sharpest sentiment swing in the dataset.**
+
+In TROUT's partial view his tourism sentiment reads as approximately +0.10. When the full journalist evidence is applied it collapses to **−0.50** — the only negative industry sentiment score on the entire board, and a swing of 0.60 points. Partial evidence does not just obscure his profile. It inverts it. This is why FILAH excluded him: his numbers, in full context, contradict their narrative entirely.
+:::
 
 #### Counterfactual: Claimed vs Reality
 
