@@ -353,281 +353,331 @@ This interactive network maps each board member's participation across discussio
 When exploring the network, three observations are analytically important. First, switch to the **FILAH-only filter**: Tante Titan's node disappears entirely, despite her being the most connected member in the full journalist view. Second, apply the **TROUT-only filter**: Simone Kat and Carol Limpet's nodes vanish completely, and Tante Titan also disappears. Third, in the **full journalist view**, Teddy Goldstein appears as a moderately connected member rather than a dominant hub — which contextualises how misleading TROUT's partial framing of him is. The missing nodes are not a display artefact. They are the story.
 
 
+
+
 ```{=html}
-<!-- ===== INTERACTIVE NETWORK GRAPH SECTION ===== -->
-<!-- Insert this block anywhere in results.html where you want the network to appear -->
-<!-- Requires: no external dependencies (uses inline D3 from CDN) -->
-
-<section id="network-graph-section" style="margin: 2.5rem 0;">
-
-  <!-- Controls -->
-  <div id="network-controls" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem; align-items:center;">
-    <label style="font-weight:600; font-size:0.85rem;">Filter by dataset:</label>
-    <button class="net-btn active" data-filter="all">All</button>
-    <button class="net-btn" data-filter="FILAH">FILAH only</button>
-    <button class="net-btn" data-filter="TROUT">TROUT only</button>
-    <button class="net-btn" data-filter="Journalist Only">Journalist Only</button>
-    <button class="net-btn" data-filter="FILAH+TROUT">FILAH + TROUT</button>
-    <span style="margin-left:auto; font-size:0.8rem; color:#888;" id="net-status">174 edges shown</span>
-  </div>
-
-  <!-- Legend -->
-  <div style="display:flex; flex-wrap:wrap; gap:1.2rem; margin-bottom:0.75rem; font-size:0.8rem;">
-    <div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#e63946;margin-right:4px;vertical-align:middle;"></span>Board Member</div>
-    <div><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#457b9d;margin-right:4px;vertical-align:middle;"></span>Tourism Discussion</div>
-    <div><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#e9a900;margin-right:4px;vertical-align:middle;"></span>Fishing Discussion</div>
-    <div><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#aaa;margin-right:4px;vertical-align:middle;"></span>Other / No Industry</div>
-    <div style="margin-left:1rem; font-weight:600;">Edge colour:</div>
-    <div><span style="display:inline-block;width:28px;height:3px;background:#e63946;margin-right:4px;vertical-align:middle;"></span>FILAH</div>
-    <div><span style="display:inline-block;width:28px;height:3px;background:#457b9d;margin-right:4px;vertical-align:middle;"></span>TROUT</div>
-    <div><span style="display:inline-block;width:28px;height:3px;background:#2a9d8f;margin-right:4px;vertical-align:middle;"></span>Journalist Only</div>
-    <div><span style="display:inline-block;width:28px;height:3px;background:#6a4c93;margin-right:4px;vertical-align:middle;"></span>FILAH+TROUT</div>
-  </div>
-
-  <!-- Canvas -->
-  <div id="network-container" style="border:1px solid #ddd; border-radius:8px; background:#fafafa; position:relative; overflow:hidden;">
-    <svg id="network-svg" style="width:100%; height:560px; display:block;"></svg>
-    <!-- Tooltip -->
-    <div id="net-tooltip" style="
-      position:absolute; display:none; background:rgba(20,20,20,0.88); color:#fff;
-      padding:8px 12px; border-radius:6px; font-size:0.78rem; max-width:260px;
-      pointer-events:none; line-height:1.5; z-index:10;
-    "></div>
-  </div>
-
-  <p style="font-size:0.75rem; color:#888; margin-top:0.4rem;">
-    Drag nodes to rearrange. Scroll to zoom. Click board members (red) to highlight connections. Click background to reset.
-  </p>
-
-  <!-- Static Gephi images toggle -->
-  <details style="margin-top:1.5rem;">
-    <summary style="cursor:pointer; font-weight:600; color:#1d3557;">▶ View static Gephi exports</summary>
-    <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1rem;">
-      <div style="flex:1; min-width:280px;">
-        <p style="font-size:0.8rem; color:#555; margin-bottom:4px;"><strong>Tante Titan</strong> — 54 records, absent from both FILAH and TROUT</p>
-        <img src="images/gephi/TanteTitan.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Tante Titan network (Gephi export)" />
-      </div>
-      <div style="flex:1; min-width:280px;">
-        <p style="font-size:0.8rem; color:#555; margin-bottom:4px;"><strong>Teddy Goldstein</strong> — Only in TROUT; hidden by FILAH entirely</p>
-        <img src="images/gephi/TeddyGoldstein.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Teddy Goldstein network (Gephi export)" />
-      </div>
-      <div style="flex:1; min-width:280px;">
-        <p style="font-size:0.8rem; color:#555; margin-bottom:4px;"><strong>Full journalist network</strong> — all 6 board members, all topics</p>
-        <img src="images/gephi/NetworkGraph.png" style="width:100%; border-radius:6px; border:1px solid #ddd;" alt="Full network graph (Gephi export)" />
-      </div>
-    </div>
-  </details>
-
-</section>
-
-<!-- Button styles -->
 <style>
-.net-btn {
-  padding: 4px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #fff;
-  cursor: pointer;
-  font-size: 0.8rem;
-  transition: all 0.15s;
+#gnet-wrap {
+  border: 1px solid #e2ddf0;
+  border-radius: 10px;
+  background: #f7f6fb;
+  position: relative;
+  overflow: hidden;
+  height: 480px;
 }
-.net-btn:hover { background: #f0f0f0; }
-.net-btn.active { background: #1d3557; color: #fff; border-color: #1d3557; }
+.gnet-btn {
+  padding: 5px 14px;
+  border: 1px solid #c8bfe8;
+  border-radius: 20px;
+  background: #fff;
+  color: #6b6b80;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all .15s;
+}
+.gnet-btn:hover { background: #ede8f7; color: #4e3780; }
+.gnet-btn.active { background: #7c5cbf; color: #fff; border-color: #7c5cbf; }
+#gnet-tooltip {
+  position: absolute; display: none;
+  background: #fff; border: 1px solid #e2ddf0;
+  border-radius: 10px; padding: 11px 14px;
+  font-size: 0.78rem; max-width: 215px;
+  pointer-events: none; z-index: 10; line-height: 1.65;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 2px 12px rgba(124,92,191,0.08);
+}
+#gnet-tooltip .tt-name { font-weight: 600; font-size: 0.85rem; color: #1a1a2e; margin-bottom: 4px; }
+#gnet-tooltip .tt-row { color: #6b6b80; }
+#gnet-tooltip .tt-row span { color: #1a1a2e; font-weight: 500; }
+#gnet-panel {
+  display: none; position: absolute; top: 12px; right: 12px;
+  width: 190px; background: #fff; border: 1px solid #e2ddf0;
+  border-radius: 10px; padding: 13px;
+  font-size: 0.75rem; font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 2px 12px rgba(124,92,191,0.08); z-index: 5;
+}
+.gnet-stat-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px; margin-top: 14px;
+}
+.gnet-card { padding: 9px 11px; border-radius: 10px; background: #f7f6fb; border: 1px solid #e2ddf0; font-family: 'DM Sans', sans-serif; }
+.gnet-card-label { font-size: 0.7rem; font-weight: 500; color: #6b6b80; }
+.gnet-card-value { font-size: 0.8rem; color: #1a1a2e; margin-top: 1px; }
+.gnet-card-note  { font-size: 0.7rem; margin-top: 2px; }
 </style>
 
-<!-- D3 force-directed network -->
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+  <button class="gnet-btn active" data-f="all">All datasets</button>
+  <button class="gnet-btn" data-f="FILAH">FILAH only</button>
+  <button class="gnet-btn" data-f="TROUT">TROUT only</button>
+  <button class="gnet-btn" data-f="Journalist Only">Journalist only</button>
+  <button class="gnet-btn" data-f="FILAH+TROUT">FILAH + TROUT</button>
+  <span id="gnet-count" style="margin-left:auto;font-size:0.75rem;color:#6b6b80;font-family:'DM Sans',sans-serif"></span>
+</div>
+
+<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:9px;font-size:0.75rem;color:#6b6b80;font-family:'DM Sans',sans-serif;align-items:center">
+  <span><svg width="11" height="11" style="vertical-align:middle;margin-right:3px"><circle cx="5.5" cy="5.5" r="5.5" fill="#e63946"/></svg>Board member</span>
+  <span><svg width="11" height="9" style="vertical-align:middle;margin-right:3px"><rect width="11" height="9" rx="2" fill="#e9a900"/></svg>Fishing topic</span>
+  <span><svg width="11" height="9" style="vertical-align:middle;margin-right:3px"><rect width="11" height="9" rx="2" fill="#457b9d"/></svg>Tourism topic</span>
+  <span><svg width="11" height="9" style="vertical-align:middle;margin-right:3px"><rect width="11" height="9" rx="2" fill="#888"/></svg>Other topic</span>
+  <span style="margin-left:4px">
+    Edges:&nbsp;
+    <svg width="16" height="3" style="vertical-align:middle;margin-right:2px"><line x1="0" y1="1.5" x2="16" y2="1.5" stroke="#e63946" stroke-width="2"/></svg>FILAH&nbsp;
+    <svg width="16" height="3" style="vertical-align:middle;margin:0 3px"><line x1="0" y1="1.5" x2="16" y2="1.5" stroke="#457b9d" stroke-width="2"/></svg>TROUT&nbsp;
+    <svg width="16" height="3" style="vertical-align:middle;margin:0 3px"><line x1="0" y1="1.5" x2="16" y2="1.5" stroke="#2a9d8f" stroke-width="2"/></svg>Journalist only&nbsp;
+    <svg width="16" height="3" style="vertical-align:middle;margin:0 3px"><line x1="0" y1="1.5" x2="16" y2="1.5" stroke="#7c5cbf" stroke-width="2"/></svg>Both
+    &nbsp;&middot; thickness = sentiment strength
+  </span>
+</div>
+
+<div id="gnet-wrap">
+  <svg id="gnet-svg" style="width:100%;height:100%"></svg>
+  <div id="gnet-tooltip"></div>
+  <div id="gnet-panel"></div>
+</div>
+<p style="font-size:0.72rem;color:#6b6b80;margin-top:5px;font-family:'DM Sans',sans-serif">
+  Drag nodes &middot; scroll to zoom &middot; <strong>click a board member (red)</strong> to highlight their connections and see sentiment scores
+</p>
+
+<div class="gnet-stat-cards">
+  <div class="gnet-card" style="border-color:#2a9d8f55">
+    <div class="gnet-card-label">Tante Titan</div>
+    <div class="gnet-card-value">26 topic connections</div>
+    <div class="gnet-card-note" style="color:#2a9d8f">Excluded by BOTH groups</div>
+  </div>
+  <div class="gnet-card" style="border-color:#e6394655">
+    <div class="gnet-card-label">Teddy Goldstein</div>
+    <div class="gnet-card-value">12 connections — TROUT</div>
+    <div class="gnet-card-note" style="color:#c0392b">Hidden by FILAH</div>
+  </div>
+  <div class="gnet-card" style="border-color:#457b9d55">
+    <div class="gnet-card-label">Simone Kat</div>
+    <div class="gnet-card-value">23 connections — FILAH</div>
+    <div class="gnet-card-note" style="color:#457b9d">Hidden by TROUT</div>
+  </div>
+  <div class="gnet-card" style="border-color:#7c5cbf55">
+    <div class="gnet-card-label">Seal</div>
+    <div class="gnet-card-value">7 connections</div>
+    <div class="gnet-card-note" style="color:#7c5cbf">Accepted by both</div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script>
 (function() {
-
-const GRAPH_DATA = {"nodes":[{"id":"renaming_park_himark_Travel_Anchor_Way_Grill","label":"renaming park himark Travel Anchor Way Grill","type":"Other","industry":""},{"id":"new_crane_lomark_Meeting_8_Share_Findings","label":"New Crane Lomark | Meeting 8 Share Findings","type":"Other","industry":""},{"id":"waterfront_market_Meeting_9_Report_Discussion","label":"Waterfront Market | Meeting 9 Report Discussion","type":"Discussion","industry":"Tourism"},{"id":"expanding_tourist_wharf_Travel_Harbor_Route_Solutions","label":"expanding tourist wharf Travel Harbor Route Solutions","type":"Other","industry":""},{"id":"seafood_festival_Meeting_1_Feasibility","label":"Seafood Festival | Meeting 1 Feasibility","type":"Other","industry":""},{"id":"low_volume_crane_Travel_Harbor_Builders_Completed_Discussion","label":"low volume crane Travel Harbor Builders Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"seafood_festival_Meeting_3_Take_Action","label":"Seafood Festival | Meeting 3 Take Action","type":"Other","industry":""},{"id":"renaming_park_himark_Meeting_5_Nominations","label":"Renaming Park Himark | Meeting 5 Nominations","type":"Other","industry":""},{"id":"Teddy Goldstein","label":"Teddy Goldstein","type":"Board Member","industry":""},{"id":"renaming_park_himark_Meeting_7_Announce_Name_Discussion","label":"Renaming Park Himark | Meeting 7 Announce Name Discussion","type":"Discussion","industry":"Other"},{"id":"statue_john_smoth_Travel_The_Bait_Stich_Discussion","label":"statue john smoth Travel The Bait Stich Discussion","type":"Discussion","industry":"Other"},{"id":"expanding_tourist_wharf_Meeting_9_Start_Report_Discussion","label":"Expanding Tourist Wharf | Meeting 9 Start Report Discussion","type":"Discussion","industry":"Tourism"},{"id":"waterfront_market_Travel_Harborfront_Market_Completed_Discussion","label":"waterfront market Travel Harborfront Market Completed Discussion","type":"Discussion","industry":"Tourism"},{"id":"name_harbor_area_Meeting_11_Draft_Names_Discussion","label":"Name Harbor Area | Meeting 11 Draft Names Discussion","type":"Discussion","industry":"Other"},{"id":"statue_john_smoth_Meeting_8_Proposal_Discussion","label":"Statue John Smoth | Meeting 8 Proposal Discussion","type":"Discussion","industry":"Other"},{"id":"statue_john_smoth_Meeting_10_Presentation","label":"Statue John Smoth | Meeting 10 Presentation","type":"Other","industry":""},{"id":"affordable_housing_Meeting_8_Gather_Feedback_Discussion","label":"Affordable Housing | Meeting 8 Gather Feedback Discussion","type":"Discussion","industry":"Fishing"},{"id":"expanding_tourist_wharf_Travel_Harbor_Route_Solutions_Completed_Discussion_Tourist","label":"expanding tourist wharf Travel Harbor Route Solutions Completed Discussion Tourist","type":"Discussion","industry":"Tourism"},{"id":"renaming_park_himark_Travel_Himark_City_Hall","label":"renaming park himark Travel Himark City Hall","type":"Other","industry":""},{"id":"heritage_walking_tour_Travel_Captain_Market_Completed_Discussion","label":"heritage walking tour Travel Captain Market Completed Discussion","type":"Discussion","industry":"Tourism"},{"id":"deep_fishing_dock_Travel_High_Seas_Fishing_Inc_Completed_Discussion","label":"deep fishing dock Travel High Seas Fishing Inc Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"heritage_walking_tour_Meeting_9_Report","label":"Heritage Walking Tour | Meeting 9 Report","type":"Other","industry":""},{"id":"heritage_walking_tour_Meeting_8_Proposal_Discussion","label":"Heritage Walking Tour | Meeting 8 Proposal Discussion","type":"Discussion","industry":"Tourism"},{"id":"marine_life_deck_Travel_Tropics_Environmental_Hub","label":"marine life deck Travel Tropics Environmental Hub","type":"Other","industry":""},{"id":"concert_Meeting_7_Concert_Issues","label":"Concert | Meeting 7 Concert Issues","type":"Other","industry":""},{"id":"name_harbor_area_Meeting_12_Public_Opinion","label":"Name Harbor Area | Meeting 12 Public Opinion","type":"Other","industry":""},{"id":"low_volume_crane_Meeting_3_Proposal_Discussion","label":"Low Volume Crane | Meeting 3 Proposal Discussion","type":"Discussion","industry":"Fishing"},{"id":"seafood_festival_Travel_Dock_Roll_Hall_of_Fame","label":"seafood festival Travel Dock Roll Hall of Fame","type":"Other","industry":""},{"id":"waterfront_market_Travel_Harbor_Edge_Grill_Completed_Discussion","label":"waterfront market Travel Harbor Edge Grill Completed Discussion","type":"Discussion","industry":"Tourism"},{"id":"seafood_festival_Meeting_3_Take_Action_Discussion","label":"Seafood Festival | Meeting 3 Take Action Discussion","type":"Discussion","industry":"Fishing"},{"id":"marine_life_deck_Meeting_12_Detailed_Proposal_Discussion","label":"Marine Life Deck | Meeting 12 Detailed Proposal Discussion","type":"Discussion","industry":"Tourism"},{"id":"seafood_festival_Meeting_2_Feedback_Discussion","label":"Seafood Festival | Meeting 2 Feedback Discussion","type":"Discussion","industry":"Fishing"},{"id":"expanding_tourist_wharf_Meeting_10_Report_Update_Discussion","label":"Expanding Tourist Wharf | Meeting 10 Report Update Discussion","type":"Discussion","industry":"Tourism"},{"id":"marine_life_deck_Meeting_10_Initial_Ideas","label":"Marine Life Deck | Meeting 10 Initial Ideas","type":"Other","industry":""},{"id":"waterfront_market_Travel_Harborfront_Market","label":"waterfront market Travel Harborfront Market","type":"Other","industry":""},{"id":"name_harbor_area_Meeting_11_Draft_Names","label":"Name Harbor Area | Meeting 11 Draft Names","type":"Other","industry":""},{"id":"waterfront_market_Travel_Harbor_Edge_Grill_Discussion","label":"waterfront market Travel Harbor Edge Grill Discussion","type":"Discussion","industry":"Tourism"},{"id":"affordable_housing_Meeting_7_Debate","label":"Affordable Housing | Meeting 7 Debate","type":"Other","industry":""},{"id":"marine_life_deck_Meeting_12_Environmental_Impact_Report_Discussion","label":"Marine Life Deck | Meeting 12 Environmental Impact Report Discussion","type":"Discussion","industry":"Tourism"},{"id":"affordable_housing_Travel_Tidewater_Flats","label":"affordable housing Travel Tidewater Flats","type":"Other","industry":""},{"id":"deep_fishing_dock_Meeting_3_Maintenance_Plan","label":"Deep Fishing Dock | Meeting 3 Maintenance Plan","type":"Other","industry":""},{"id":"statue_john_smoth_Meeting_9_Gather_Feedback_Discussion","label":"Statue John Smoth | Meeting 9 Gather Feedback Discussion","type":"Discussion","industry":"Other"},{"id":"Simone Kat","label":"Simone Kat","type":"Board Member","industry":""},{"id":"affordable_housing_Travel_Waveside_Townhomes_Completed_Discussion","label":"affordable housing Travel Waveside Townhomes Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"affordable_housing_Travel_Tidewater_Flats_Discussion","label":"affordable housing Travel Tidewater Flats Discussion","type":"Discussion","industry":"Fishing"},{"id":"name_harbor_area_Meeting_12_Public_Opinion_Discussion","label":"Name Harbor Area | Meeting 12 Public Opinion Discussion","type":"Discussion","industry":"Other"},{"id":"name_harbor_area_Travel_Harbor_Odyssey_Tours","label":"name harbor area Travel Harbor Odyssey Tours","type":"Other","industry":""},{"id":"fish_vacuum_Travel_Bay_Harvest_Corporation","label":"fish vacuum Travel Bay Harvest Corporation","type":"Other","industry":""},{"id":"low_volume_crane_Travel_Harbor_Route_Solutions_Completed_Discussion_Crane","label":"low volume crane Travel Harbor Route Solutions Completed Discussion Crane","type":"Discussion","industry":"Fishing"},{"id":"deep_fishing_dock_Travel_High_Seas_Fishing_Inc","label":"deep fishing dock Travel High Seas Fishing Inc","type":"Other","industry":""},{"id":"low_volume_crane_Travel_Haacklee_Assembly_Co_Completed_Discussion","label":"low volume crane Travel Haacklee Assembly Co Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"heritage_walking_tour_Meeting_7_Discussion","label":"Heritage Walking Tour | Meeting 7 Discussion","type":"Discussion","industry":"Tourism"},{"id":"name_inspection_office_Meeting_8_Proposal_Discussion","label":"Name Inspection Office | Meeting 8 Proposal Discussion","type":"Discussion","industry":"Other"},{"id":"name_harbor_area_Travel_The_Bait_Stich_Discussion","label":"name harbor area Travel The Bait Stich Discussion","type":"Discussion","industry":"Other"},{"id":"renaming_park_himark_Travel_Sailors_Perch_Light_Completed_Discussion","label":"renaming park himark Travel Sailors Perch Light Completed Discussion","type":"Discussion","industry":"Other"},{"id":"waterfront_market_Meeting_8_Gather_Feedback","label":"Waterfront Market | Meeting 8 Gather Feedback","type":"Other","industry":""},{"id":"waterfront_market_Meeting_7_Discussion","label":"Waterfront Market | Meeting 7 Discussion","type":"Discussion","industry":"Tourism"},{"id":"concert_Meeting_16_Road_Closures","label":"Concert | Meeting 16 Road Closures","type":"Other","industry":""},{"id":"deep_fishing_dock_Travel_High_Seas_Fishing_Inc_Discussion","label":"deep fishing dock Travel High Seas Fishing Inc Discussion","type":"Discussion","industry":"Fishing"},{"id":"low_volume_crane_Travel_Harbor_Route_Solutions","label":"low volume crane Travel Harbor Route Solutions","type":"Other","industry":""},{"id":"expanding_tourist_wharf_Meeting_11_Report_Update_Discussion","label":"Expanding Tourist Wharf | Meeting 11 Report Update Discussion","type":"Discussion","industry":"Tourism"},{"id":"name_inspection_office_Travel_Lomark_Civic_Plaza","label":"name inspection office Travel Lomark Civic Plaza","type":"Other","industry":""},{"id":"name_harbor_area_Travel_The_Bait_Stich_Completed_Discussion","label":"name harbor area Travel The Bait Stich Completed Discussion","type":"Discussion","industry":"Other"},{"id":"fish_vacuum_Meeting_3_Report_Discussion","label":"Fish Vacuum | Meeting 3 Report Discussion","type":"Discussion","industry":"Fishing"},{"id":"Ed Helpsford","label":"Ed Helpsford","type":"Board Member","industry":""},{"id":"renaming_park_himark_Travel_Anchor_Way_Grill_Completed_Discussion","label":"renaming park himark Travel Anchor Way Grill Completed Discussion","type":"Discussion","industry":"Other"},{"id":"affordable_housing_Meeting_10_Travel_Findings_Discussion","label":"Affordable Housing | Meeting 10 Travel Findings Discussion","type":"Discussion","industry":"Fishing"},{"id":"concert_Travel_Paakland_Elementary_Completed_Discussion","label":"concert Travel Paakland Elementary Completed Discussion","type":"Discussion","industry":"Tourism"},{"id":"marine_life_deck_Travel_Tropics_Environmental_Hub_Discussion","label":"marine life deck Travel Tropics Environmental Hub Discussion","type":"Discussion","industry":"Tourism"},{"id":"marine_life_deck_Meeting_11_Feedback_Discussion","label":"Marine Life Deck | Meeting 11 Feedback Discussion","type":"Discussion","industry":"Tourism"},{"id":"deep_fishing_dock_Meeting_4_Findings_Report_Discussion","label":"Deep Fishing Dock | Meeting 4 Findings Report Discussion","type":"Discussion","industry":"Fishing"},{"id":"fish_vacuum_Travel_Bay_Harvest_Corporation_Discussion","label":"fish vacuum Travel Bay Harvest Corporation Discussion","type":"Discussion","industry":"Fishing"},{"id":"deep_fishing_dock_Meeting_3_Maintenance_Plan_Discussion","label":"Deep Fishing Dock | Meeting 3 Maintenance Plan Discussion","type":"Discussion","industry":"Fishing"},{"id":"affordable_housing_Meeting_10_Housing_Proposal","label":"Affordable Housing | Meeting 10 Housing Proposal","type":"Other","industry":""},{"id":"renaming_park_himark_Meeting_4_Name_Ideas_Discussion","label":"Renaming Park Himark | Meeting 4 Name Ideas Discussion","type":"Discussion","industry":"Other"},{"id":"waterfront_market_Travel_Harbor_Edge_Grill","label":"waterfront market Travel Harbor Edge Grill","type":"Other","industry":""},{"id":"heritage_walking_tour_Travel_Captain_Market","label":"heritage walking tour Travel Captain Market","type":"Other","industry":""},{"id":"deep_fishing_dock_Meeting_4_Recommendation_Discussion","label":"Deep Fishing Dock | Meeting 4 Recommendation Discussion","type":"Discussion","industry":"Fishing"},{"id":"statue_john_smoth_Travel_The_Bait_Stich","label":"statue john smoth Travel The Bait Stich","type":"Other","industry":""},{"id":"waterfront_market_Meeting_9_Report","label":"Waterfront Market | Meeting 9 Report","type":"Other","industry":""},{"id":"seafood_festival_Travel_Dock_Roll_Hall_of_Fame_Discussion","label":"seafood festival Travel Dock Roll Hall of Fame Discussion","type":"Discussion","industry":"Fishing"},{"id":"name_harbor_area_Travel_The_Bait_Stich","label":"name harbor area Travel The Bait Stich","type":"Other","industry":""},{"id":"heritage_walking_tour_Meeting_9_Take_Action_Discussion","label":"Heritage Walking Tour | Meeting 9 Take Action Discussion","type":"Discussion","industry":"Tourism"},{"id":"expanding_tourist_wharf_Meeting_9_Report","label":"Expanding Tourist Wharf | Meeting 9 Report","type":"Other","industry":""},{"id":"heritage_walking_tour_Meeting_8_Proposal","label":"Heritage Walking Tour | Meeting 8 Proposal","type":"Other","industry":""},{"id":"seafood_festival_Meeting_3_Report_Discussion","label":"Seafood Festival | Meeting 3 Report Discussion","type":"Discussion","industry":"Fishing"},{"id":"statue_john_smoth_Meeting_10_Presentation_Discussion","label":"Statue John Smoth | Meeting 10 Presentation Discussion","type":"Discussion","industry":"Other"},{"id":"marine_life_deck_Meeting_11_Feedback","label":"Marine Life Deck | Meeting 11 Feedback","type":"Other","industry":""},{"id":"renaming_park_himark_Meeting_5_Nominations_Discussion","label":"Renaming Park Himark | Meeting 5 Nominations Discussion","type":"Discussion","industry":"Other"},{"id":"affordable_housing_Travel_Waveside_Townhomes_Discussion","label":"affordable housing Travel Waveside Townhomes Discussion","type":"Discussion","industry":"Fishing"},{"id":"expanding_tourist_wharf_Travel_Harbor_Route_Solutions_Discussion_Tourist","label":"expanding tourist wharf Travel Harbor Route Solutions Discussion Tourist","type":"Discussion","industry":"Tourism"},{"id":"expanding_tourist_wharf_Meeting_7_Initial_Views_Discussion","label":"Expanding Tourist Wharf | Meeting 7 Initial Views Discussion","type":"Discussion","industry":"Tourism"},{"id":"renaming_park_himark_Meeting_7_Unveiling_Event_Discussion","label":"Renaming Park Himark | Meeting 7 Unveiling Event Discussion","type":"Discussion","industry":"Other"},{"id":"low_volume_crane_Meeting_3_Proposal","label":"Low Volume Crane | Meeting 3 Proposal","type":"Other","industry":""},{"id":"marine_life_deck_Meeting_12_Detailed_Proposal","label":"Marine Life Deck | Meeting 12 Detailed Proposal","type":"Other","industry":""},{"id":"deep_fishing_dock_Meeting_4_Findings_Report","label":"Deep Fishing Dock | Meeting 4 Findings Report","type":"Other","industry":""},{"id":"Tante Titan","label":"Tante Titan","type":"Board Member","industry":""},{"id":"statue_john_smoth_Travel_The_Bait_Stich_Completed_Discussion","label":"statue john smoth Travel The Bait Stich Completed Discussion","type":"Discussion","industry":"Other"},{"id":"affordable_housing_Travel_Waveside_Townhomes","label":"affordable housing Travel Waveside Townhomes","type":"Other","industry":""},{"id":"concert_Meeting_16_Feedback_Discussion","label":"Concert | Meeting 16 Feedback Discussion","type":"Discussion","industry":"Tourism"},{"id":"fish_vacuum_Meeting_3_Report","label":"Fish Vacuum | Meeting 3 Report","type":"Other","industry":""},{"id":"seafood_festival_Travel_Dock_Roll_Hall_of_Fame_Completed_Discussion","label":"seafood festival Travel Dock Roll Hall of Fame Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"name_inspection_office_Meeting_14_Announcement","label":"Name Inspection Office | Meeting 14 Announcement","type":"Other","industry":""},{"id":"concert_Meeting_16_Communication_Complaints","label":"Concert | Meeting 16 Communication Complaints","type":"Other","industry":""},{"id":"low_volume_crane_Meeting_8_Report","label":"Low Volume Crane | Meeting 8 Report","type":"Other","industry":""},{"id":"name_inspection_office_Meeting_14_Announcement_Discussion","label":"Name Inspection Office | Meeting 14 Announcement Discussion","type":"Discussion","industry":"Other"},{"id":"concert_Meeting_16_Road_Closures_Discussion","label":"Concert | Meeting 16 Road Closures Discussion","type":"Discussion","industry":"Tourism"},{"id":"fish_vacuum_Meeting_1_Introduction","label":"Fish Vacuum | Meeting 1 Introduction","type":"Other","industry":""},{"id":"heritage_walking_tour_Meeting_9_Report_Discussion","label":"Heritage Walking Tour | Meeting 9 Report Discussion","type":"Discussion","industry":"Tourism"},{"id":"seafood_festival_Meeting_3_Report","label":"Seafood Festival | Meeting 3 Report","type":"Other","industry":""},{"id":"renaming_park_himark_Meeting_8_Compile_Nominations_Discussion","label":"Renaming Park Himark | Meeting 8 Compile Nominations Discussion","type":"Discussion","industry":"Other"},{"id":"new_crane_lomark_Travel_Blue_Wave_Shipping","label":"new crane lomark Travel Blue Wave Shipping","type":"Other","industry":""},{"id":"Seal","label":"Seal","type":"Board Member","industry":""},{"id":"renaming_park_himark_Travel_Himark_City_Hall_Discussion","label":"renaming park himark Travel Himark City Hall Discussion","type":"Discussion","industry":"Other"},{"id":"marine_life_deck_Travel_Tropics_Environmental_Hub_Completed_Discussion","label":"marine life deck Travel Tropics Environmental Hub Completed Discussion","type":"Discussion","industry":"Tourism"},{"id":"concert_Meeting_16_Communication_Complaints_Discussion","label":"Concert | Meeting 16 Communication Complaints Discussion","type":"Discussion","industry":"Tourism"},{"id":"waterfront_market_Meeting_7_Benefits_Feasibility","label":"Waterfront Market | Meeting 7 Benefits Feasibility","type":"Other","industry":""},{"id":"affordable_housing_Meeting_7_Debate_Discussion","label":"Affordable Housing | Meeting 7 Debate Discussion","type":"Discussion","industry":"Fishing"},{"id":"low_volume_crane_Travel_Harbor_Builders","label":"low volume crane Travel Harbor Builders","type":"Other","industry":""},{"id":"renaming_park_himark_Travel_Sailors_Perch_Light_Discussion","label":"renaming park himark Travel Sailors Perch Light Discussion","type":"Discussion","industry":"Other"},{"id":"new_crane_lomark_Meeting_5_Cost_Impact_Report","label":"New Crane Lomark | Meeting 5 Cost Impact Report","type":"Other","industry":""},{"id":"low_volume_crane_Travel_Harbor_Route_Solutions_Discussion","label":"low volume crane Travel Harbor Route Solutions Discussion","type":"Discussion","industry":"Fishing"},{"id":"renaming_park_himark_Meeting_4_Name_Ideas","label":"Renaming Park Himark | Meeting 4 Name Ideas","type":"Other","industry":""},{"id":"expanding_tourist_wharf_Meeting_8_Expand_Ideas_Discussion","label":"Expanding Tourist Wharf | Meeting 8 Expand Ideas Discussion","type":"Discussion","industry":"Tourism"},{"id":"name_inspection_office_Travel_Lomark_Civic_Plaza_Completed_Discussion","label":"name inspection office Travel Lomark Civic Plaza Completed Discussion","type":"Discussion","industry":"Other"},{"id":"name_inspection_office_Meeting_9_Community_Vote","label":"Name Inspection Office | Meeting 9 Community Vote","type":"Other","industry":""},{"id":"concert_Meeting_7_Discussion","label":"Concert | Meeting 7 Discussion","type":"Discussion","industry":"Tourism"},{"id":"name_harbor_area_Travel_Harbor_Odyssey_Tours_Completed_Discussion","label":"name harbor area Travel Harbor Odyssey Tours Completed Discussion","type":"Discussion","industry":"Other"},{"id":"concert_Meeting_16_Feedback","label":"Concert | Meeting 16 Feedback","type":"Other","industry":""},{"id":"new_crane_lomark_Travel_Blue_Wave_Shipping_Discussion","label":"new crane lomark Travel Blue Wave Shipping Discussion","type":"Discussion","industry":"Fishing"},{"id":"renaming_park_himark_Meeting_7_Unveiling_Event","label":"Renaming Park Himark | Meeting 7 Unveiling Event","type":"Other","industry":""},{"id":"renaming_park_himark_Meeting_7_Announce_Name","label":"Renaming Park Himark | Meeting 7 Announce Name","type":"Other","industry":""},{"id":"waterfront_market_Travel_Harborfront_Market_Discussion","label":"waterfront market Travel Harborfront Market Discussion","type":"Discussion","industry":"Tourism"},{"id":"new_crane_lomark_Travel_Blue_Wave_Shipping_Completed_Discussion","label":"new crane lomark Travel Blue Wave Shipping Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"statue_john_smoth_Meeting_8_Proposal","label":"Statue John Smoth | Meeting 8 Proposal","type":"Other","industry":""},{"id":"fish_vacuum_Travel_Bay_Harvest_Corporation_Completed_Discussion","label":"fish vacuum Travel Bay Harvest Corporation Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"fish_vacuum_Meeting_1_Introduction_Discussion","label":"Fish Vacuum | Meeting 1 Introduction Discussion","type":"Discussion","industry":"Fishing"},{"id":"name_inspection_office_Travel_Lomark_Civic_Plaza_Discussion","label":"name inspection office Travel Lomark Civic Plaza Discussion","type":"Discussion","industry":"Other"},{"id":"statue_john_smoth_Meeting_9_Feedback","label":"Statue John Smoth | Meeting 9 Feedback","type":"Other","industry":""},{"id":"new_crane_lomark_Meeting_8_Share_Findings_Discussion","label":"New Crane Lomark | Meeting 8 Share Findings Discussion","type":"Discussion","industry":"Fishing"},{"id":"deep_fishing_dock_Meeting_4_Recommendation","label":"Deep Fishing Dock | Meeting 4 Recommendation","type":"Other","industry":""},{"id":"renaming_park_himark_Travel_Anchor_Way_Grill_Discussion","label":"renaming park himark Travel Anchor Way Grill Discussion","type":"Discussion","industry":"Other"},{"id":"affordable_housing_Travel_Tidewater_Flats_Completed_Discussion","label":"affordable housing Travel Tidewater Flats Completed Discussion","type":"Discussion","industry":"Fishing"},{"id":"heritage_walking_tour_Meeting_7_Outline","label":"Heritage Walking Tour | Meeting 7 Outline","type":"Other","industry":""},{"id":"affordable_housing_Meeting_8_Feedback","label":"Affordable Housing | Meeting 8 Feedback","type":"Other","industry":""},{"id":"renaming_park_himark_Meeting_8_Compile_Nominations","label":"Renaming Park Himark | Meeting 8 Compile Nominations","type":"Other","industry":""},{"id":"seafood_festival_Meeting_2_Feedback","label":"Seafood Festival | Meeting 2 Feedback","type":"Other","industry":""},{"id":"new_crane_lomark_Meeting_5_Cost_Impact_Report_Discussion","label":"New Crane Lomark | Meeting 5 Cost Impact Report Discussion","type":"Discussion","industry":"Fishing"},{"id":"Carol Limpet","label":"Carol Limpet","type":"Board Member","industry":""},{"id":"waterfront_market_Meeting_8_Gather_Feedback_Discussion","label":"Waterfront Market | Meeting 8 Gather Feedback Discussion","type":"Discussion","industry":"Tourism"},{"id":"low_volume_crane_Meeting_8_Report_Discussion","label":"Low Volume Crane | Meeting 8 Report Discussion","type":"Discussion","industry":"Fishing"},{"id":"renaming_park_himark_Travel_Sailors_Perch_Light","label":"renaming park himark Travel Sailors Perch Light","type":"Other","industry":""},{"id":"renaming_park_himark_Travel_Himark_City_Hall_Completed_Discussion","label":"renaming park himark Travel Himark City Hall Completed Discussion","type":"Discussion","industry":"Other"},{"id":"name_inspection_office_Meeting_9_Community_Vote_Discussion","label":"Name Inspection Office | Meeting 9 Community Vote Discussion","type":"Discussion","industry":"Other"},{"id":"marine_life_deck_Meeting_10_Initial_Ideas_Discussion","label":"Marine Life Deck | Meeting 10 Initial Ideas Discussion","type":"Discussion","industry":"Tourism"},{"id":"low_volume_crane_Travel_Haacklee_Assembly_Co_Discussion","label":"low volume crane Travel Haacklee Assembly Co Discussion","type":"Discussion","industry":"Fishing"},{"id":"seafood_festival_Meeting_1_Discussion","label":"Seafood Festival | Meeting 1 Discussion","type":"Discussion","industry":"Fishing"},{"id":"low_volume_crane_Travel_Haacklee_Assembly_Co","label":"low volume crane Travel Haacklee Assembly Co","type":"Other","industry":""},{"id":"concert_Travel_Paakland_Elementary","label":"concert Travel Paakland Elementary","type":"Other","industry":""},{"id":"heritage_walking_tour_Travel_Captain_Market_Discussion","label":"heritage walking tour Travel Captain Market Discussion","type":"Discussion","industry":"Tourism"},{"id":"name_inspection_office_Meeting_8_Proposal","label":"Name Inspection Office | Meeting 8 Proposal","type":"Other","industry":""},{"id":"marine_life_deck_Meeting_12_Environmental_Impact_Report","label":"Marine Life Deck | Meeting 12 Environmental Impact Report","type":"Other","industry":""},{"id":"heritage_walking_tour_Meeting_9_Take_Action","label":"Heritage Walking Tour | Meeting 9 Take Action","type":"Other","industry":""},{"id":"low_volume_crane_Travel_Harbor_Builders_Discussion","label":"low volume crane Travel Harbor Builders Discussion","type":"Discussion","industry":"Fishing"},{"id":"name_harbor_area_Meeting_14_Finalize_Name","label":"Name Harbor Area | Meeting 14 Finalize Name","type":"Other","industry":""},{"id":"concert_Travel_Packland_Elementary_Discussion","label":"concert Travel Packland Elementary Discussion","type":"Discussion","industry":"Tourism"}],"edges":[{"source":"expanding_tourist_wharf_Meeting_7_Initial_Views_Discussion","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"expanding_tourist_wharf_Travel_Harbor_Route_Solutions_Discussion_Tourist","target":"Simone Kat","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"expanding_tourist_wharf_Travel_Harbor_Route_Solutions","target":"Simone Kat","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"expanding_tourist_wharf_Meeting_8_Expand_Ideas_Discussion","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"expanding_tourist_wharf_Travel_Harbor_Route_Solutions_Completed_Discussion_Tourist","target":"Simone Kat","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"expanding_tourist_wharf_Meeting_9_Start_Report_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"-0.5","dataset":"TROUT"},{"source":"expanding_tourist_wharf_Meeting_9_Start_Report_Discussion","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"expanding_tourist_wharf_Meeting_9_Report","target":"Teddy Goldstein","label":"participant","sentiment":"-0.5","dataset":"TROUT"},{"source":"expanding_tourist_wharf_Meeting_9_Report","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"expanding_tourist_wharf_Meeting_10_Report_Update_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"-0.5","dataset":"TROUT"},{"source":"expanding_tourist_wharf_Meeting_11_Report_Update_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"-0.5","dataset":"TROUT"},{"source":"statue_john_smoth_Meeting_8_Proposal_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"statue_john_smoth_Meeting_8_Proposal","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"statue_john_smoth_Travel_The_Bait_Stich_Discussion","target":"Seal","label":"participant","sentiment":"0.2","dataset":"FILAH+TROUT"},{"source":"statue_john_smoth_Travel_The_Bait_Stich","target":"Seal","label":"participant","sentiment":"0.2","dataset":"FILAH+TROUT"},{"source":"statue_john_smoth_Meeting_9_Gather_Feedback_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"statue_john_smoth_Meeting_9_Feedback","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"statue_john_smoth_Travel_The_Bait_Stich_Completed_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"statue_john_smoth_Meeting_10_Presentation_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"statue_john_smoth_Meeting_10_Presentation","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"deep_fishing_dock_Travel_High_Seas_Fishing_Inc_Discussion","target":"Simone Kat","label":"participant","sentiment":"","dataset":"FILAH"},{"source":"deep_fishing_dock_Travel_High_Seas_Fishing_Inc","target":"Simone Kat","label":"participant","sentiment":"","dataset":"FILAH"},{"source":"deep_fishing_dock_Meeting_3_Maintenance_Plan_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"","dataset":"TROUT"},{"source":"deep_fishing_dock_Meeting_3_Maintenance_Plan","target":"Teddy Goldstein","label":"participant","sentiment":"","dataset":"TROUT"},{"source":"deep_fishing_dock_Travel_High_Seas_Fishing_Inc_Completed_Discussion","target":"Simone Kat","label":"participant","sentiment":"","dataset":"FILAH"},{"source":"deep_fishing_dock_Meeting_4_Findings_Report_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"","dataset":"TROUT"},{"source":"deep_fishing_dock_Meeting_4_Findings_Report","target":"Teddy Goldstein","label":"participant","sentiment":"","dataset":"TROUT"},{"source":"deep_fishing_dock_Meeting_4_Recommendation_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"","dataset":"TROUT"},{"source":"deep_fishing_dock_Meeting_4_Recommendation","target":"Teddy Goldstein","label":"participant","sentiment":"","dataset":"TROUT"},{"source":"new_crane_lomark_Travel_Blue_Wave_Shipping_Discussion","target":"Simone Kat","label":"participant","sentiment":"-0.5","dataset":"FILAH"},{"source":"new_crane_lomark_Travel_Blue_Wave_Shipping","target":"Simone Kat","label":"participant","sentiment":"-0.5","dataset":"FILAH"},{"source":"new_crane_lomark_Meeting_5_Cost_Impact_Report_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"new_crane_lomark_Meeting_5_Cost_Impact_Report","target":"Teddy Goldstein","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"new_crane_lomark_Travel_Blue_Wave_Shipping_Completed_Discussion","target":"Simone Kat","label":"participant","sentiment":"-0.5","dataset":"FILAH"},{"source":"new_crane_lomark_Meeting_8_Share_Findings_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"new_crane_lomark_Meeting_8_Share_Findings","target":"Teddy Goldstein","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"fish_vacuum_Meeting_1_Introduction_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"0.5","dataset":"TROUT"},{"source":"fish_vacuum_Meeting_1_Introduction","target":"Seal","label":"participant","sentiment":"0","dataset":"FILAH+TROUT"},{"source":"fish_vacuum_Travel_Bay_Harvest_Corporation_Discussion","target":"Simone Kat","label":"participant","sentiment":"-0.1","dataset":"FILAH"},{"source":"fish_vacuum_Travel_Bay_Harvest_Corporation","target":"Simone Kat","label":"participant","sentiment":"-0.1","dataset":"FILAH"},{"source":"fish_vacuum_Travel_Bay_Harvest_Corporation_Completed_Discussion","target":"Simone Kat","label":"participant","sentiment":"-0.1","dataset":"FILAH"},{"source":"fish_vacuum_Meeting_3_Report_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"0.5","dataset":"TROUT"},{"source":"fish_vacuum_Meeting_3_Report","target":"Teddy Goldstein","label":"participant","sentiment":"0.5","dataset":"TROUT"},{"source":"low_volume_crane_Meeting_3_Proposal_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"low_volume_crane_Meeting_3_Proposal","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"low_volume_crane_Travel_Harbor_Route_Solutions_Discussion","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"low_volume_crane_Travel_Harbor_Route_Solutions","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"low_volume_crane_Travel_Harbor_Route_Solutions_Completed_Discussion_Crane","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"low_volume_crane_Travel_Harbor_Builders_Discussion","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"low_volume_crane_Travel_Harbor_Builders","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"low_volume_crane_Travel_Haacklee_Assembly_Co_Discussion","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"low_volume_crane_Travel_Haacklee_Assembly_Co","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"low_volume_crane_Meeting_8_Report_Discussion","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"low_volume_crane_Meeting_8_Report","target":"Seal","label":"participant","sentiment":"0.1","dataset":"FILAH+TROUT"},{"source":"low_volume_crane_Travel_Harbor_Builders_Completed_Discussion","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"low_volume_crane_Travel_Haacklee_Assembly_Co_Completed_Discussion","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"affordable_housing_Travel_Waveside_Townhomes_Discussion","target":"Simone Kat","label":"participant","sentiment":"-1","dataset":"FILAH"},{"source":"affordable_housing_Travel_Waveside_Townhomes","target":"Simone Kat","label":"participant","sentiment":"-1","dataset":"FILAH"},{"source":"affordable_housing_Meeting_7_Debate_Discussion","target":"Simone Kat","label":"participant","sentiment":"-1","dataset":"FILAH"},{"source":"affordable_housing_Meeting_7_Debate_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Meeting_7_Debate","target":"Simone Kat","label":"participant","sentiment":"-1","dataset":"FILAH"},{"source":"affordable_housing_Meeting_7_Debate","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Travel_Waveside_Townhomes_Completed_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Meeting_8_Gather_Feedback_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Meeting_8_Feedback","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Travel_Tidewater_Flats_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Travel_Tidewater_Flats","target":"Teddy Goldstein","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Travel_Tidewater_Flats_Completed_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Meeting_10_Travel_Findings_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"affordable_housing_Meeting_10_Housing_Proposal","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"renaming_park_himark_Meeting_4_Name_Ideas_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Meeting_4_Name_Ideas","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Travel_Anchor_Way_Grill_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Travel_Anchor_Way_Grill","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Travel_Sailors_Perch_Light_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Travel_Sailors_Perch_Light","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Travel_Himark_City_Hall_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"renaming_park_himark_Travel_Himark_City_Hall","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"renaming_park_himark_Meeting_5_Nominations_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"renaming_park_himark_Meeting_5_Nominations","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"renaming_park_himark_Travel_Himark_City_Hall_Completed_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"renaming_park_himark_Travel_Anchor_Way_Grill_Completed_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Travel_Sailors_Perch_Light_Completed_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Meeting_8_Compile_Nominations_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Meeting_8_Compile_Nominations","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Meeting_7_Announce_Name_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Meeting_7_Announce_Name","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Meeting_7_Unveiling_Event_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"renaming_park_himark_Meeting_7_Unveiling_Event","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Travel_The_Bait_Stich_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Travel_The_Bait_Stich","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Meeting_11_Draft_Names_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Meeting_11_Draft_Names","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Travel_Harbor_Odyssey_Tours","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Travel_The_Bait_Stich_Completed_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Travel_Harbor_Odyssey_Tours_Completed_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_harbor_area_Meeting_12_Public_Opinion_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"0","dataset":"TROUT"},{"source":"name_harbor_area_Meeting_12_Public_Opinion","target":"Ed Helpsford","label":"participant","sentiment":"0","dataset":"TROUT"},{"source":"name_harbor_area_Meeting_14_Finalize_Name","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_inspection_office_Meeting_8_Proposal_Discussion","target":"Simone Kat","label":"participant","sentiment":"0","dataset":"FILAH"},{"source":"name_inspection_office_Meeting_8_Proposal","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_inspection_office_Travel_Lomark_Civic_Plaza_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_inspection_office_Travel_Lomark_Civic_Plaza","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_inspection_office_Travel_Lomark_Civic_Plaza_Completed_Discussion","target":"Simone Kat","label":"participant","sentiment":"0","dataset":"FILAH"},{"source":"name_inspection_office_Meeting_9_Community_Vote_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"0","dataset":"TROUT"},{"source":"name_inspection_office_Meeting_9_Community_Vote","target":"Ed Helpsford","label":"participant","sentiment":"0","dataset":"TROUT"},{"source":"name_inspection_office_Meeting_14_Announcement_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"name_inspection_office_Meeting_14_Announcement","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"marine_life_deck_Meeting_10_Initial_Ideas_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"marine_life_deck_Meeting_10_Initial_Ideas_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"marine_life_deck_Meeting_10_Initial_Ideas","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"marine_life_deck_Meeting_10_Initial_Ideas","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"marine_life_deck_Travel_Tropics_Environmental_Hub_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"marine_life_deck_Travel_Tropics_Environmental_Hub","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"marine_life_deck_Meeting_11_Feedback_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"marine_life_deck_Meeting_11_Feedback","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"marine_life_deck_Travel_Tropics_Environmental_Hub_Completed_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.5","dataset":"FILAH"},{"source":"marine_life_deck_Meeting_12_Environmental_Impact_Report_Discussion","target":"Teddy Goldstein","label":"participant","sentiment":"-0.5","dataset":"TROUT"},{"source":"marine_life_deck_Meeting_12_Environmental_Impact_Report","target":"Teddy Goldstein","label":"participant","sentiment":"-0.5","dataset":"TROUT"},{"source":"marine_life_deck_Meeting_12_Detailed_Proposal_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"marine_life_deck_Meeting_12_Detailed_Proposal","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"seafood_festival_Meeting_1_Discussion","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Meeting_1_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Meeting_1_Feasibility","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Meeting_1_Feasibility","target":"Tante Titan","label":"participant","sentiment":"0.75","dataset":"Journalist Only"},{"source":"seafood_festival_Travel_Dock_Roll_Hall_of_Fame_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Travel_Dock_Roll_Hall_of_Fame","target":"Carol Limpet","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Meeting_2_Feedback_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Meeting_2_Feedback","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Travel_Dock_Roll_Hall_of_Fame_Completed_Discussion","target":"Carol Limpet","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Meeting_3_Report_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.75","dataset":"Journalist Only"},{"source":"seafood_festival_Meeting_3_Report","target":"Tante Titan","label":"participant","sentiment":"0.75","dataset":"Journalist Only"},{"source":"seafood_festival_Meeting_3_Take_Action_Discussion","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"seafood_festival_Meeting_3_Take_Action","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_7_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_7_Discussion","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"heritage_walking_tour_Meeting_7_Outline","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_7_Outline","target":"Tante Titan","label":"participant","sentiment":"1","dataset":"Journalist Only"},{"source":"heritage_walking_tour_Travel_Captain_Market_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Travel_Captain_Market","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_8_Proposal_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_8_Proposal","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Travel_Captain_Market_Completed_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_9_Report_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_9_Report","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_9_Take_Action_Discussion","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"heritage_walking_tour_Meeting_9_Take_Action","target":"Simone Kat","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"waterfront_market_Meeting_7_Discussion","target":"Simone Kat","label":"participant","sentiment":"0.75","dataset":"FILAH"},{"source":"waterfront_market_Meeting_7_Discussion","target":"Carol Limpet","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"waterfront_market_Meeting_7_Benefits_Feasibility","target":"Tante Titan","label":"participant","sentiment":"0.25","dataset":"Journalist Only"},{"source":"waterfront_market_Meeting_7_Benefits_Feasibility","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"waterfront_market_Travel_Harbor_Edge_Grill_Discussion","target":"Carol Limpet","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"waterfront_market_Travel_Harbor_Edge_Grill","target":"Carol Limpet","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"waterfront_market_Travel_Harborfront_Market_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.25","dataset":"Journalist Only"},{"source":"waterfront_market_Travel_Harborfront_Market","target":"Tante Titan","label":"participant","sentiment":"0.25","dataset":"Journalist Only"},{"source":"waterfront_market_Meeting_8_Gather_Feedback_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.25","dataset":"Journalist Only"},{"source":"waterfront_market_Meeting_8_Gather_Feedback","target":"Tante Titan","label":"participant","sentiment":"0.25","dataset":"Journalist Only"},{"source":"waterfront_market_Travel_Harborfront_Market_Completed_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.25","dataset":"Journalist Only"},{"source":"waterfront_market_Travel_Harbor_Edge_Grill_Completed_Discussion","target":"Carol Limpet","label":"participant","sentiment":"1","dataset":"FILAH"},{"source":"waterfront_market_Meeting_9_Report_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"waterfront_market_Meeting_9_Report","target":"Ed Helpsford","label":"participant","sentiment":"1","dataset":"TROUT"},{"source":"concert_Meeting_7_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Meeting_7_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"0.5","dataset":"TROUT"},{"source":"concert_Meeting_7_Concert_Issues","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Meeting_7_Concert_Issues","target":"Ed Helpsford","label":"participant","sentiment":"0.5","dataset":"TROUT"},{"source":"concert_Travel_Packland_Elementary_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Travel_Paakland_Elementary","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Travel_Paakland_Elementary_Completed_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Meeting_16_Feedback_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Meeting_16_Feedback","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Meeting_16_Road_Closures_Discussion","target":"Ed Helpsford","label":"participant","sentiment":"0.5","dataset":"TROUT"},{"source":"concert_Meeting_16_Road_Closures","target":"Ed Helpsford","label":"participant","sentiment":"0.5","dataset":"TROUT"},{"source":"concert_Meeting_16_Communication_Complaints_Discussion","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"},{"source":"concert_Meeting_16_Communication_Complaints","target":"Tante Titan","label":"participant","sentiment":"0.5","dataset":"Journalist Only"}]};
-
-const BOARD_MEMBERS = new Set(["Teddy Goldstein","Simone Kat","Ed Helpsford","Tante Titan","Seal","Carol Limpet"]);
-
-const DATASET_COLORS = {
-  "FILAH": "#e63946",
-  "TROUT": "#457b9d",
-  "Journalist Only": "#2a9d8f",
-  "FILAH+TROUT": "#6a4c93"
+var TOPIC_LABELS = {
+  concert:"Concert", new_crane_lomark:"New Crane Lomark", deep_fishing_dock:"Deep Fishing Dock",
+  waterfront_market:"Waterfront Market", name_inspection_office:"Inspection Office",
+  name_harbor_area:"Name Harbor Area", renaming_park_himark:"Renaming Park",
+  statue_john_smoth:"Statue J. Smoth", heritage_walking_tour:"Heritage Walk",
+  low_volume_crane:"Low Volume Crane", seafood_festival:"Seafood Festival",
+  marine_life_deck:"Marine Life Deck", fish_vacuum:"Fish Vacuum",
+  affordable_housing:"Affordable Housing", expanding_tourist_wharf:"Tourist Wharf"
 };
-
-const INDUSTRY_COLORS = {
-  "Tourism": "#457b9d",
-  "Fishing": "#e9a900",
-  "Other": "#888",
-  "": "#bbb"
+var MEMBER_DATA = {
+  "Tante Titan":    {ds:"Journalist Only", fish:0.75, tour:0.47, note:"Excluded by BOTH groups — 54 raw participation records, zero in FILAH or TROUT."},
+  "Teddy Goldstein":{ds:"TROUT",           fish:0.85, tour:-0.50, note:"Hidden by FILAH entirely. Tourism sentiment -0.50 — the only negative industry score on the board."},
+  "Simone Kat":     {ds:"FILAH",           fish:0.12, tour:0.91, note:"Hidden by TROUT. Tourism sentiment 0.91 — highest on the board."},
+  "Carol Limpet":   {ds:"FILAH",           fish:0.75, tour:0.83, note:"FILAH only — tourism-leaning across marine life and waterfront topics."},
+  "Ed Helpsford":   {ds:"TROUT",           fish:1.00, tour:0.75, note:"TROUT only — fishing sentiment 1.00, the maximum possible."},
+  "Seal":           {ds:"FILAH+TROUT",     fish:0.10, tour:0.10, note:"Accepted by both groups — low but balanced sentiment across industries."}
 };
+var DS_COL = {"FILAH":"#e63946","TROUT":"#457b9d","Journalist Only":"#2a9d8f","FILAH+TROUT":"#7c5cbf"};
+var IND_COL = {Fishing:"#e9a900", Tourism:"#457b9d", Other:"#888"};
+var RAW_EDGES = [
+  {m:"Carol Limpet",   t:"marine_life_deck",       ds:"FILAH",          ind:"Tourism",  s:0.50, n:4},
+  {m:"Carol Limpet",   t:"renaming_park_himark",   ds:"FILAH",          ind:"Other",    s:0.50, n:3},
+  {m:"Carol Limpet",   t:"seafood_festival",        ds:"FILAH",          ind:"Fishing",  s:0.75, n:4},
+  {m:"Carol Limpet",   t:"waterfront_market",       ds:"FILAH",          ind:"Tourism",  s:1.00, n:3},
+  {m:"Ed Helpsford",   t:"affordable_housing",      ds:"TROUT",          ind:"Fishing",  s:1.00, n:4},
+  {m:"Ed Helpsford",   t:"concert",                 ds:"TROUT",          ind:"Tourism",  s:0.50, n:2},
+  {m:"Ed Helpsford",   t:"low_volume_crane",        ds:"TROUT",          ind:"Fishing",  s:1.00, n:1},
+  {m:"Ed Helpsford",   t:"name_harbor_area",        ds:"TROUT",          ind:"Other",    s:0.00, n:1},
+  {m:"Ed Helpsford",   t:"name_inspection_office",  ds:"TROUT",          ind:"Other",    s:0.00, n:1},
+  {m:"Ed Helpsford",   t:"waterfront_market",       ds:"TROUT",          ind:"Tourism",  s:1.00, n:2},
+  {m:"Seal",           t:"expanding_tourist_wharf", ds:"FILAH+TROUT",    ind:"Tourism",  s:0.10, n:3},
+  {m:"Seal",           t:"low_volume_crane",        ds:"FILAH+TROUT",    ind:"Fishing",  s:0.10, n:3},
+  {m:"Seal",           t:"statue_john_smoth",       ds:"FILAH+TROUT",    ind:"Other",    s:0.20, n:1},
+  {m:"Simone Kat",     t:"affordable_housing",      ds:"FILAH",          ind:"Fishing",  s:-1.00,n:2},
+  {m:"Simone Kat",     t:"expanding_tourist_wharf", ds:"FILAH",          ind:"Tourism",  s:0.50, n:2},
+  {m:"Simone Kat",     t:"fish_vacuum",             ds:"FILAH",          ind:"Fishing",  s:-0.10,n:2},
+  {m:"Simone Kat",     t:"heritage_walking_tour",   ds:"FILAH",          ind:"Tourism",  s:1.00, n:6},
+  {m:"Simone Kat",     t:"low_volume_crane",        ds:"FILAH",          ind:"Fishing",  s:0.75, n:4},
+  {m:"Simone Kat",     t:"marine_life_deck",        ds:"FILAH",          ind:"Tourism",  s:1.00, n:2},
+  {m:"Simone Kat",     t:"name_inspection_office",  ds:"FILAH",          ind:"Other",    s:0.00, n:2},
+  {m:"Simone Kat",     t:"new_crane_lomark",        ds:"FILAH",          ind:"Fishing",  s:-0.50,n:2},
+  {m:"Simone Kat",     t:"seafood_festival",        ds:"FILAH",          ind:"Fishing",  s:0.75, n:2},
+  {m:"Simone Kat",     t:"waterfront_market",       ds:"FILAH",          ind:"Tourism",  s:0.75, n:1},
+  {m:"Tante Titan",    t:"concert",                 ds:"Journalist Only",ind:"Tourism",  s:0.50, n:5},
+  {m:"Tante Titan",    t:"heritage_walking_tour",   ds:"Journalist Only",ind:"Tourism",  s:1.00, n:1},
+  {m:"Tante Titan",    t:"name_harbor_area",        ds:"Journalist Only",ind:"Other",    s:1.00, n:4},
+  {m:"Tante Titan",    t:"name_inspection_office",  ds:"Journalist Only",ind:"Other",    s:1.00, n:2},
+  {m:"Tante Titan",    t:"renaming_park_himark",    ds:"Journalist Only",ind:"Other",    s:1.00, n:8},
+  {m:"Tante Titan",    t:"seafood_festival",        ds:"Journalist Only",ind:"Fishing",  s:0.75, n:1},
+  {m:"Tante Titan",    t:"statue_john_smoth",       ds:"Journalist Only",ind:"Other",    s:1.00, n:4},
+  {m:"Tante Titan",    t:"waterfront_market",       ds:"Journalist Only",ind:"Tourism",  s:0.25, n:3},
+  {m:"Teddy Goldstein",t:"affordable_housing",      ds:"TROUT",          ind:"Fishing",  s:1.00, n:2},
+  {m:"Teddy Goldstein",t:"expanding_tourist_wharf", ds:"TROUT",          ind:"Tourism",  s:-0.50,n:3},
+  {m:"Teddy Goldstein",t:"fish_vacuum",             ds:"TROUT",          ind:"Fishing",  s:0.50, n:2},
+  {m:"Teddy Goldstein",t:"marine_life_deck",        ds:"TROUT",          ind:"Tourism",  s:-0.50,n:1},
+  {m:"Teddy Goldstein",t:"new_crane_lomark",        ds:"TROUT",          ind:"Fishing",  s:1.00, n:2}
+];
 
-const svg = d3.select("#network-svg");
-const container = document.getElementById("network-container");
-const tooltip = document.getElementById("net-tooltip");
-
-let activeFilter = "all";
-let selectedMember = null;
-
-function getNodeColor(n) {
-  if (n.type === "Board Member") return "#e63946";
-  return INDUSTRY_COLORS[n.industry] || "#bbb";
-}
-
-function getNodeRadius(n, degreeMap) {
-  if (n.type === "Board Member") return 18 + Math.sqrt((degreeMap[n.id] || 0)) * 2.5;
-  return 5 + Math.sqrt((degreeMap[n.id] || 0)) * 1.2;
-}
+function dsColor(ds) { return DS_COL[ds] || "#888"; }
 
 function buildGraph(filter) {
-  svg.selectAll("*").remove();
+  var svgEl = d3.select("#gnet-svg");
+  svgEl.selectAll("*").remove();
+  var wrap = document.getElementById("gnet-wrap");
+  var W = wrap.clientWidth || 640, H = 480, PAD = 26;
 
-  const filteredEdges = filter === "all"
-    ? GRAPH_DATA.edges
-    : GRAPH_DATA.edges.filter(e => e.dataset === filter);
+  var edges = filter ? RAW_EDGES.filter(function(e){ return e.ds === filter; }) : RAW_EDGES;
+  document.getElementById("gnet-count").textContent = edges.length + " topic connections shown";
 
-  document.getElementById("net-status").textContent = filteredEdges.length + " edges shown";
+  var memberSet = new Set(Object.keys(MEMBER_DATA));
+  var topicSet  = new Set(edges.map(function(e){ return e.t; }));
+  var degMap    = {};
+  edges.forEach(function(e){ degMap[e.m]=(degMap[e.m]||0)+e.n; degMap[e.t]=(degMap[e.t]||0)+e.n; });
 
-  const usedIds = new Set();
-  filteredEdges.forEach(e => { usedIds.add(e.source); usedIds.add(e.target); });
-  // Always include board members
-  BOARD_MEMBERS.forEach(b => usedIds.add(b));
+  var nodes=[], nodeMap={};
+  memberSet.forEach(function(m){ var n={id:m,type:"member",ind:"",label:m.split(" ")[0]}; nodes.push(n); nodeMap[m]=n; });
+  topicSet.forEach(function(t){
+    if(nodeMap[t]) return;
+    var ind=(edges.find(function(e){ return e.t===t; })||{}).ind||"Other";
+    var n={id:t,type:"topic",ind:ind,label:TOPIC_LABELS[t]||t};
+    nodes.push(n); nodeMap[t]=n;
+  });
+  var links = edges.map(function(e){ return {source:e.m,target:e.t,ds:e.ds,s:e.s,n:e.n}; });
 
-  const nodes = GRAPH_DATA.nodes.filter(n => usedIds.has(n.id)).map(n => ({...n}));
-  const nodeMap = {};
-  nodes.forEach(n => nodeMap[n.id] = n);
-
-  const degreeMap = {};
-  filteredEdges.forEach(e => {
-    degreeMap[e.source] = (degreeMap[e.source] || 0) + 1;
-    degreeMap[e.target] = (degreeMap[e.target] || 0) + 1;
+  var g = svgEl.attr("viewBox","0 0 "+W+" "+H).append("g");
+  svgEl.call(d3.zoom().scaleExtent([0.35,3]).on("zoom",function(event){ g.attr("transform",event.transform); }));
+  svgEl.on("click",function(event){
+    if(event.target===svgEl.node()){ selectedMember=null; resetHL(); document.getElementById("gnet-panel").style.display="none"; }
   });
 
-  const w = container.clientWidth || 800;
-  const h = 560;
+  var sim = d3.forceSimulation(nodes)
+    .force("link",d3.forceLink(links).id(function(d){return d.id;}).distance(72).strength(0.75))
+    .force("charge",d3.forceManyBody().strength(function(d){return d.type==="member"?-190:-75;}))
+    .force("center",d3.forceCenter(W/2,H/2).strength(0.1))
+    .force("x",d3.forceX(W/2).strength(0.06))
+    .force("y",d3.forceY(H/2).strength(0.06))
+    .force("collision",d3.forceCollide().radius(function(d){return d.type==="member"?22:10;}).strength(0.9));
 
-  const g = svg.append("g");
-
-  // Zoom
-  svg.call(d3.zoom().scaleExtent([0.3, 3]).on("zoom", (event) => {
-    g.attr("transform", event.transform);
-  }));
-
-  // Click background to reset
-  svg.on("click", function(event) {
-    if (event.target.tagName === "svg" || event.target.tagName === "rect") {
-      selectedMember = null;
-      resetHighlight();
-    }
+  sim.on("tick",function(){
+    nodes.forEach(function(d){ d.x=Math.max(PAD,Math.min(W-PAD,d.x)); d.y=Math.max(PAD,Math.min(H-PAD,d.y)); });
+    link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
+        .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
+    node.attr("cx",function(d){return d.x;}).attr("cy",function(d){return d.y;});
+    mlabel.attr("x",function(d){return d.x;}).attr("y",function(d){return d.y+4;});
+    tlabel.attr("x",function(d){return d.x;}).attr("y",function(d){return d.y-11;});
   });
 
-  const sim = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(filteredEdges.map(e => ({...e})))
-      .id(d => d.id).distance(60).strength(0.4))
-    .force("charge", d3.forceManyBody().strength(-120))
-    .force("center", d3.forceCenter(w / 2, h / 2))
-    .force("collision", d3.forceCollide().radius(d => getNodeRadius(d, degreeMap) + 2));
+  var link = g.append("g").selectAll("line").data(links).join("line")
+    .attr("stroke",function(d){return dsColor(d.ds);})
+    .attr("stroke-opacity",0.55)
+    .attr("stroke-width",function(d){return Math.max(0.8,1+Math.abs(d.s||0)*2);});
 
-  const link = g.append("g").selectAll("line")
-    .data(filteredEdges)
-    .join("line")
-    .attr("stroke", d => DATASET_COLORS[d.dataset] || "#ccc")
-    .attr("stroke-opacity", 0.5)
-    .attr("stroke-width", 1.5)
-    .attr("class", d => "net-edge edge-to-" + d.target.replace(/\s+/g, "_"));
-
-  const node = g.append("g").selectAll("circle")
-    .data(nodes)
-    .join("circle")
-    .attr("r", d => getNodeRadius(d, degreeMap))
-    .attr("fill", d => getNodeColor(d))
-    .attr("stroke", d => d.type === "Board Member" ? "#fff" : "none")
-    .attr("stroke-width", 2)
-    .attr("class", d => "net-node" + (d.type === "Board Member" ? " net-board" : ""))
-    .attr("data-id", d => d.id)
-    .style("cursor", d => d.type === "Board Member" ? "pointer" : "default")
+  var node = g.append("g").selectAll("circle").data(nodes).join("circle")
+    .attr("r",function(d){return d.type==="member"?16+Math.sqrt(degMap[d.id]||0):6+Math.sqrt(degMap[d.id]||0)*0.7;})
+    .attr("fill",function(d){return d.type==="member"?"#e63946":(IND_COL[d.ind]||"#888");})
+    .attr("stroke",function(d){return d.type==="member"?"#fff":"none";})
+    .attr("stroke-width",2)
+    .style("cursor",function(d){return d.type==="member"?"pointer":"default";})
     .call(d3.drag()
-      .on("start", (event, d) => {
-        if (!event.active) sim.alphaTarget(0.3).restart();
-        d.fx = d.x; d.fy = d.y;
-      })
-      .on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
-      .on("end", (event, d) => {
-        if (!event.active) sim.alphaTarget(0);
-        d.fx = null; d.fy = null;
-      }))
-    .on("mouseover", function(event, d) {
-      const sentiment = d.type === "Board Member"
-        ? "Connections: " + (degreeMap[d.id] || 0)
-        : (d.industry ? "Industry: " + d.industry : "No industry");
-      tooltip.innerHTML = "<strong>" + d.label + "</strong><br>" + d.type + "<br>" + sentiment;
-      tooltip.style.display = "block";
+      .on("start",function(event,d){if(!event.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
+      .on("drag",function(event,d){d.fx=Math.max(PAD,Math.min(W-PAD,event.x));d.fy=Math.max(PAD,Math.min(H-PAD,event.y));})
+      .on("end",function(event,d){if(!event.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}))
+    .on("mouseover",function(event,d){
+      var tt=document.getElementById("gnet-tooltip"), r=wrap.getBoundingClientRect(), md=MEMBER_DATA[d.id];
+      if(md){
+        tt.innerHTML='<div class="tt-name">'+d.id+'</div>'
+          +'<div class="tt-row">Dataset: <span style="color:'+dsColor(md.ds)+'">'+md.ds+'</span></div>'
+          +'<div class="tt-row">Fishing sentiment: <span>'+md.fish.toFixed(2)+'</span></div>'
+          +'<div class="tt-row">Tourism sentiment: <span>'+md.tour.toFixed(2)+'</span></div>'
+          +'<div style="margin-top:5px;font-size:0.7rem;font-style:italic;color:#6b6b80">'+md.note+'</div>';
+      } else {
+        var members=edges.filter(function(e){return e.t===d.id;}).map(function(e){return e.m;}).join(", ");
+        tt.innerHTML='<div class="tt-name">'+(TOPIC_LABELS[d.id]||d.id)+'</div>'
+          +'<div class="tt-row">Industry: <span style="color:'+(IND_COL[d.ind]||"#888")+'">'+(d.ind||"Other")+'</span></div>'
+          +'<div class="tt-row">Members: <span>'+(members||"none in this filter")+'</span></div>';
+      }
+      tt.style.display="block";
+      var tx=event.clientX-r.left+14, ty=event.clientY-r.top-10;
+      tt.style.left=Math.min(tx,W-225)+"px"; tt.style.top=Math.max(6,Math.min(ty,H-130))+"px";
     })
-    .on("mousemove", function(event) {
-      const rect = container.getBoundingClientRect();
-      tooltip.style.left = (event.clientX - rect.left + 12) + "px";
-      tooltip.style.top = (event.clientY - rect.top - 10) + "px";
+    .on("mousemove",function(event){
+      var r=wrap.getBoundingClientRect(), tt=document.getElementById("gnet-tooltip");
+      var tx=event.clientX-r.left+14, ty=event.clientY-r.top-10;
+      tt.style.left=Math.min(tx,W-225)+"px"; tt.style.top=Math.max(6,Math.min(ty,H-130))+"px";
     })
-    .on("mouseout", function() { tooltip.style.display = "none"; })
-    .on("click", function(event, d) {
+    .on("mouseout",function(){ document.getElementById("gnet-tooltip").style.display="none"; })
+    .on("click",function(event,d){
       event.stopPropagation();
-      if (d.type !== "Board Member") return;
-      if (selectedMember === d.id) { selectedMember = null; resetHighlight(); return; }
-      selectedMember = d.id;
-      highlightMember(d.id, filteredEdges);
+      if(d.type==="member"){ selectedMember=d.id; highlightMember(d.id); showPanel(d.id); }
     });
 
-  const label = g.append("g").selectAll("text")
-    .data(nodes.filter(n => n.type === "Board Member"))
-    .join("text")
-    .text(d => d.label)
-    .attr("font-size", "11px")
-    .attr("font-weight", "700")
-    .attr("fill", "#1d3557")
-    .attr("text-anchor", "middle")
-    .attr("dy", d => -(getNodeRadius(d, degreeMap) + 4))
-    .style("pointer-events", "none");
+  var mlabel = g.append("g").selectAll("text").data(nodes.filter(function(d){return d.type==="member";})).join("text")
+    .attr("text-anchor","middle").attr("font-size","9").attr("font-weight","600")
+    .attr("fill","#fff").attr("pointer-events","none").text(function(d){return d.label;});
 
-  sim.on("tick", () => {
-    link
-      .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
-      .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
-    node.attr("cx", d => d.x).attr("cy", d => d.y);
-    label.attr("x", d => d.x).attr("y", d => d.y);
-  });
+  var tlabel = g.append("g").selectAll("text").data(nodes.filter(function(d){return d.type==="topic";})).join("text")
+    .attr("text-anchor","middle").attr("font-size","8").attr("font-weight","400")
+    .attr("fill","#6b6b80").attr("pointer-events","none").text(function(d){return d.label;});
 
-  function highlightMember(memberId, edges) {
-    const connectedSources = new Set(edges.filter(e => e.target === memberId).map(e => e.source));
-    node.attr("opacity", d => {
-      if (d.id === memberId) return 1;
-      if (connectedSources.has(d.id)) return 0.9;
-      if (BOARD_MEMBERS.has(d.id)) return 0.2;
-      return 0.15;
-    }).attr("stroke-width", d => d.id === memberId ? 3 : 2);
-    link.attr("opacity", d => d.target === memberId ? 0.9 : 0.05)
-      .attr("stroke-width", d => d.target === memberId ? 2.5 : 1.5);
-    label.attr("opacity", d => d.id === memberId ? 1 : 0.2);
+  var selectedMember=null;
+
+  function highlightMember(m){
+    var connected=new Set(edges.filter(function(e){return e.m===m;}).map(function(e){return e.t;}));
+    node.attr("opacity",function(d){return d.id===m||connected.has(d.id)?1:0.08;});
+    link.attr("opacity",function(d){return d.source.id===m||d.target.id===m?0.9:0.03;})
+        .attr("stroke-width",function(d){return d.source.id===m||d.target.id===m?2.5+Math.abs(d.s||0)*2:0.8;});
+    mlabel.attr("opacity",function(d){return d.id===m?1:0.08;});
+    tlabel.attr("opacity",function(d){return connected.has(d.id)?1:0.05;});
   }
 
-  function resetHighlight() {
-    node.attr("opacity", 1).attr("stroke-width", 2);
-    link.attr("opacity", 0.5).attr("stroke-width", 1.5);
-    label.attr("opacity", 1);
+  function resetHL(){
+    node.attr("opacity",1); mlabel.attr("opacity",1); tlabel.attr("opacity",1);
+    link.attr("opacity",0.55).attr("stroke-width",function(d){return Math.max(0.8,1+Math.abs(d.s||0)*2);});
+  }
+
+  function showPanel(m){
+    var md=MEMBER_DATA[m]; if(!md) return;
+    var col=dsColor(md.ds);
+    var myEdges=edges.filter(function(e){return e.m===m;});
+    var topicLines=myEdges.map(function(e){
+      var sc=e.s<0?"#c0392b":e.s>0.5?"#2a9d8f":"#6b6b80";
+      return '<div style="display:flex;justify-content:space-between;gap:6px;padding:1px 0">'
+        +'<span style="color:'+(IND_COL[e.ind]||"#888")+'">'+(TOPIC_LABELS[e.t]||e.t)+'</span>'
+        +'<span style="color:'+sc+';font-weight:500">'+(e.s!=null?e.s.toFixed(2):"--")+'</span>'
+        +'</div>';
+    }).join("");
+    document.getElementById("gnet-panel").innerHTML=
+        '<div style="font-size:0.82rem;font-weight:600;color:#1a1a2e;margin-bottom:4px">'+m+'</div>'
+      +'<div style="display:inline-block;padding:1px 8px;border-radius:10px;font-size:0.7rem;background:'+col+'22;color:'+col+';border:1px solid '+col+';margin-bottom:8px">'+md.ds+'</div>'
+      +'<div style="font-size:0.75rem;color:#6b6b80;line-height:1.9;margin-bottom:6px">'
+        +'<div>Fishing: <strong style="color:#e9a900">'+md.fish.toFixed(2)+'</strong></div>'
+        +'<div>Tourism: <strong style="color:#457b9d">'+md.tour.toFixed(2)+'</strong></div>'
+      +'</div>'
+      +'<div style="font-size:0.7rem;font-weight:600;color:#6b6b80;border-top:1px solid #e2ddf0;padding-top:6px;margin-bottom:4px">Topics (sentiment)</div>'
+      +'<div style="font-size:0.7rem;line-height:2">'+topicLines+'</div>'
+      +'<div style="font-size:0.7rem;font-style:italic;color:#6b6b80;border-top:1px solid #e2ddf0;padding-top:6px;margin-top:6px">'+md.note+'</div>';
+    document.getElementById("gnet-panel").style.display="block";
   }
 }
 
-// Filter buttons
-document.querySelectorAll(".net-btn").forEach(btn => {
-  btn.addEventListener("click", function() {
-    document.querySelectorAll(".net-btn").forEach(b => b.classList.remove("active"));
-    this.classList.add("active");
-    activeFilter = this.dataset.filter;
-    selectedMember = null;
-    buildGraph(activeFilter);
+document.querySelectorAll(".gnet-btn").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    document.querySelectorAll(".gnet-btn").forEach(function(b){b.classList.remove("active");});
+    btn.classList.add("active");
+    document.getElementById("gnet-panel").style.display="none";
+    buildGraph(btn.dataset.f==="all"?null:btn.dataset.f);
   });
 });
 
-buildGraph("all");
-
+buildGraph(null);
 })();
 </script>
-<!-- ===== END NETWORK GRAPH SECTION ===== -->
 ```
 
 The static Gephi exports (Tante Titan, Teddy Goldstein, full network) are embedded below the interactive graph.
