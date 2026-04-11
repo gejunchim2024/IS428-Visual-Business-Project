@@ -12,6 +12,32 @@ What makes this finding analytically interesting is that both groups were workin
 
 The most analytically robust finding is not just that both groups cherry-picked, it is that both groups cherry-picked from the same evidence pool and reached opposite conclusions. This is only possible through coordinated, opposing acts of omission: FILAH suppressing every strong pro-fishing voice (Teddy Goldstein, Ed Helpsford, Tante Titan), TROUT suppressing every strong pro-tourism voice (Simone Kat, Carol Limpet, Tante Titan), both working from the journalist's complete record and extracting only what served their respective narratives. The journalist's dataset does not tell a dramatically different story from either partial view, it tells a balanced story that neither partial view was designed to permit.
 
+```{=html}
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:1.5rem 0;">
+
+  <div style="background:#7c5cbf;border-radius:10px;padding:1rem 1.1rem;text-align:center;">
+    <div style="font-size:2rem;font-weight:700;color:#fff;line-height:1.1;">60%</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.85);margin-top:4px;line-height:1.4;">of all records hidden by both activist groups combined</div>
+  </div>
+
+  <div style="background:#457b9d;border-radius:10px;padding:1rem 1.1rem;text-align:center;">
+    <div style="font-size:2rem;font-weight:700;color:#fff;line-height:1.1;">0.059</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.85);margin-top:4px;line-height:1.4;">sentiment gap between Fishing &amp; Tourism in full dataset — not meaningful bias</div>
+  </div>
+
+  <div style="background:#2a9d8f;border-radius:10px;padding:1rem 1.1rem;text-align:center;">
+    <div style="font-size:2rem;font-weight:700;color:#fff;line-height:1.1;">54</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.85);margin-top:4px;line-height:1.4;">Tante Titan records — excluded by both groups, zero included</div>
+  </div>
+
+  <div style="background:#c0392b;border-radius:10px;padding:1rem 1.1rem;text-align:center;">
+    <div style="font-size:2rem;font-weight:700;color:#fff;line-height:1.1;">55%</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.85);margin-top:4px;line-height:1.4;">of all tourism links suppressed by TROUT — largest single omission</div>
+  </div>
+
+</div>
+```
+
 
 ## Q1: Do FILAH's and TROUT's own datasets support their accusations?
 
@@ -109,7 +135,7 @@ Mean sentiment = **0.549**
 :::
 :::
 
-A difference of **0.059** across a −1 to +1 scale does not constitute meaningful bias. Both industries receive positive engagement.
+A difference of **0.059** across a −1 to +1 scale does not constitute meaningful bias. Both industries receive positive engagement. The higher raw count for Tourism (58 positive interactions vs 33 for Fishing) reflects participation volume — Tourism topics generated more discussions in the dataset — not directional preference by the board.
 
 The interactive dashboard below uses the full journalist dataset. It includes Board Sentiment Direction (positive vs negative interactions by industry), member participation by industry, the FILAH / Journalist / TROUT sentiment trellis (the Journalist dataset sits between the two partisan extremes), member vs board average bars, and the member × topic sentiment heatmap.
 
@@ -375,6 +401,8 @@ A dot plot beneath the industry view that breaks the same selection down to indi
 
 
 ## Network Graph: Board Member Connections
+
+The network below makes the suppression pattern visible spatially — switch between dataset filters to watch members appear and disappear, and click any board member to see their topic connections and sentiment scores.
 
 This interactive network maps each board member's participation across discussions and travel records. Node size reflects total connection count. Edge colour reflects which dataset the connection comes from — FILAH edges, TROUT edges, journalist-only edges, and edges shared by both groups are each coloured distinctly.
 
@@ -734,6 +762,8 @@ Teddy appears only in TROUT's dataset. Switching the Dataset View reveals:
 TROUT showed Teddy because his profile fit their narrative. FILAH hid him because his pro-fishing sentiment would have undermined their claim.
 
 The Gephi export above shows why he is so narratively useful: his ego network is smaller than high-volume members like Tante Titan, but it contains many tourism-linked connections alongside his negative tourism sentiment.
+
+---
 
 ### Key evidence missing from TROUT that changed Teddy Goldstein's story
 

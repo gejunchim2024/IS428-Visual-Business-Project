@@ -537,6 +537,12 @@ TROUT excluded
 <pre><code>Base: mc2_journalist_links.csv (2,436 rows)
   └─ LEFT JOIN mc2_FILAH_links.csv  ON source + target 
   └─ LEFT JOIN mc2_TROUT_links.csv  ON source + target </code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tableau-archive/join_setup.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>The Tableau data source setup — journalist links as the base table, with FILAH, TROUT, and geo nodes left-joined onto it.</figcaption>
+</figure>
+</div>
 <p>After the join, rows where FILAH’s <code>source</code> column is NULL were excluded by FILAH. Rows where TROUT’s <code>source</code> column is NULL were excluded by TROUT. Two boolean calculated fields (<code>In FILAH</code>, <code>In TROUT</code>) capture this. A parameter (<code>Dataset View</code>) switches the filter between FILAH, TROUT, and Full Journalist perspectives without requiring separate data sources.</p>
 <p>The journalist nodes file was added twice as related tables — once for target node attributes, once for source node attributes. The geo nodes file was added as a third relationship, keyed on <code>target = id</code>, resolving only for travel links where the target is a geographic node ID.</p>
 <div class="callout callout-style-simple callout-note no-icon">
